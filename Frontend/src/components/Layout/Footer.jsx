@@ -1,54 +1,78 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom if needed
-// import './Footer.css'; // Import your CSS file for footer styling
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
+import { Box, Typography, IconButton, TextField, Button } from '@mui/material';
+import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Footer = () => {
   return (
-    <footer className="footer_section fade-in">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 footer-col">
-            <div className="footer_content">
-              <h4>Reach at...</h4>
-              <div className="contact_link_box">
-                <a href="https://www.google.com/maps/place/Cafesa+-+Pure+Veg.+Multi+Cuisine+Cafe+and+Restaurant/@26.8967209,75.765484,17z/data=!3m1!4b1!4m6!3m5!1s0x396db56e55bfca81:0x7e26b606a96c7fb3!8m2!3d26.8967161!4d75.7680589!16s%2Fg%2F11st4cs55b?entry=ttu">
-                  <i className="fa fa-map-marker" aria-hidden="true"></i>
-                  <span>Location</span>
-                </a>
-                <a href="tel:+916204332516">
-                  <i className="fa fa-phone" aria-hidden="true"></i>
-                  <span>Call +91 6204332516</span>
-                </a>
-                <a href="mailto:anand.dwivwdi@gmail.com">
-                  <i className="fa fa-envelope" aria-hidden="true"></i>
-                  <span>anand.dwivwdi@gmail.com</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 footer-col">
-            <div className="footer_detail">
-              <Link to="/" className="footer-logo">
-                CareerVista || ADDIE
-              </Link>
-              <p>
-              "Explore Your Career Horizon with Career Vista"
-              </p>
-              <div className="footer_social">
-                <a href="https://www.facebook.com"><i className="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="https://www.twitter.com"><i className="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="https://www.linkedin.com"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href="https://www.instagram.com"><i className="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="https://www.pinterest.com"><i className="fa fa-pinterest" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="footer-info">
-          <p>&copy; <span id="displayYear">{new Date().getFullYear()}</span> All Rights Reserved By <Link to="#">ADDIE</Link></p>
-        </div>
-      </div>
-    </footer>
+    <Box className="footer bg-body-tertiary" sx={{ py: 3 }}>
+      <Container>
+        <Row>
+          <Col md={4}>
+            <Typography variant="h6" component="div">
+              CareerVista
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              &copy; 2024 CareerVista. All rights reserved.
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Your trusted partner in finding your dream job. We connect job seekers with top employers across various industries.
+            </Typography>
+          </Col>
+          <Col md={4}>
+            <Typography variant="h6" component="div">
+              Contact Us
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Email: support@careervista.com
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Phone: +1 234 567 890
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Address: 123 Career St, Job City, USA
+            </Typography>
+          </Col>
+          <Col md={4}>
+            <Typography variant="h6" component="div">
+              Subscribe for Job Alerts
+            </Typography>
+            <form noValidate autoComplete="off">
+              <TextField
+                label="Email Address"
+                variant="outlined"
+                size="small"
+                fullWidth
+                sx={{ mb: 2 }}
+              />
+              <Button variant="contained" color="primary" fullWidth>
+                Subscribe
+              </Button>
+            </form>
+            <Typography variant="h6" component="div" sx={{ mt: 2 }}>
+              Follow Us
+            </Typography>
+            <IconButton aria-label="facebook" href="https://www.facebook.com" target="_blank">
+              <Facebook />
+            </IconButton>
+            <IconButton aria-label="twitter" href="https://www.twitter.com" target="_blank">
+              <Twitter />
+            </IconButton>
+            <IconButton aria-label="instagram" href="https://www.instagram.com" target="_blank">
+              <Instagram />
+            </IconButton>
+            <IconButton aria-label="linkedin" href="https://www.linkedin.com" target="_blank">
+              <LinkedIn />
+            </IconButton>
+          </Col>
+        </Row>
+      </Container>
+    </Box>
   );
 };
 
