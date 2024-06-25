@@ -1,8 +1,11 @@
 import React from "react";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import './Navigation.css'; // Import your CSS file for navigation styling
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 
 const Header = () => {
   const openNav = () => {
@@ -11,57 +14,39 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg custom-nav-container">
-      <Link to="/" className="navbar-brand">
-        <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="CareerVista" />
-      </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <Link to="/" className="nav-link" onClick={openNav}>
+    <Navbar expand="lg" className="custom-nav-container">
+      <Container>
+        <Navbar.Brand as={Link} to="/">
+          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="CareerVista" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarSupportedContent" />
+        <Navbar.Collapse id="navbarSupportedContent">
+          <Nav className="ms-auto mb-2 mb-lg-0">
+            <Nav.Link as={Link} to="/" onClick={openNav}>
               Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/AboutUs" className="nav-link" onClick={openNav}>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/AboutUs" onClick={openNav}>
               About
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/ContactUs" className="nav-link" onClick={openNav}>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/ContactUs" onClick={openNav}>
               ContactUs
-            </Link>
-          </li>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title="Join US"
-            menuVariant="dark"
-          >
-            <NavDropdown.Item as={Link} to="/RecruiterLoginForm">
-              Login Recruiter
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/EmployeeLoginForm">
-              Login Employee
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/RegistrationForm">
-              Register Yourself
-            </NavDropdown.Item>
-          </NavDropdown>
-        </ul>
-      </div>
-    </nav>
+            </Nav.Link>
+            <NavDropdown title="Join US" id="nav-dropdown-dark-example" menuVariant="dark">
+              <NavDropdown.Item as={Link} to="/RecruiterLoginForm">
+                Login Recruiter
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/EmployeeLoginForm">
+                Login Employee
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/RegistrationForm">
+                Register Yourself
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

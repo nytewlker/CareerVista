@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Grid, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Row, Col, Form } from "react-bootstrap";
 import { APIBASEURL } from "../../config";
 
 const RegistrationForm = () => {
@@ -41,54 +42,59 @@ const RegistrationForm = () => {
     <Container>
       <Row className="justify-content-center mt-5">
         <Col md={6}>
-          <h2 className="text-center mb-4">Registration</h2>
+          <Typography variant="h4" align="center" gutterBottom>Registration</Typography>
           <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>Choose Role:</Form.Label>
-              <Form.Control
-                as="select"
+            <FormControl fullWidth variant="outlined" sx={{ marginBottom: 2 }}>
+              <InputLabel id="role-label">Choose Role</InputLabel>
+              <Select
+                labelId="role-label"
+                id="role-select"
                 value={role}
                 onChange={handleRoleChange}
+                label="Choose Role"
                 name="role"
               >
-                <option value="employee">Employee</option>
-                <option value="recruiter">Recruiter</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit" block>
+                <MenuItem value="employee">Employee</MenuItem>
+                <MenuItem value="recruiter">Recruiter</MenuItem>
+              </Select>
+            </FormControl>
+
+            <TextField
+              fullWidth
+              label="Name"
+              variant="outlined"
+              margin="normal"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+
+            <TextField
+              fullWidth
+              label="Email address"
+              variant="outlined"
+              margin="normal"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+
+            <TextField
+              fullWidth
+              label="Password"
+              variant="outlined"
+              margin="normal"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+
+            <Button variant="contained" type="submit" color="primary" fullWidth sx={{ marginTop: 2 }}>
               Register
             </Button>
           </Form>
