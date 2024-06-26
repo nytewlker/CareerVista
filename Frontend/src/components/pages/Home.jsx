@@ -7,79 +7,81 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 
 const Home = () => {
   return (
-    <div className="hero-container fade-in">
-      {/* Hero Carousel */}
-      <Carousel id="heroCarousel" interval={3000}>
-        {/* Slide 1 */}
-        <Carousel.Item>
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/resized_img1.jpg`}
-            className="d-block w-100"
-            alt="Slide 1"
-          />
-          <Carousel.Caption>
-            <h5>Searching for a job?</h5>
-            <Typography variant="body1">
-              Find the <span className="highlight">best startup</span> job that fits you
-            </Typography>
-            <Button
-              variant="custom"
-              className="orange-button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasDescription"
-              aria-controls="offcanvasDescription"
-            >
-              Learn More
-            </Button>
-          </Carousel.Caption>
-        </Carousel.Item>
-        {/* Slide 2 */}
-        <Carousel.Item>
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/resized_img2.jpg`}
-            className="d-block w-100"
-            alt="Slide 2"
-          />
-          <Carousel.Caption>
-            <h5>Join Our Community</h5>
-            <Typography variant="body1">
-              Explore opportunities in <span className="highlight">tech startups</span>
-            </Typography>
-            <Button
-              variant="custom"
-              className="orange-button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasDescription"
-              aria-controls="offcanvasDescription"
-            >
-              Learn More
-            </Button>
-          </Carousel.Caption>
-        </Carousel.Item>
-        {/* Slide 3 */}
-        <Carousel.Item>
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/resized_img3.jpg`}
-            className="d-block w-100"
-            alt="Slide 3"
-          />
-          <Carousel.Caption>
-            <h5>Career Growth</h5>
-            <Typography variant="body1">
-              Find jobs that <span className="highlight">accelerate your career</span>
-            </Typography>
-            <Button
-              variant="custom"
-              className="orange-button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasDescription"
-              aria-controls="offcanvasDescription"
-            >
-              Learn More
-            </Button>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+    <div className="hero-container ">
+      <Container fade-in>
+        {/* Hero Carousel */}
+        <Carousel id="heroCarousel fade-in" interval={3000} >
+          {/* Slide 1 */}
+          <Carousel.Item>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/resized_img1.jpg`}
+              className="d-block w-100"
+              alt="Slide 1"
+            />
+            <Carousel.Caption>
+              <h5>Searching for a job?</h5>
+              <Typography variant="body1">
+                Find the <span className="highlight">best startup</span> job that fits you
+              </Typography>
+              <Button
+                variant="primary"
+                className="orange-button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDescription"
+                aria-controls="offcanvasDescription"
+              >
+                Learn More
+              </Button>
+            </Carousel.Caption>
+          </Carousel.Item>
+          {/* Slide 2 */}
+          <Carousel.Item>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/resized_img2.jpg`}
+              className="d-block w-100"
+              alt="Slide 2"
+            />
+            <Carousel.Caption>
+              <h5>Join Our Community</h5>
+              <Typography variant="body1">
+                Explore opportunities in <span className="highlight">tech startups</span>
+              </Typography>
+              <Button
+                variant="primary"
+                className="orange-button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDescription"
+                aria-controls="offcanvasDescription"
+              >
+                Learn More
+              </Button>
+            </Carousel.Caption>
+          </Carousel.Item>
+          {/* Slide 3 */}
+          <Carousel.Item>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/resized_img3.jpg`}
+              className="d-block w-100"
+              alt="Slide 3"
+            />
+            <Carousel.Caption>
+              <h5>Career Growth</h5>
+              <Typography variant="body1">
+                Find jobs that <span className="highlight">accelerate your career</span>
+              </Typography>
+              <Button
+                variant="primary"
+                className="orange-button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDescription"
+                aria-controls="offcanvasDescription"
+              >
+                Learn More
+              </Button>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+      </Container>
 
       {/* Offcanvas Description */}
       <div
