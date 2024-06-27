@@ -6,8 +6,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const AboutUs = () => {
   return (
-    <div className="about-section fade-in">
-      <Container>
+    <Container>
+      <div className="about-section fade-in">
         <Row className="justify-content-center">
           <Col md={8}>
             <div className="about-content text-center">
@@ -74,8 +74,8 @@ const AboutUs = () => {
             <p>Marketing Head</p>
           </Col>
         </Row>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

@@ -1,19 +1,24 @@
 import React from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+// import './ContactUs.css'; // Importing the CSS file
 
 const ContactUs = () => {
   return (
     <div className="contact-section fade-in">
-      <div className="full-screen-container">
-        <Container fluid className="d-flex justify-content-center align-items-center h-100">
-          <div className="form-container">
-            <div className="contact-content text-center text-white mb-5">
+      <Container className="contact-container">
+        <Row className="justify-content-center">
+          <Col md={8}>
+            <div className="contact-content text-center">
               <h2>Contact Us</h2>
               <p className="lead">
                 Have a question or want to get in touch? Send us a message below!
               </p>
             </div>
-            <div className="bg-white p-4 rounded shadow">
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col md={8}>
+            <div className="form-container bg-white rounded shadow">
               <Form>
                 <Form.Group controlId="formBasicName" className="mb-3">
                   <Form.Label>Your Name</Form.Label>
@@ -38,9 +43,9 @@ const ContactUs = () => {
                 </Button>
               </Form>
             </div>
-          </div>
-        </Container>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
