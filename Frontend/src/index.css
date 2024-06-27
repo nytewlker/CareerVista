@@ -100,59 +100,138 @@
 
 
 
-/* about-section */
+/* AboutUs.css */
 
+/* General Styles */
 .about-section {
-  position: relative;
   padding: 60px 0;
-  overflow: hidden; /* Ensure child elements don't overflow */
-}
-
-.about-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/public/assets/aboutbg.jpg'); /* Path to your image in the public folder */
-  background-size: cover;
-  background-position: bottom; /* Adjust the position of the background image */
-  filter: blur(2px); /* Adjust the blur radius as needed */
-  z-index: -2; /* Ensure the background stays behind the content and color overlay */
-}
-
-.about-section::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.282); /* Adjust the color and opacity as needed */
-  z-index: -1; /* Ensure the color overlay stays between the background and the content */
-}
-
-.about-content {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.372); /* Adjust the opacity */
-  color: #f90000; /* Adjust the text color */
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 1; /* Ensure content is above the blurred background and color overlay */
+  background: url('/public/assets/aboutbg.jpg') no-repeat center center/cover; /* Add your background image here */
+  color: #fff; /* Ensure text is visible against the background */
 }
 
 .about-content h2 {
-  color: #ffffff; /* Adjust the heading text color */
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .about-content p {
-  color: #ffffff; /* Adjust the paragraph text color */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #f0f0f0; /* Light color for better readability against the background */
 }
 
-.text-center h4, .text-center p, .text-center h6 {
-  color: #ffffff; /* Adjust text color for team member section */
+.text-center h4 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  font-weight: 700;
 }
+
+.text-center h6 {
+  font-size: 1.1rem;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+.text-center p {
+  font-size: 1rem;
+  color: #f0f0f0; /* Light color for better readability */
+}
+
+/* Animations */
+.animate__animated.animate__fadeInUp {
+  animation-duration: 1s;
+  animation-delay: 0.5s;
+}
+
+.animate__animated.animate__fadeInLeft,
+.animate__animated.animate__fadeInRight {
+  animation-duration: 1s;
+  animation-delay: 0.5s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content h2 {
+    font-size: 2rem;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+  }
+
+  .text-center h4 {
+    font-size: 1.3rem;
+  }
+
+  .text-center h6 {
+    font-size: 1rem;
+  }
+
+  .text-center p {
+    font-size: 0.9rem;
+  }
+}
+
+/*ContactUs.css */
+/* ContactUs.css */
+
+.contact-section {
+  background-color: #f8f9fa; /* Fallback background color */
+  padding: 50px 0; /* Adjust padding as needed */
+}
+
+.contact-container {
+  background-image: url('/public/assets/aboutbg.jpg'); /* Adjust path as needed */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 50px 0; /* Adjust padding as needed */
+}
+
+.contact-content {
+  margin-bottom: 40px; /* Adjust spacing between heading and form */
+  color: #212529; /* Adjust text color */
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Adjust background color and opacity */
+  padding: 40px; /* Add padding as needed */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  animation: slideInUp 1s ease;
+
+  /* Centering the form container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.contact-content h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.contact-content p {
+  font-size: 1.2rem;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
  
 /* <registration form  */
 /* custom-styles.css */
@@ -210,20 +289,26 @@
 }
 
 
-/* contact us css */
-.full-screen-container {
+/* ContactUs.css */
+
+.contact-section {
   height: 100vh; /* Full viewport height */
-  background-image: url('/public/assets/aboutbg.jpg');
-  background-position: bottom;
   display: flex;
-  justify-content: baseline;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-container {
+  background-image: url('/public/assets/aboutbg.jpg'); /* Adjust path as needed */
+  background-position: center;
+  justify-content: center;
   align-items: center;
 }
 
 .form-container {
   width: 100%;
   max-width: 600px; /* Adjust maximum width as needed */
-  background-color: rgba(141, 125, 116, 0.548); /* Adjust background color */
+  background-color: rgba(255, 255, 255, 0.8); /* Adjust background color */
   padding: 40px; /* Add padding as needed */
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -265,6 +350,8 @@
     opacity: 1;
   }
 }
+
+
 
 
 

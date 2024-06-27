@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Container, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { Row, Col, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; // Use useNavigate from react-router-dom v6
 import { APIBASEURL } from "../../config";
 
-const RegistrationForm = () => {
+const LoginForm = () => {
   const [role, setRole] = useState("employee"); // default role
 
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    password: "",
-    company: "test"
+    password: ""
   });
+
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const handleRoleChange = (event) => {
     setRole(event.target.value);
@@ -27,14 +29,27 @@ const RegistrationForm = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `${APIBASEURL}/${role}/register`,
+        `${APIBASEURL}/${role}/login`,
         formData
       );
-      console.log("Registration successful:", response.data);
-      // You can redirect or show a success message here
+      console.log("Login successful:", response.data);
+
+      // const userRole = response.data.role; // Corrected variable extraction
+
+      // // Store role and user data in localStorage or state management (like Redux)
+      // localStorage.setItem("userRole", userRole);
+
+      // Redirect based on role
+      if (role === "recruiter") {
+        navigate("/RecruiterHome"); // Ensure this path matches your router configuration
+      } else if (role === "employee") {
+        navigate("/EmployeeHome"); // Ensure this path matches your router configuration
+      } else {
+        setError("Unknown role");
+      }
     } catch (error) {
-      console.error("Registration error:", error);
-      // Handle error state or show error message
+      console.error("Login error:", error.response?.data || error.message);
+      setError("Login failed. Please check your credentials.");
     }
   };
 
@@ -42,8 +57,10 @@ const RegistrationForm = () => {
     <Container>
       <Row className="justify-content-center mt-5">
         <Col md={6}>
-          <Typography variant="h4" align="center" gutterBottom>Registration</Typography>
+          <Typography variant="h4" align="center" gutterBottom>Login</Typography>
           <Form onSubmit={handleSubmit}>
+            {error && <div className="alert alert-danger">{error}</div>}
+            
             <FormControl fullWidth variant="outlined" sx={{ marginBottom: 2 }}>
               <InputLabel id="role-label">Choose Role</InputLabel>
               <Select
@@ -61,17 +78,6 @@ const RegistrationForm = () => {
 
             <TextField
               fullWidth
-              label="Name"
-              variant="outlined"
-              margin="normal"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-
-            <TextField
-              fullWidth
               label="Email address"
               variant="outlined"
               margin="normal"
@@ -81,8 +87,6 @@ const RegistrationForm = () => {
               onChange={handleChange}
               required
             />
-
-            
 
             <TextField
               fullWidth
@@ -97,7 +101,7 @@ const RegistrationForm = () => {
             />
 
             <Button variant="contained" type="submit" color="primary" fullWidth sx={{ marginTop: 2 }}>
-              Register
+              Login
             </Button>
           </Form>
         </Col>
@@ -106,4 +110,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;
