@@ -1,5 +1,4 @@
 import React from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css/animate.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -7,8 +6,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const AboutUs = () => {
   return (
-    <div className="about-section fade-in">
-      <Container>
+    <Container>
+      <div className="about-section fade-in">
         <Row className="justify-content-center">
           <Col md={8}>
             <div className="about-content text-center">
@@ -33,7 +32,7 @@ const AboutUs = () => {
             <p>CEO & Founder</p>
           </Col>
           <Col md={4} className="text-center animate__animated animate__fadeInRight">
-          <img
+            <img
               src={`${process.env.PUBLIC_URL}/assets/owner.jpg`}
               alt="Team Member 1"
               className="img-fluid rounded-circle mb-4"
@@ -45,7 +44,7 @@ const AboutUs = () => {
         </Row>
         <Row className="justify-content-center mt-5">
           <Col md={4} className="text-center animate__animated animate__fadeInLeft">
-          <img
+            <img
               src={`${process.env.PUBLIC_URL}/assets/owner.jpg`}
               alt="Team Member 1"
               className="img-fluid rounded-circle mb-4"
@@ -55,7 +54,7 @@ const AboutUs = () => {
             <p>Project Manager</p>
           </Col>
           <Col md={4} className="text-center animate__animated animate__fadeInRight">
-          <img
+            <img
               src={`${process.env.PUBLIC_URL}/assets/owner.jpg`}
               alt="Team Member 1"
               className="img-fluid rounded-circle mb-4"
@@ -65,7 +64,7 @@ const AboutUs = () => {
             <p>Lead Developer</p>
           </Col>
           <Col md={4} className="text-center animate__animated animate__fadeInRight">
-          <img
+            <img
               src={`${process.env.PUBLIC_URL}/assets/owner.jpg`}
               alt="Team Member 1"
               className="img-fluid rounded-circle mb-4"
@@ -75,8 +74,8 @@ const AboutUs = () => {
             <p>Marketing Head</p>
           </Col>
         </Row>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

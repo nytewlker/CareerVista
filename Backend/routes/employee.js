@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Employee = require('../models/Employee');
+const Recruiter = require('../models/Recruiter');
 
 
 const router = express.Router();
@@ -32,7 +33,8 @@ router.post('/register', async (req, res) => {
 
     const payload = {
       employee: {
-        id: employee.id
+        id: employee.id,
+        role: 'employee'
       }
     };
 
@@ -63,13 +65,14 @@ router.post('/login', async (req, res) => {
 
     const payload = {
       employee: {
-        id: employee.id
+        id: employee.id,
+        role: 'employee'
       }
     };
 
     jwt.sign(payload, 'jwtSecret', { expiresIn: 360000 }, (err, token) => {
       if (err) throw err;
-      res.json({ token });
+      res.json({ token, employee });
     });
   } catch (err) {
     console.error(err.message);

@@ -32,15 +32,15 @@ const Header = () => {
               ContactUs
             </Nav.Link>
             <NavDropdown title="Join US" id="nav-dropdown-dark-example" menuVariant="dark">
-              <NavDropdown.Item as={Link} to="/RecruiterLoginForm">
-                Login Recruiter
+              <NavDropdown.Item as={Link} to="/RegistrationForm">
+                Register Yourself
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/EmployeeLoginForm">
-                Login Employee
+              <NavDropdown.Item as={Link} to="/LoginForm">
+                Login Here
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={Link} to="/RegistrationForm">
-                Register Yourself
+                Admin Panel
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
