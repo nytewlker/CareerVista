@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { Row, Col, Form } from "react-bootstrap";
 import { APIBASEURL } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
   const [role, setRole] = useState("employee"); // default role
@@ -13,6 +14,8 @@ const RegistrationForm = () => {
     password: "",
     company: "test"
   });
+  const [ setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRoleChange = (event) => {
     setRole(event.target.value);
@@ -32,7 +35,17 @@ const RegistrationForm = () => {
       );
       console.log("Registration successful:", response.data);
       // You can redirect or show a success message here
-    } catch (error) {
+
+      // Redirect based on role
+      if (role === "recruiter") {
+        navigate("/RecruiterHome"); // Ensure this path matches your router configuration
+      } else if (role === "employee") {
+        navigate("/EmployeeHome"); // Ensure this path matches your router configuration
+      } else {
+        setError("Unknown role");
+      }
+    }
+    catch (error) {
       console.error("Registration error:", error);
       // Handle error state or show error message
     }
