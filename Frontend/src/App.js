@@ -21,15 +21,20 @@ function App() {
     <div>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout/>}>
-
+        <Route path="/" element={<Layout panel={'dashboard'}/>}>
           <Route index element={<Home/>}/>
           <Route path="/AboutUs" element={<AboutUs/>}/>
           <Route path="/ContactUs" element={<ContactUs/>}/>
           <Route path="/LoginForm" element={<LoginForm/>}/>
           <Route path="/RegistrationForm" element={<RegistrationFrom/>}/>
-          <Route path="/recruiter/home" element={<RecruiterHome />} />
-        <Route path="/employee/home" element={<EmployeeHome />} />
+        </Route>
+
+        <Route path="/" element={<Layout panel={'recruiter'}/>}>
+          <Route path="/RecruiterHome" element={<RecruiterHome/>} />
+        </Route>
+
+        <Route path="/" element={<Layout panel={'employee'}/>}>
+        <Route path="/EmployeeHome" element={<EmployeeHome/>} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -34,10 +34,8 @@ const LoginForm = () => {
       );
       console.log("Login successful:", response.data);
 
-      // const userRole = response.data.role; // Corrected variable extraction
-
-      // // Store role and user data in localStorage or state management (like Redux)
-      // localStorage.setItem("userRole", userRole);
+      // Save token to local storage or context
+      localStorage.setItem('token', response.data.token);
 
       // Redirect based on role
       if (role === "recruiter") {
