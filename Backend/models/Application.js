@@ -15,6 +15,14 @@ const applicationSchema = new mongoose.Schema({
   coverLetter: {
     type: String,
   },
+  status: {
+    type: String,
+    enum: ["pending", "accepted", "rejected"],
+    default: "pending",
+  },
+  message: {
+    type: String,
+  },
 });
 
 

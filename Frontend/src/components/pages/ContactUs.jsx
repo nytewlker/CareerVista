@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import './ContactUs.css'; // Importing the CSS file
+// import './ContactUs.css'; // Importing the CSS file
 
 const ContactUs = () => {
   return (

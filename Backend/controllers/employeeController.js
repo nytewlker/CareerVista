@@ -127,15 +127,13 @@ exports.getEmployeeProfile = async (req, res) => {
 };
 
 
-// Update Employee Profile
 exports.updateEmployeeProfile = async (req, res) => {
-  const { name, email, phone, institutionName, startYear, endYear, skills } =
-    req.body;
+  const { name, email, phone, institutionName, startYear, endYear, skills } = req.body;
 
   try {
     let employee = await Employee.findById(req.params.id);
     if (!employee) {
-      return res.status(404).json({ msg: "Employee not found" });
+      return res.status(404).json({ msg: 'Employee not found' });
     }
 
     employee.name = name || employee.name;
@@ -148,36 +146,24 @@ exports.updateEmployeeProfile = async (req, res) => {
 
     if (req.files) {
       if (req.files.resume) {
-        const resumePath = `upload/resumes/${Date.now()}_${
-          req.files.resume.name
-        }`;
-        fs.writeFileSync(
-          path.join(__dirname, "..", resumePath),
-          req.files.resume.data
-        );
+        const resumePath = `upload/resumes/${Date.now()}_${req.files.resume[0].originalname}`;
+        fs.writeFileSync(path.join(__dirname, '..', resumePath), req.files.resume[0].buffer);
         employee.resume = resumePath;
       }
-
       if (req.files.profilePic) {
-        const profilePicPath = `upload/profilePics/${Date.now()}_${
-          req.files.profilePic.name
-        }`;
-        fs.writeFileSync(
-          path.join(__dirname, "..", profilePicPath),
-          req.files.profilePic.data
-        );
+        const profilePicPath = `upload/profilePics/${Date.now()}_${req.files.profilePic[0].originalname}`;
+        fs.writeFileSync(path.join(__dirname, '..', profilePicPath), req.files.profilePic[0].buffer);
         employee.profilePic = profilePicPath;
       }
     }
 
     await employee.save();
     res.json(employee);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+  } catch (error) {
+    console.error('Error updating employee profile:', error);
+    res.status(500).json({ msg: 'Server error' });
   }
 };
-
 
 //employee/logout
 exports.employeeLogout = async (req, res) => {

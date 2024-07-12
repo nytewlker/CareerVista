@@ -20,6 +20,8 @@ router.post('/logout', employeeController.employeeLogout);
 router.get('/profile/:id', employeeController.getEmployeeProfile);
 
 // Update Employee Profile
-router.put('/profile/:id', employeeController.updateEmployeeProfile);
+// Update Employee Profile
+router.put('/profile/:id',  upload.fields([{ name: 'resume' }, { name: 'profilePic' }]), employeeController.updateEmployeeProfile);
 
+module.exports = router;
 module.exports = router;
