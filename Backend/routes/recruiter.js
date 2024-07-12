@@ -1,77 +1,25 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const Recruiter = require("../models/Recruiter");
-const verify = require("../middleware/auth.js");
-
+const express = require('express');
+const multer = require('multer');
 const router = express.Router();
+const recruiterController = require('../controllers/recruiterController');
+
+
+// Set up multer for file handling (not used in this case, but kept for consistency)
+const upload = multer();
 
 // Recruiter Registration
-router.post("/register", async (req, res) => {
-  const { name, email, password, company } = req.body;
-  console.log(req.body);
-  try {
-    let recruiter = await Recruiter.findOne({ email });
-    if (recruiter) {
-      return res
-        .status(400)
-        .json({ data: recruiter, msg: "Recruiter already exists" });
-    }
-
-    recruiter = new Recruiter({
-      name,
-      email,
-      password,
-      company,
-    });
-
-    const salt = await bcrypt.genSalt(10);
-    recruiter.password = await bcrypt.hash(password, salt);
-
-    await recruiter.save();
-
-    const payload = {
-      recruiter: {
-        id: recruiter.id,
-      },
-    };
-
-    const token = jwt.sign(payload, "jwtSecret", { expiresIn: 360000 });
-    return res.json({ status: 200, token });
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).send("Server error");
-  }
-});
+router.post('/register', upload.none(), recruiterController.registerRecruiter);
 
 // Recruiter Login
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+router.post('/login', recruiterController.loginRecruiter);
 
-  try {
-    let recruiter = await Recruiter.findOne({ email });
-    if (!recruiter) {
-      return res.status(400).json({ msg: "Invalid Credentials" });
-    }
+// POST /api/recruiter/logout
+router.post('/logout', recruiterController.recruiterLogout);
 
-    const isMatch = await bcrypt.compare(password, recruiter.password);
-    if (!isMatch) {
-      return res
-        .status(400)
-        .json({ data: recruiter, msg: "Invalid Credentials" });
-    }
+// Get Recruiter Profile
+router.get("/profile/:id",  recruiterController.getRecruiterProfile);
 
-    const payload = {
-      recruiter: {
-        id: recruiter.id,
-      },
-    };
-
-    const token = jwt.sign(payload, "jwtSecret", { expiresIn: 360000 });
-    return res.status(200).json({ status: 200, token, recruiter });
-  } catch (err) {
-    return res.status(500).send("Server error");
-  }
-});
+// // Update Recruiter Profile
+// router.put("/profile", auth, upload.none(), recruiterController.updateRecruiterProfile);
 
 module.exports = router;

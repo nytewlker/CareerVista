@@ -1,12 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css/animate.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
-// import './AboutUs.css';  // Assuming you create this CSS file
+import { Row, Col } from 'react-bootstrap';
+import './AboutUs.css';  // Assuming you create this CSS file
 
 const AboutUs = () => {
   return (
-    <Container>
       <div className="about-section fade-in">
         <Row className="justify-content-center">
           <Col md={8}>
@@ -75,7 +74,7 @@ const AboutUs = () => {
           </Col>
         </Row>
       </div>
-    </Container>
+
   );
 };
 

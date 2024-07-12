@@ -1,16 +1,17 @@
+/* Navbar Styles (navbar.css) */
 .custom-nav-container {
-  background-color: #ffffff; /* Set your desired background color */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
 }
 
 .navbar-brand img {
-  height: 40px; /* Adjust the height of the logo */
+  height: 40px;
   width: auto;
 }
 
 .navbar-toggler {
-  border: none; /* Remove border for the hamburger button */
+  border: none;
 }
 
 .navbar-toggler-icon {
@@ -18,21 +19,21 @@
 }
 
 .nav-link {
-  color: #000000 !important; /* Set your desired text color */
+  color: #000000 !important;
   font-weight: 500;
-  transition: color 0.3s ease; /* Smooth transition for color change */
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #ff6347 !important; /* Change color on hover */
+  color: #ff6347 !important;
 }
 
 .navbar-nav .nav-item {
-  margin-left: 15px; /* Add some spacing between nav items */
+  margin-left: 15px;
 }
 
 .navbar-nav .dropdown-menu {
-  background-color: #ff6347; /* Dark background for the dropdown */
+  background-color: #ff6347;
 }
 
 .navbar-nav .dropdown-item {
@@ -41,17 +42,17 @@
 }
 
 .navbar-nav .dropdown-item:hover {
-  background-color: #ff6347; /* Change background color on hover */
+  background-color: #ff6347;
 }
 
 @media (max-width: 992px) {
   .navbar-nav {
-    background-color: #5c4d4d; /* Background color for mobile view */
+    background-color: #5c4d4d;
     padding: 20px;
   }
 }
 
-
+/* Hero Section (hero.css) */
 .hero-container {
   position: relative;
 }
@@ -61,28 +62,28 @@
 }
 
 .carousel-caption .highlight {
-  color: #ff6347; /* Custom highlight color */
+  color: #ff6347;
 }
 
 .btn-custom {
-  background-color: #f90000; /* Custom button color */
-  border-color: #f90000; /* Custom button border color */
-  color: #ffffff; /* Button text color */
+  background-color: #f90000;
+  border-color: #f90000;
+  color: #ffffff;
 }
 
 .btn-custom:hover {
-  background-color: #d60000; /* Custom button hover color */
-  border-color: #d60000; /* Custom button hover border color */
+  background-color: #d60000;
+  border-color: #d60000;
 }
 
 .offcanvas-start {
-  background-color: #fff; /* Set the offcanvas background color to white */
-  opacity: 1; /* Ensure the offcanvas is fully opaque */
+  background-color: #fff;
+  opacity: 1;
 }
 
 .offcanvas-body {
-  background-color: rgba(255, 255, 255, 1); /* Set the offcanvas body background to fully opaque white */
-  color: #333; /* Set the text color */
+  background-color: rgba(255, 255, 255, 1);
+  color: #333;
 }
 
 @keyframes fadeIn {
@@ -94,19 +95,11 @@
   }
 }
 
-
-
-
-
-
-
-/* AboutUs.css */
-
-/* General Styles */
+/* About Us Section (about.css) */
 .about-section {
   padding: 60px 0;
-  background: url('/public/assets/aboutbg.jpg') no-repeat center center/cover; /* Add your background image here */
-  color: #fff; /* Ensure text is visible against the background */
+  background: url('/public/assets/aboutbg.jpg') no-repeat center center/cover;
+  color: #fff;
 }
 
 .about-content h2 {
@@ -118,7 +111,7 @@
 .about-content p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #f0f0f0; /* Light color for better readability against the background */
+  color: #f0f0f0;
 }
 
 .text-center h4 {
@@ -135,73 +128,59 @@
 
 .text-center p {
   font-size: 1rem;
-  color: #f0f0f0; /* Light color for better readability */
+  color: #f0f0f0;
 }
 
-/* Animations */
-.animate__animated.animate__fadeInUp {
-  animation-duration: 1s;
-  animation-delay: 0.5s;
-}
-
+.animate__animated.animate__fadeInUp,
 .animate__animated.animate__fadeInLeft,
 .animate__animated.animate__fadeInRight {
   animation-duration: 1s;
   animation-delay: 0.5s;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .about-content h2 {
     font-size: 2rem;
   }
-
   .about-content p {
     font-size: 1rem;
   }
-
   .text-center h4 {
     font-size: 1.3rem;
   }
-
   .text-center h6 {
     font-size: 1rem;
   }
-
   .text-center p {
     font-size: 0.9rem;
   }
 }
 
-/*ContactUs.css */
-/* ContactUs.css */
-
+/* Contact Us Section (contact.css) */
 .contact-section {
-  background-color: #f8f9fa; /* Fallback background color */
-  padding: 50px 0; /* Adjust padding as needed */
+  background-color: #f8f9fa;
+  padding: 50px 0;
 }
 
 .contact-container {
-  background-image: url('/public/assets/aboutbg.jpg'); /* Adjust path as needed */
+  background-image: url('/public/assets/aboutbg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 50px 0; /* Adjust padding as needed */
+  padding: 50px 0;
 }
 
 .contact-content {
-  margin-bottom: 40px; /* Adjust spacing between heading and form */
-  color: #212529; /* Adjust text color */
+  margin-bottom: 40px;
+  color: #212529;
 }
 
 .form-container {
-  background-color: rgba(255, 255, 255, 0.9); /* Adjust background color and opacity */
-  padding: 40px; /* Add padding as needed */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   animation: slideInUp 1s ease;
-
-  /* Centering the form container */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -232,11 +211,7 @@
   }
 }
 
- 
-/* <registration form  */
-/* custom-styles.css */
-
-/* Form container */
+/* Registration Form (registration.css) */
 .container {
   max-width: 600px;
   margin-top: 30px;
@@ -246,13 +221,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Form labels */
 .form-label {
   font-weight: bold;
   color: #333;
 }
 
-/* Form input fields */
 .form-control {
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -260,7 +233,6 @@
   margin-bottom: 15px;
 }
 
-/* Primary button */
 .btn-primary {
   background-color: #007bff;
   border-color: #007bff;
@@ -274,7 +246,6 @@
   border-color: #0056b3;
 }
 
-/* Secondary button */
 .btn-secondary {
   background-color: #6c757d;
   border-color: #6c757d;
@@ -288,76 +259,7 @@
   border-color: #545b62;
 }
 
-
-/* ContactUs.css */
-
-.contact-section {
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.background-container {
-  background-image: url('/public/assets/aboutbg.jpg'); /* Adjust path as needed */
-  background-position: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-container {
-  width: 100%;
-  max-width: 600px; /* Adjust maximum width as needed */
-  background-color: rgba(255, 255, 255, 0.8); /* Adjust background color */
-  padding: 40px; /* Add padding as needed */
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  animation: slideInUp 1s ease;
-}
-
-.contact-content {
-  margin-bottom: 40px; /* Adjust spacing between heading and form */
-}
-
-.bg-white {
-  background-color: #ffffff !important;
-}
-
-.shadow {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
-}
-
-.form-label {
-  font-weight: bold;
-}
-
-.contact-content h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-.contact-content p {
-  font-size: 1.2rem;
-}
-
-@keyframes slideInUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-
-
-
-
-
-/* Footer.css */
-
+/* Footer Section (footer.css) */
 .footer {
   background-color: #184d47;
   color: #9b9b9bc2;
@@ -393,4 +295,61 @@
 
 .footer .MuiButton-root:hover {
   background-color: #e5533d;
+}
+
+/* Post Jobs Section (postjobs.css) */
+.container {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: translateY(-10px);
+}
+
+.form-title {
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
+}
+
+.text-field {
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  margin-top: 20px;
+  background-color: #1976d2;
+  color: #fff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+  background-color: #145a8d;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  transform: translateX(-100%);
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
 }
