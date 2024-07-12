@@ -1,83 +1,25 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const Employee = require('../models/Employee');
-const Recruiter = require('../models/Recruiter');
-
-
 const router = express.Router();
+const multer = require('multer');
+const employeeController = require('../controllers/employeeController');
 
-// Employee Registration
-router.post('/register', async (req, res) => {
-  const { name, email, password, resume } = req.body;
-  console.log(req.body);
-  try {
-    let employee = await Employee.findOne({ email });
-    if (employee) {
-      return res
-        .status(400)
-        .json({ msg: 'Employee already exists' });
-    }
+// Set up multer for file handling
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-    employee = new Employee({
-      name,
-      email,
-      password,
-      resume
-    });
-
-    const salt = await bcrypt.genSalt(10);
-    employee.password = await bcrypt.hash(password, salt);
-
-    await employee.save();
-
-    const payload = {
-      employee: {
-        id: employee.id,
-        role: 'employee'
-      }
-    };
-
-    const token = jwt.sign(payload, 'jwtSecret', { expiresIn: 360000 }, (err, token) => {
-      if (err) throw err;
-      res.json({ token });
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
-  }
-});
+// Employee Registration with file upload handling
+router.post('/register',upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'profilePic', maxCount: 1 }]), employeeController.registerEmployee);
 
 // Employee Login
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+router.post('/login', employeeController.loginEmployee);
 
-  try {
-    let employee = await Employee.findOne({ email });
-    if (!employee) {
-      return res.status(400).json({ msg: 'Invalid Credentials' });
-    }
+// POST /api/employee/logout
+router.post('/logout', employeeController.employeeLogout);
 
-    const isMatch = await bcrypt.compare(password, employee.password);
-    if (!isMatch) {
-      return res.status(400).json({ msg: 'Invalid Credentials' });
-    }
+// Get Employee Profile
+router.get('/profile/:id', employeeController.getEmployeeProfile);
 
-    const payload = {
-      employee: {
-        id: employee.id,
-        role: 'employee'
-      }
-    };
-
-    jwt.sign(payload, 'jwtSecret', { expiresIn: 360000 }, (err, token) => {
-      if (err) throw err;
-      res.json({ token, employee });
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
-  }
-});
+// Update Employee Profile
+router.put('/profile/:id', employeeController.updateEmployeeProfile);
 
 module.exports = router;

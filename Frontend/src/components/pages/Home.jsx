@@ -1,13 +1,12 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import { Typography } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import "./Home.css"; // Ensure the correct path to your CSS file
 
 const Home = () => {
   return (
-    <Container>
       <div className="hero-container fade-in">
         {/* Hero Carousel */}
         <Carousel id="heroCarousel" interval={3000}>
@@ -25,7 +24,7 @@ const Home = () => {
               </Typography>
               <Button
                 variant="custom"
-                className="orange-button"
+                className="orange-button btn-custom"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDescription"
                 aria-controls="offcanvasDescription"
@@ -48,7 +47,7 @@ const Home = () => {
               </Typography>
               <Button
                 variant="custom"
-                className="orange-button"
+                className="orange-button btn-custom"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDescription"
                 aria-controls="offcanvasDescription"
@@ -71,7 +70,7 @@ const Home = () => {
               </Typography>
               <Button
                 variant="custom"
-                className="orange-button"
+                className="orange-button btn-custom"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDescription"
                 aria-controls="offcanvasDescription"
@@ -107,7 +106,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </Container>
   );
 };
 

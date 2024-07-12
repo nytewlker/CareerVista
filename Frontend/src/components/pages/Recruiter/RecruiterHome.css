@@ -1,0 +1,85 @@
+.recruiter-home-container {
+  background: url('/public/assets/aboutbg.jpg') no-repeat center center/cover;
+  padding: 30px 0;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.job-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.job-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fd1f0f;
+}
+
+.job-description {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.job-company {
+  font-weight: 500;
+  color: #333;
+}
+
+.job-experience {
+  font-weight: 500;
+  color: #666;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.MuiButton-root {
+  background-color: #fd1f0f;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.MuiButton-root:hover {
+  background-color: #ff3318;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .job-title {
+    font-size: 1rem;
+  }
+
+  .job-description,
+  .job-company,
+  .job-experience {
+    font-size: 0.875rem;
+  }
+}

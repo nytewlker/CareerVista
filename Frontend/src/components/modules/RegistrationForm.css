@@ -1,0 +1,57 @@
+/* RegistrationForm.css */
+
+.registration-container {
+  background-image: url('/public/assets/aboutbg.jpg');
+  background-size: cover;
+  background-position: bottom;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.registration-box {
+  width: 50%;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  animation: slideInUp 1s ease;
+}
+
+.registration-box .title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.registration-box .icon {
+  margin-right: 10px;
+}
+
+.registration-box .form-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.registration-box button.MuiButton-root {
+  background-color: #fd1f0f;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.registration-box button.MuiButton-root:hover {
+  background-color: #ff3318;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+  .registration-box {
+    width: 90%;
+    padding: 20px;
+  }
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -6,15 +6,30 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { navConfig } from "../../config/navConfig.js";
+import "./Header.css";
 
 const Header = ({ panel }) => {
   const navLinks = navConfig[panel];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector('.custom-nav-container');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <Navbar expand="lg" className="custom-nav-container">
-      <Container>
+    <Navbar expand="lg" className="custom-nav-container" fixed="top">
+      <Container fluid className="custom-nav-inner-container">
         <Navbar.Brand as={Link} to="/">
-          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="CareerVista" />
+          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="CareerVista" className="logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarSupportedContent" />
         <Navbar.Collapse id="navbarSupportedContent">
@@ -33,7 +48,7 @@ const Header = ({ panel }) => {
                 );
               }
               return (
-                <Nav.Link as={Link} to={link.path} key={index}>
+                <Nav.Link as={Link} to={link.path} key={index} className="nav-link-animated">
                   {link.label}
                 </Nav.Link>
               );
