@@ -55,7 +55,7 @@ const AppliedJobs = () => {
       </Typography>
       {appliedJobs.length > 0 ? (
         appliedJobs
-          .filter(job => job !== null) // Filter out null jobs
+          .filter(job => job && job._id) // Filter out jobs that are null or undefined, and ensure _id exists
           .map((job) => (
             <Box key={job._id} sx={{ mb: 3, p: 2, border: "1px solid #ccc" }}>
               <Typography variant="h5">{job.title}</Typography>
@@ -64,6 +64,10 @@ const AppliedJobs = () => {
               <Typography variant="body2">Location: {job.location}</Typography>
               <Typography variant="body2">Job Type: {job.jobType}</Typography>
               <Typography variant="body2">Salary: {job.salary}</Typography>
+              <Typography variant="body2">Status: {job.status}</Typography>
+              {job.status === 'accepted' && (
+                <Typography variant="body2">Message: {job.message}</Typography>
+              )}
             </Box>
           ))
       ) : (

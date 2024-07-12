@@ -111,11 +111,11 @@ exports.getRecruiterProfile = async (req, res) => {
 exports.updateRecruiterProfile = async (req, res) => {
   const { name, email, password, phone, companyName, bio } = req.body;
   try {
-    const recruiterId = req.user.id;
+    const recruiterId = req.params.id;
     let recruiter = await Recruiter.findById(recruiterId);
 
     if (!recruiter) {
-      return res.status(404).json({ msg: "Recruiter not found" });
+      return res.status(404).json({ msg: 'Recruiter not found' });
     }
 
     const fieldsToUpdate = {
@@ -135,16 +135,14 @@ exports.updateRecruiterProfile = async (req, res) => {
       recruiterId,
       { $set: fieldsToUpdate },
       { new: true }
-    ).select("-password");
+    ).select('-password');
 
     res.json(recruiter);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
-
-
 // POST /api/recruiter/logout
 exports.recruiterLogout = async (req, res) => {
   try {

@@ -3,11 +3,11 @@ import axios from 'axios';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { TextField, Box, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RecruiterProfile.css';
 
-const APIBASEURL = 'http://localhost:5000/api';  // Use your actual localhost base URL
+const APIBASEURL = 'http://localhost:5000/api'; // Update with your actual API base URL
 
 const RecruiterProfile = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const RecruiterProfile = () => {
     bio: '',
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     fetchRecruiterProfile();
@@ -45,11 +45,10 @@ const RecruiterProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const user = JSON.parse(localStorage.getItem('user'));
     try {
-      const response = await axios.put(`${APIBASEURL}/recruiter/profile`, formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
+      const response = await axios.put(`${APIBASEURL}/recruiter/profile${user._id}`, formData, {
+       
       });
       console.log('Recruiter profile updated successfully:', response.data);
     } catch (error) {

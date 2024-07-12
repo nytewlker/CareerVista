@@ -19,7 +19,7 @@ router.post('/logout', recruiterController.recruiterLogout);
 // Get Recruiter Profile
 router.get("/profile/:id",  recruiterController.getRecruiterProfile);
 
-// // Update Recruiter Profile
-// router.put("/profile", auth, upload.none(), recruiterController.updateRecruiterProfile);
+// Update Recruiter Profile
+router.put("/profile:id",  upload.none(), recruiterController.updateRecruiterProfile);
 
 module.exports = router;

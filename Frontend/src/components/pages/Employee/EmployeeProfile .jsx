@@ -42,12 +42,34 @@ const EmployeeProfile = () => {
     });
   };
 
-
-  const navigateToUpdateProfile = () => {
-    // navigate('/updateEmployeeProfile');
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData({
+      ...formData,
+      [name]: files[0],
+    });
   };
 
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem('user'));
+    const form = new FormData();
+    Object.keys(formData).forEach(key => {
+      form.append(key, formData[key]);
+    });
+    try {
+      const response = await axios.put(`${APIBASEURL}/employee/profile/${user._id}`, form, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      console.log('Employee profile updated successfully:', response.data);
+    } catch (error) {
+      console.error('Error updating employee profile:', error);
+    }
+  };
+
   return (
     <Container fluid className="employee-profile-container">
       <Box className="employee-profile-box">
@@ -72,14 +94,40 @@ const EmployeeProfile = () => {
             <Button
               variant="primary"
               className="update-profile-btn"
-              onClick={navigateToUpdateProfile}
+              onClick={handleSubmit}
               startIcon={<EditIcon />}
             >
               Update Profile
             </Button>
           </Col>
         </Row>
-        <Form className="profile-details-form">
+        <Form className="profile-details-form" onSubmit={handleSubmit}>
+          <Row className="mb-3">
+            <Col md={6}>
+              <TextField
+                fullWidth
+                label="Name"
+                name="name"
+                onChange={handleChange}
+                value={formData.name}
+                sx={{ mb: 3 }}
+                InputLabelProps={{ style: { fontWeight: 'bold' } }}
+                InputProps={{ style: { fontWeight: 'bold' } }}
+              />
+            </Col>
+            <Col md={6}>
+              <TextField
+                fullWidth
+                label="Email"
+                name="email"
+                onChange={handleChange}
+                value={formData.email}
+                sx={{ mb: 3 }}
+                InputLabelProps={{ style: { fontWeight: 'bold' } }}
+                InputProps={{ style: { fontWeight: 'bold' } }}
+              />
+            </Col>
+          </Row>
           <Row className="mb-3">
             <Col md={6}>
               <TextField
@@ -143,7 +191,7 @@ const EmployeeProfile = () => {
             InputLabelProps={{ style: { fontWeight: 'bold' } }}
             InputProps={{ style: { fontWeight: 'bold' } }}
           />
-          <div className="mb-3 resume-section">
+          <div className="mb-3">
             <Typography variant="body1" className="resume-title">
               Resume:
             </Typography>
@@ -156,6 +204,30 @@ const EmployeeProfile = () => {
               View Resume
             </a>
           </div>
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Profile Picture</Form.Label>
+                <Form.Control
+                  type="file"
+                  name="profilePic"
+                  onChange={handleFileChange}
+                  accept="image/*"
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Resume</Form.Label>
+                <Form.Control
+                  type="file"
+                  name="resume"
+                  onChange={handleFileChange}
+                  accept=".pdf,.doc,.docx"
+                />
+              </Form.Group>
+            </Col>
+          </Row>
         </Form>
       </Box>
     </Container>

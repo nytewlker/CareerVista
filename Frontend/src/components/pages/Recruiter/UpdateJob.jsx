@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import { Container, TextField, Button, Typography } from "@mui/material";
+import { Container, TextField, Button, Typography, Grid, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { APIBASEURL } from "../../../config/index.js";
 
 const UpdateJob = () => {
@@ -75,14 +75,23 @@ const UpdateJob = () => {
           fullWidth
           margin="normal"
         />
-        <TextField
-          name="jobType"
-          label="Job Type"
-          value={job.jobType}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
+         <Grid item xs={12} sm={6}>
+            <FormControl fullWidth variant="outlined" margin="normal" className="text-field " >
+              <InputLabel>Job Type</InputLabel>
+              <Select
+                name="jobType"
+                value={job.jobType}
+                onChange={handleChange}
+                label="Job Type"
+                required
+              >
+                <MenuItem value="full-time">Full-time</MenuItem>
+                <MenuItem value="part-time">Part-time</MenuItem>
+                <MenuItem value="contract">Contract</MenuItem>
+                <MenuItem value="internship">Internship</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         <TextField
           name="salary"
           label="Salary"

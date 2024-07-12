@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css/animate.min.css';
 import { Row, Col } from 'react-bootstrap';
-import './AboutUs.css';  // Assuming you create this CSS file
+// import './AboutUs.css';  // Assuming you create this CSS file
 
 const AboutUs = () => {
   return (
