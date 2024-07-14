@@ -12,11 +12,10 @@ router.get("/applications/:jobId", applicationController.getJobApplications);
 router.get('/applied/:employeeId', applicationController.getAppliedJobs);
 
 
-// Accept application
-router.post('/accept', applicationController.acceptApplication);
+router.post('/accept/:applicationId', applicationController.acceptApplication);
 
-// Reject application
-router.post('/reject', applicationController.rejectApplication);
+router.post('/reject/:employeeId/:applicationId', applicationController.rejectApplication);
+
 
 
 

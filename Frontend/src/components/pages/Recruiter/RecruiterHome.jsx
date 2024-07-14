@@ -8,9 +8,10 @@ import {
   Button,
   Box,
   Grid,
+  Collapse,
 } from '@mui/material';
 import { APIBASEURL } from '../../../config';
-import './RecruiterHome.css';
+// import './RecruiterHome.css';
 
 const RecruiterHome = () => {
   const [jobs, setJobs] = useState([]);
@@ -50,8 +51,8 @@ const RecruiterHome = () => {
                   <Typography variant="body2" className="job-experience">
                     Experience: {job.experience}
                   </Typography>
-                  {expandedJobId === job._id && (
-                    <>
+                  <Collapse in={expandedJobId === job._id}>
+                    <Box className="job-details">
                       <Typography variant="body2" className="job-description">
                         {job.description}
                       </Typography>
@@ -67,8 +68,8 @@ const RecruiterHome = () => {
                       <Typography variant="body2" className="job-salary">
                         Salary: {job.salary}
                       </Typography>
-                    </>
-                  )}
+                    </Box>
+                  </Collapse>
                   <Box className="card-actions">
                     <Button size="small" color="primary" onClick={() => handleExpandClick(job._id)}>
                       {expandedJobId === job._id ? 'Hide Details' : 'View Details'}

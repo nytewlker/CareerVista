@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Container, Typography, TextField, Button, MenuItem, Select, FormControl, InputLabel, Grid } from "@mui/material";
 import { APIBASEURL } from "../../../config/index.js";
-import "./AddJobs.css";
+// import "./AddJobs.css";
 
 const AddJobs = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ const AddJobs = () => {
   };
 
   return (
-    <Container fluid className="container fade-in">
+    <Container className="container fade-in">
       <Typography
         variant="h4"
         align="center"
@@ -61,7 +61,6 @@ const AddJobs = () => {
               onChange={handleChange}
               required
               className="text-field slide-in"
-              style={{ animationDelay: "0.3s" }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -75,7 +74,6 @@ const AddJobs = () => {
               onChange={handleChange}
               required
               className="text-field slide-in"
-              style={{ animationDelay: "0.6s" }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -89,11 +87,12 @@ const AddJobs = () => {
               onChange={handleChange}
               required
               className="text-field slide-in"
-              style={{ animationDelay: "0.9s" }}
+              multiline
+              rows={4}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormControl fullWidth variant="outlined" margin="normal" className="text-field slide-in" style={{ animationDelay: "1.2s" }}>
+            <FormControl fullWidth variant="outlined" margin="normal" className="text-field slide-in">
               <InputLabel>Job Type</InputLabel>
               <Select
                 name="jobType"
@@ -120,7 +119,6 @@ const AddJobs = () => {
               onChange={handleChange}
               required
               className="text-field slide-in"
-              style={{ animationDelay: "1.5s" }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -134,7 +132,6 @@ const AddJobs = () => {
               onChange={handleChange}
               required
               className="text-field slide-in"
-              style={{ animationDelay: "1.8s" }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -144,7 +141,6 @@ const AddJobs = () => {
               color="primary"
               fullWidth
               className="submit-button slide-in"
-              style={{ animationDelay: "2.1s" }}
             >
               Post Job
             </Button>

@@ -4,13 +4,15 @@ import { Container, Typography, Button, Box } from "@mui/material";
 import { APIBASEURL } from "../../../config/index.js";
 import JobApplicationsList from "./JobApplicationList.jsx";
 import { useNavigate } from "react-router-dom";
+// import "./MyJobs.css"; // Import CSS file for styling
 
 const MyJobs = () => {
   const [postedJobs, setPostedJobs] = useState([]);
   const [user, setUser] = useState(null);
-  const [expandedJobId, setExpandedJobId] = useState(null); // Track expanded job id
-  const [expandedAppId, setExpandedAppId] = useState(null); // Track expanded job id
+  const [expandedJobId, setExpandedJobId] = useState(null);
+  const [expandedAppId, setExpandedAppId] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -40,15 +42,13 @@ const MyJobs = () => {
 
   const handleUpdateJob = (jobId) => {
     console.log(`Navigating to update job with ID: ${jobId}`);
-    // Example navigation using React Router
-      navigate(`/updatejob/${jobId}`);
+    navigate(`/updatejob/${jobId}`);
   };
 
   const handleDeleteJob = async (jobId) => {
     try {
       const response = await axios.delete(`${APIBASEURL}/job/${jobId}`);
       console.log("Job deleted:", response.data);
-      // Update postedJobs after deletion
       setPostedJobs(postedJobs.filter((job) => job._id !== jobId));
     } catch (error) {
       console.error("Error deleting job:", error);
@@ -57,36 +57,35 @@ const MyJobs = () => {
 
   const toggleJobApplications = (jobId) => {
     if (expandedJobId === jobId) {
-      setExpandedJobId(null); // Hide job details if already expanded
+      setExpandedJobId(null);
     } else {
-      setExpandedJobId(jobId); // Expand job details for the selected job
+      setExpandedJobId(jobId);
     }
   };
 
   const handleViewApplications = (jobId) => {
-    // Navigate to view applications page or handle applications logic
     if (expandedAppId === jobId) {
-      setExpandedAppId(null); // Hide job details if already expanded
+      setExpandedAppId(null);
     } else {
-      setExpandedAppId(jobId); // Expand job details for the selected job
+      setExpandedAppId(jobId);
     }
   };
 
   return (
-    <Container>
+    <Container className="my-jobs-container">
       <Typography variant="h4" align="center" gutterBottom>
         Recruiter Dashboard
       </Typography>
       {postedJobs.length > 0 ? (
         postedJobs.map((job) => (
-          <Box key={job._id} sx={{ mb: 3, p: 2, border: "1px solid #ccc" }}>
+          <Box key={job._id} className="job-item">
             <Typography variant="h5">{job.title}</Typography>
             <Typography>{job.description}</Typography>
             <Button
               variant="contained"
               color="primary"
               onClick={() => handleUpdateJob(job._id)}
-              sx={{ mr: 2, mt: 2 }}
+              className="action-button"
             >
               Update Job
             </Button>
@@ -94,7 +93,7 @@ const MyJobs = () => {
               variant="contained"
               color="error"
               onClick={() => handleDeleteJob(job._id)}
-              sx={{ mr: 2, mt: 2 }}
+              className="action-button"
             >
               Delete Job
             </Button>
@@ -102,7 +101,7 @@ const MyJobs = () => {
               variant="contained"
               color="primary"
               onClick={() => toggleJobApplications(job._id)}
-              sx={{ mt: 2 }}
+              className="action-button"
             >
               {expandedJobId === job._id ? "Hide Details" : "View More"}
             </Button>
@@ -110,13 +109,12 @@ const MyJobs = () => {
               variant="contained"
               color="primary"
               onClick={() => handleViewApplications(job._id)}
-              sx={{ ml: 2, mt: 2 }}
+              className="action-button"
             >
               View Applications
             </Button>
             {expandedJobId === job._id && (
-              <Box mt={2}>
-                {/* Render job details here */}
+              <Box className="job-details">
                 <Typography variant="body2" className="job-experience">
                   Experience: {job.experience}
                 </Typography>
@@ -132,12 +130,11 @@ const MyJobs = () => {
                 <Typography variant="body2" className="job-salary">
                   Salary: {job.salary}
                 </Typography>
-                {/* Display job applications */}
               </Box>
             )}
 
             {expandedAppId === job._id && (
-              <Box mt={2}>
+              <Box className="job-applications">
                 <JobApplicationsList jobId={job._id} />
               </Box>
             )}

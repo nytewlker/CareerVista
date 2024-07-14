@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import { TextField, Box, Typography } from '@mui/material';
+import { TextField, Typography, Avatar } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { APIBASEURL, DICURL } from '../../../config/index.js';
-import './EmployeeProfile.css';
+// import './EmployeeProfile.css'; // Import the external CSS file for styling
 
 const EmployeeProfile = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +20,10 @@ const EmployeeProfile = () => {
     profilePic: null,
   });
 
+  useEffect(() => {
+    fetchEmployeeData();
+  }, []);
+
   const fetchEmployeeData = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     try {
@@ -29,10 +33,6 @@ const EmployeeProfile = () => {
       console.error('Error fetching employee data:', error);
     }
   };
-
-  useEffect(() => {
-    fetchEmployeeData();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,27 +72,29 @@ const EmployeeProfile = () => {
 
   return (
     <Container fluid className="employee-profile-container">
-      <Box className="employee-profile-box">
+      <div className="profile-box">
         <Typography variant="h4" component="h1" gutterBottom className="title">
           Employee Profile
         </Typography>
         <Row className="profile-header">
           <Col md={3} className="profile-image-col">
-            <img
+            <Avatar
               src={`${DICURL}/${formData.profilePic}`}
               alt="Profile Pic"
               className="profile-picture"
+              sx={{ width: 150, height: 150 }}
             />
           </Col>
           <Col md={9} className="profile-info-col">
-            <Typography variant="h5" className="profile-name" >
+            <Typography variant="h5" className="profile-name">
               {formData.name}
             </Typography>
             <Typography variant="body1" className="profile-email">
               {formData.email}
             </Typography>
             <Button
-              variant="primary"
+              variant="contained"
+              color="primary"
               className="update-profile-btn"
               onClick={handleSubmit}
               startIcon={<EditIcon />}
@@ -101,7 +103,7 @@ const EmployeeProfile = () => {
             </Button>
           </Col>
         </Row>
-        <Form className="profile-details-form" onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="profile-details-form">
           <Row className="mb-3">
             <Col md={6}>
               <TextField
@@ -111,7 +113,6 @@ const EmployeeProfile = () => {
                 onChange={handleChange}
                 value={formData.name}
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -123,7 +124,6 @@ const EmployeeProfile = () => {
                 onChange={handleChange}
                 value={formData.email}
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -138,7 +138,6 @@ const EmployeeProfile = () => {
                 onChange={handleChange}
                 value={formData.phone}
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -150,7 +149,6 @@ const EmployeeProfile = () => {
                 onChange={handleChange}
                 value={formData.institutionName}
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -164,7 +162,6 @@ const EmployeeProfile = () => {
                 name="startYear"
                 onChange={handleChange}
                 value={formData.startYear}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -176,7 +173,6 @@ const EmployeeProfile = () => {
                 name="endYear"
                 onChange={handleChange}
                 value={formData.endYear}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -188,10 +184,9 @@ const EmployeeProfile = () => {
             onChange={handleChange}
             value={formData.skills}
             sx={{ mb: 3 }}
-            InputLabelProps={{ style: { fontWeight: 'bold' } }}
             InputProps={{ style: { fontWeight: 'bold' } }}
           />
-          <div className="mb-3">
+          <div className="mb-3 resume-section">
             <Typography variant="body1" className="resume-title">
               Resume:
             </Typography>
@@ -228,8 +223,16 @@ const EmployeeProfile = () => {
               </Form.Group>
             </Col>
           </Row>
+          <Button
+            variant="primary"
+            className="update-profile-btn"
+            type="submit"
+            startIcon={<EditIcon />}
+          >
+            Update Profile
+          </Button>
         </Form>
-      </Box>
+      </div>
     </Container>
   );
 };

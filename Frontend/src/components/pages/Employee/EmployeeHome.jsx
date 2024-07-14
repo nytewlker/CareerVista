@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Typography, Card, CardContent, Button, Box, Grid } from '@mui/material';
+import { Container, Typography, Card, CardContent, Button, Box, Grid,Collapse } from '@mui/material';
 import { APIBASEURL } from '../../../config/index.js';
 import { Link } from 'react-router-dom';
-import './EmployeeHome.css';
 
 const EmployeeHome = () => {
   const [jobs, setJobs] = useState([]);
@@ -27,7 +26,7 @@ const EmployeeHome = () => {
   };
 
   return (
-    <Box className="employee-home-container">
+    <Box className="recruiter-home-container">
       <Container>
         <Typography variant="h4" align="center" gutterBottom className="header">
           Job Listings
@@ -40,13 +39,16 @@ const EmployeeHome = () => {
                   <Typography variant="h5" className="job-title">
                     {job.title}
                   </Typography>
-                  <Typography variant="body2" className="job-company">
-                    Company: {job.company}
+                  <Typography variant="body2" className="job-experience">
+                    Experience: {job.experience}
                   </Typography>
-                  {expandedJobId === job._id && (
-                    <>
+                  <Collapse in={expandedJobId === job._id}>
+                    <Box className="job-details">
                       <Typography variant="body2" className="job-description">
                         {job.description}
+                      </Typography>
+                      <Typography variant="body2" className="job-company">
+                        Company: {job.company}
                       </Typography>
                       <Typography variant="body2" className="job-location">
                         Location: {job.location}
@@ -57,22 +59,19 @@ const EmployeeHome = () => {
                       <Typography variant="body2" className="job-salary">
                         Salary: {job.salary}
                       </Typography>
-                      <Typography variant="body2" className="job-experience">
-                        Experience: {job.experience}
-                      </Typography>
-                    </>
-                  )}
-                </CardContent>
-                <Box className="card-actions">
-                  <Button size="small" color="primary" onClick={() => handleExpandClick(job._id)}>
-                    {expandedJobId === job._id ? 'View Less' : 'View More'}
-                  </Button>
+                    </Box>
+                  </Collapse>
+                  <Box className="card-actions">
+                    <Button size="small" color="primary" onClick={() => handleExpandClick(job._id)}>
+                      {expandedJobId === job._id ? 'Hide Details' : 'View Details'}
+                    </Button>
                   <Link to={`/apply/${job._id}`} style={{ textDecoration: 'none' }}>
                     <Button variant="contained" color="primary">
                       Apply
                     </Button>
                   </Link>
-                </Box>
+                  </Box>
+                </CardContent>
               </Card>
             </Grid>
           ))}
