@@ -15,6 +15,7 @@ const RecruiterProfile = () => {
     companyName: '',
     bio: '',
   });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchRecruiterProfile();
@@ -22,11 +23,17 @@ const RecruiterProfile = () => {
 
   const fetchRecruiterProfile = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      setError('User not logged in');
+      return;
+    }
+
     try {
       const response = await axios.get(`${APIBASEURL}/recruiter/profile/${user._id}`);
       setFormData(response.data);
     } catch (error) {
       console.error('Error fetching recruiter profile:', error.message);
+      setError('Failed to fetch profile data');
     }
   };
 
@@ -41,11 +48,18 @@ const RecruiterProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      setError('User not logged in');
+      return;
+    }
+
     try {
       const response = await axios.put(`${APIBASEURL}/recruiter/profile/${user._id}`, formData);
       console.log('Recruiter profile updated successfully:', response.data);
+      setError(null); // Clear error on success
     } catch (error) {
       console.error('Error updating recruiter profile:', error.message);
+      setError('Failed to update profile');
     }
   };
 
@@ -55,6 +69,7 @@ const RecruiterProfile = () => {
         <Typography variant="h4" component="h1" gutterBottom className="title">
           Recruiter Profile
         </Typography>
+        {error && <p className="error-message">{error}</p>}
         <Form onSubmit={handleSubmit} className="profile-details-form">
           <Row className="mb-3">
             <Col md={6}>

@@ -13,13 +13,13 @@ router.post('/register', upload.none(), recruiterController.registerRecruiter);
 // Recruiter Login
 router.post('/login', recruiterController.loginRecruiter);
 
-// POST /api/recruiter/logout
+// Logout Route
 router.post('/logout', recruiterController.recruiterLogout);
 
 // Get Recruiter Profile
-router.get("/profile/:id",  recruiterController.getRecruiterProfile);
+router.get('/profile/:id', recruiterController.getRecruiterProfile);
 
 // Update Recruiter Profile
-router.put("/profile:id",  upload.none(), recruiterController.updateRecruiterProfile);
+router.put('/profile/:id', upload.none(), recruiterController.updateRecruiterProfile);
 
 module.exports = router;

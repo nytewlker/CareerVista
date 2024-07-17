@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  Container,  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-
-} from "@mui/material";
-import { Form, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { APIBASEURL } from "../../config";
+import "./LoginForm.css"; // Import the CSS file
 
 const LoginForm = () => {
   const [role, setRole] = useState("employee");
@@ -57,69 +49,69 @@ const LoginForm = () => {
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
           <div className="login-content text-center">
-            <h2>Welcome Back !</h2>
+            <h2>Welcome Back!</h2>
             <p className="lead">
-              Choose the typfe o account, Which may poceed!
+              Choose the type of account you want to log in to.
             </p>
           </div>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
-          <div className="form-conatianer slidInUp">
+          <div className="form-container slideInUp">
             <Form onSubmit={handleSubmit}>
+              {error && (
+                <Row>
+                  <Col>
+                    <div className="error-message">{error}</div>
+                  </Col>
+                </Row>
+              )}
               <Row>
                 <Col md={12}>
-                  <FormControl fullWidth className="role-select">
-                    <InputLabel>Role</InputLabel>
-                    <Select value={role} onChange={handleRoleChange} label="Role">
-                      <MenuItem value="employee">Employee</MenuItem>
-                      <MenuItem value="recruiter">Recruiter</MenuItem>
-                    </Select>
-                  </FormControl>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Role</Form.Label>
+                    <Form.Select value={role} onChange={handleRoleChange}>
+                      <option value="employee">Employee</option>
+                      <option value="recruiter">Recruiter</option>
+                    </Form.Select>
+                  </Form.Group>
                 </Col>
               </Row>
               <Row>
-              <Col md={12}>
-             
-              <TextField
-                fullWidth
-                label="Email address"
-                variant="outlined"
-                margin="normal"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="input-field" // Added className for styling consistency
-                
-              />
-</Col>
-</Row>
-<Row>
                 <Col md={12}>
-              <TextField
-                fullWidth
-                label="Password"
-                variant="outlined"
-                margin="normal"
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                className="input-field" // Added className for styling consistency
-                
-              />
-               </Col>
-               </Row>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter your email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Enter your password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
               <Button
-                variant="contained"
-                color="primary"
+                variant="primary"
                 type="submit"
-                fullWidth
-                className="submit-button" // Added className for styling consistency
+                className="w-100 submit-button"
               >
                 Login
               </Button>

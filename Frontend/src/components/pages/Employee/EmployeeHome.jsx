@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Typography, Card, CardContent, Button, Box, Grid,Collapse } from '@mui/material';
+import { Container, Row, Col, Card, Button, Collapse } from 'react-bootstrap';
 import { APIBASEURL } from '../../../config/index.js';
 import { Link } from 'react-router-dom';
+// import './EmployeeHome.css'; // Import the CSS file for additional styling
 
 const EmployeeHome = () => {
   const [jobs, setJobs] = useState([]);
@@ -26,58 +27,50 @@ const EmployeeHome = () => {
   };
 
   return (
-    <Box className="recruiter-home-container">
-      <Container>
-        <Typography variant="h4" align="center" gutterBottom className="header">
-          Job Listings
-        </Typography>
-        <Grid container spacing={3}>
-          {jobs.map((job) => (
-            <Grid item xs={12} sm={6} md={4} key={job._id}>
-              <Card className="job-card">
-                <CardContent>
-                  <Typography variant="h5" className="job-title">
-                    {job.title}
-                  </Typography>
-                  <Typography variant="body2" className="job-experience">
-                    Experience: {job.experience}
-                  </Typography>
-                  <Collapse in={expandedJobId === job._id}>
-                    <Box className="job-details">
-                      <Typography variant="body2" className="job-description">
-                        {job.description}
-                      </Typography>
-                      <Typography variant="body2" className="job-company">
-                        Company: {job.company}
-                      </Typography>
-                      <Typography variant="body2" className="job-location">
-                        Location: {job.location}
-                      </Typography>
-                      <Typography variant="body2" className="job-jobType">
-                        Job Type: {job.jobType}
-                      </Typography>
-                      <Typography variant="body2" className="job-salary">
-                        Salary: {job.salary}
-                      </Typography>
-                    </Box>
-                  </Collapse>
-                  <Box className="card-actions">
-                    <Button size="small" color="primary" onClick={() => handleExpandClick(job._id)}>
+    <Container fluid className="employee-home-container">
+      <Row className="justify-content-center">
+        <Col md={10}>
+          <h2 className="text-center mb-4">Job Listings</h2>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        {jobs.map((job) => (
+          <Col xs={12} sm={10} md={12} key={job._id} className="mb-4 mx-auto">
+            <Card className="job-card">
+              <Card.Body>
+                <Row className="align-items-center">
+                  <Col>
+                    <Card.Title>{job.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Experience: {job.experience}</Card.Subtitle>
+                    <Collapse in={expandedJobId === job._id}>
+                      <div className="job-details">
+                        <Card.Text>{job.description}</Card.Text>
+                        <Card.Text>Company: {job.company}</Card.Text>
+                        <Card.Text>Location: {job.location}</Card.Text>
+                        <Card.Text>Job Type: {job.jobType}</Card.Text>
+                        <Card.Text>Salary: {job.salary}</Card.Text>
+                      </div>
+                    </Collapse>
+                  </Col>
+                  <Col xs="auto">
+                    <Button
+                      variant="link"
+                      onClick={() => handleExpandClick(job._id)}
+                      className="view-details-button"
+                    >
                       {expandedJobId === job._id ? 'Hide Details' : 'View Details'}
                     </Button>
-                  <Link to={`/apply/${job._id}`} style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color="primary">
+                    <Link to={`/apply/${job._id}`} className="btn btn-primary apply-button">
                       Apply
-                    </Button>
-                  </Link>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
+                    </Link>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 

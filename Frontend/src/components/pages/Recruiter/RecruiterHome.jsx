@@ -40,9 +40,9 @@ const RecruiterHome = () => {
         <Typography variant="h4" align="center" gutterBottom className="header">
           Job Listings
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={5}>
           {jobs.map((job) => (
-            <Grid item xs={12} sm={6} md={4} key={job._id}>
+            <Grid item xs={12} sm={6} md={12} key={job._id}>
               <Card className="job-card">
                 <CardContent>
                   <Typography variant="h5" className="job-title">
