@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Box, Typography, IconButton, TextField, Button } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Footer.css';
 
 const Footer = () => {
   return (

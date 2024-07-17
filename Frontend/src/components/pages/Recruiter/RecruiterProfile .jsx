@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import { TextField, Box, Typography } from '@mui/material';
+import { TextField, Typography, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-// import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './RecruiterProfile.css';
-
-const APIBASEURL = 'http://localhost:5000/api'; // Update with your actual API base URL
+import { APIBASEURL } from '../../../config/index';
 
 const RecruiterProfile = () => {
   const [formData, setFormData] = useState({
@@ -18,8 +15,7 @@ const RecruiterProfile = () => {
     companyName: '',
     bio: '',
   });
-
-  // const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchRecruiterProfile();
@@ -27,11 +23,17 @@ const RecruiterProfile = () => {
 
   const fetchRecruiterProfile = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      setError('User not logged in');
+      return;
+    }
+
     try {
       const response = await axios.get(`${APIBASEURL}/recruiter/profile/${user._id}`);
       setFormData(response.data);
     } catch (error) {
       console.error('Error fetching recruiter profile:', error.message);
+      setError('Failed to fetch profile data');
     }
   };
 
@@ -46,13 +48,18 @@ const RecruiterProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      setError('User not logged in');
+      return;
+    }
+
     try {
-      const response = await axios.put(`${APIBASEURL}/recruiter/profile${user._id}`, formData, {
-       
-      });
+      const response = await axios.put(`${APIBASEURL}/recruiter/profile/${user._id}`, formData);
       console.log('Recruiter profile updated successfully:', response.data);
+      setError(null); // Clear error on success
     } catch (error) {
       console.error('Error updating recruiter profile:', error.message);
+      setError('Failed to update profile');
     }
   };
 
@@ -62,7 +69,8 @@ const RecruiterProfile = () => {
         <Typography variant="h4" component="h1" gutterBottom className="title">
           Recruiter Profile
         </Typography>
-        <Form className="profile-details-form" onSubmit={handleSubmit}>
+        {error && <p className="error-message">{error}</p>}
+        <Form onSubmit={handleSubmit} className="profile-details-form">
           <Row className="mb-3">
             <Col md={6}>
               <TextField
@@ -73,7 +81,6 @@ const RecruiterProfile = () => {
                 onChange={handleChange}
                 required
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -87,7 +94,6 @@ const RecruiterProfile = () => {
                 onChange={handleChange}
                 required
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -103,7 +109,6 @@ const RecruiterProfile = () => {
                 onChange={handleChange}
                 required
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -116,7 +121,6 @@ const RecruiterProfile = () => {
                 onChange={handleChange}
                 required
                 sx={{ mb: 3 }}
-                InputLabelProps={{ style: { fontWeight: 'bold' } }}
                 InputProps={{ style: { fontWeight: 'bold' } }}
               />
             </Col>
@@ -131,7 +135,6 @@ const RecruiterProfile = () => {
             onChange={handleChange}
             required
             sx={{ mb: 3 }}
-            InputLabelProps={{ style: { fontWeight: 'bold' } }}
             InputProps={{ style: { fontWeight: 'bold' } }}
           />
           <Button

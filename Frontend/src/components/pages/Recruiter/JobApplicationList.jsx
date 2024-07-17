@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { List, ListItem, ListItemText, Typography, Paper, Button, TextField } from '@mui/material';
+import { List, ListItem, ListItemText, Typography, Paper, Button, TextField, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { APIBASEURL, DICURL } from '../../../config/index.js';
+// import './JobApplicationsList.css'; // Import the CSS file
 
 const JobApplicationsList = ({ jobId }) => {
   const [applications, setApplications] = useState([]);
@@ -42,33 +43,25 @@ const JobApplicationsList = ({ jobId }) => {
     }
 
     try {
-      const response = await axios.post(`${APIBASEURL}/application/accept`, {
-        applicationId,
+      const response = await axios.post(`${APIBASEURL}/application/accept/${applicationId}`, {
         message,
       });
       console.log(response.data);
-      // Update application status locally
       setApplications(applications.map(app => app._id === applicationId ? { ...app, status: 'accepted' } : app));
-      // Clear message and selected application after accepting
       setMessage('');
       setSelectedApplication(null);
     } catch (error) {
       console.error('Error accepting application:', error);
-      // Handle error
     }
   };
 
-  const handleReject = async (applicationId) => {
+  const handleReject = async (applicationId, employeeId) => {
     try {
-      const response = await axios.post(`${APIBASEURL}/application/reject`, {
-        applicationId,
-      });
+      const response = await axios.post(`${APIBASEURL}/application/reject/${employeeId}/${applicationId}`);
       console.log(response.data);
-      // Update application status locally
       setApplications(applications.map(app => app._id === applicationId ? { ...app, status: 'rejected' } : app));
     } catch (error) {
       console.error('Error rejecting application:', error);
-      // Handle error
     }
   };
 
@@ -85,47 +78,51 @@ const JobApplicationsList = ({ jobId }) => {
   }
 
   return (
-    <Paper elevation={3} sx={{ p: 2, mt: 2 }}>
-      <Typography variant="h6" gutterBottom>
+    <Paper elevation={3} className="jobApplicationsList">
+      <Typography variant="h6" className="applicationsTitle" gutterBottom>
         Applications
       </Typography>
       <List>
         {applications.length > 0 ? (
           applications.map((applicant) => (
-            <ListItem key={applicant._id}>
+            <ListItem key={applicant._id} className="listItem">
               <ListItemText
                 primary={`Cover letter: ${applicant.coverLetter}`}
                 secondary={
-                  <>
-                    <Typography component="span">
-                      Resume: <Link to={`${DICURL}/${applicant.employeeId.resume}`} target='_blank'>Download</Link>
-                    </Typography><br />
-                    <Typography component="span">Name: {applicant.employeeId.name}</Typography><br />
-                    <Typography component="span">Email: {applicant.employeeId.email}</Typography><br />
-                    <Typography component="span">Phone: {applicant.employeeId.phone}</Typography><br />
-                    <Typography component="span">Institution: {applicant.employeeId.institutionName}</Typography>
-                  </>
+                  <Grid container spacing={2} className="secondaryDetails">
+                    <Grid item xs={12} sm={6}>
+                      <Typography component="div">
+                        <Link to={`${DICURL}/${applicant.employeeId.resume}`} className="link" target='_blank'>Resume</Link>
+                      </Typography>
+                      <Typography component="div" className="secondaryDetail">Name: {applicant.employeeId.name}</Typography>
+                      <Typography component="div" className="secondaryDetail">Email: {applicant.employeeId.email}</Typography>
+                      <Typography component="div" className="secondaryDetail">Phone: {applicant.employeeId.phone}</Typography>
+                      <Typography component="div" className="secondaryDetail">Institution: {applicant.employeeId.institutionName}</Typography>
+                    </Grid>
+                    {selectedApplication === applicant._id && (
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          label="Message to applicant"
+                          variant="outlined"
+                          fullWidth
+                          value={message}
+                          onChange={handleChangeMessage}
+                          className="messageTextField"
+                        />
+                      </Grid>
+                    )}
+                  </Grid>
                 }
               />
-              {selectedApplication === applicant._id && (
-                <TextField
-                  label="Message to applicant"
-                  variant="outlined"
-                  fullWidth
-                  value={message}
-                  onChange={handleChangeMessage}
-                  sx={{ mb: 2 }}
-                />
-              )}
               {applicant.status === 'pending' && (
-                <>
+                <div className="buttonGroup">
                   <Button variant="contained" color="primary" onClick={() => handleAccept(applicant._id)}>
                     Accept
                   </Button>
-                  <Button variant="contained" color="secondary" onClick={() => handleReject(applicant._id)}>
+                  <Button variant="contained" color="secondary" onClick={() => handleReject(applicant._id, applicant.employeeId._id)}>
                     Reject
                   </Button>
-                </>
+                </div>
               )}
               {selectedApplication !== applicant._id && applicant.status === 'pending' && (
                 <Button variant="contained" onClick={() => handleOpenMessage(applicant._id)}>

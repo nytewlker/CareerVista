@@ -75,7 +75,8 @@ exports.getAppliedJobs = async (req, res) => {
 
 // Accept application
 exports.acceptApplication = async (req, res) => {
-  const { applicationId, message } = req.body; // Assuming applicationId is passed from the frontend
+  const { applicationId } = req.params;
+  const { message } = req.body; // Assuming message is passed from the frontend
   try {
     const application = await Application.findById(applicationId);
     if (!application) {
@@ -91,9 +92,10 @@ exports.acceptApplication = async (req, res) => {
   }
 };
 
+
 // Reject application
 exports.rejectApplication = async (req, res) => {
-  const { applicationId } = req.body; // Assuming applicationId is passed from the frontend
+  const { applicationId } = req.params; // Extract applicationId from URL parameters
   try {
     const application = await Application.findById(applicationId);
     if (!application) {

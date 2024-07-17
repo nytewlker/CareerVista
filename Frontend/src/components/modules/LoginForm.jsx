@@ -1,24 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  Container,
-  Typography,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Box,
-  Alert,
-} from "@mui/material";
-import { Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { APIBASEURL } from "../../config";
-import "./LoginForm.css"; // Import the external CSS file for styling
+import "./LoginForm.css"; // Import the CSS file
 
 const LoginForm = () => {
-  const [role, setRole] = useState("employee"); // default role
+  const [role, setRole] = useState("employee");
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -43,7 +31,6 @@ const LoginForm = () => {
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      // Redirect based on role
       if (role === "recruiter") {
         navigate("/recruiterhome");
       } else if (role === "employee") {
@@ -59,65 +46,79 @@ const LoginForm = () => {
 
   return (
     <Container fluid className="login-container">
-      <Box className="login-box">
-        <Typography variant="h4" align="center" gutterBottom className="title">
-          Login
-        </Typography>
-        <Form onSubmit={handleSubmit}>
-          {error && <Alert severity="error">{error}</Alert>}
-          <FormControl fullWidth sx={{ mb: 3 }}>
-            <InputLabel id="role-label">Choose Role</InputLabel>
-            <Select
-              labelId="role-label"
-              id="role-select"
-              value={role}
-              onChange={handleRoleChange}
-              label="Choose Role"
-              name="role"
-            >
-              <MenuItem value="employee">Employee</MenuItem>
-              <MenuItem value="recruiter">Recruiter</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            fullWidth
-            label="Email address"
-            variant="outlined"
-            margin="normal"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            sx={{ mb: 3 }}
-            InputProps={{ className: 'icon envelope-icon' }}
-          />
-
-          <TextField
-            fullWidth
-            label="Password"
-            variant="outlined"
-            margin="normal"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            sx={{ mb: 3 }}
-            InputProps={{ className: 'icon lock-icon' }}
-          />
-
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            fullWidth
-          >
-            Login
-          </Button>
-        </Form>
-      </Box>
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="login-content text-center">
+            <h2>Welcome Back!</h2>
+            <p className="lead">
+              Choose the type of account you want to log in to.
+            </p>
+          </div>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="form-container slideInUp">
+            <Form onSubmit={handleSubmit}>
+              {error && (
+                <Row>
+                  <Col>
+                    <div className="error-message">{error}</div>
+                  </Col>
+                </Row>
+              )}
+              <Row>
+                <Col md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Role</Form.Label>
+                    <Form.Select value={role} onChange={handleRoleChange}>
+                      <option value="employee">Employee</option>
+                      <option value="recruiter">Recruiter</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter your email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Enter your password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-100 submit-button"
+              >
+                Login
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };

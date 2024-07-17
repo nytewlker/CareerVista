@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { navConfig } from "../../config/navConfig.js";
-import "./Header.css";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { navConfig } from '../../config/navConfig';
 
 const Header = ({ panel }) => {
   const navLinks = navConfig[panel];
@@ -26,8 +25,8 @@ const Header = ({ panel }) => {
   }, []);
 
   return (
-    <Navbar expand="lg" className="custom-nav-container" fixed="top">
-      <Container fluid className="custom-nav-inner-container">
+    <Navbar expand="lg" className="custom-nav-container navbar-dark" fixed="top">
+      <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="CareerVista" className="logo" />
         </Navbar.Brand>

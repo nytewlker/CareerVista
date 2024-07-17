@@ -8,9 +8,10 @@ import {
   Button,
   Box,
   Grid,
+  Collapse,
 } from '@mui/material';
 import { APIBASEURL } from '../../../config';
-import './RecruiterHome.css';
+// import './RecruiterHome.css';
 
 const RecruiterHome = () => {
   const [jobs, setJobs] = useState([]);
@@ -39,9 +40,9 @@ const RecruiterHome = () => {
         <Typography variant="h4" align="center" gutterBottom className="header">
           Job Listings
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={5}>
           {jobs.map((job) => (
-            <Grid item xs={12} sm={6} md={4} key={job._id}>
+            <Grid item xs={12} sm={6} md={12} key={job._id}>
               <Card className="job-card">
                 <CardContent>
                   <Typography variant="h5" className="job-title">
@@ -50,8 +51,8 @@ const RecruiterHome = () => {
                   <Typography variant="body2" className="job-experience">
                     Experience: {job.experience}
                   </Typography>
-                  {expandedJobId === job._id && (
-                    <>
+                  <Collapse in={expandedJobId === job._id}>
+                    <Box className="job-details">
                       <Typography variant="body2" className="job-description">
                         {job.description}
                       </Typography>
@@ -67,8 +68,8 @@ const RecruiterHome = () => {
                       <Typography variant="body2" className="job-salary">
                         Salary: {job.salary}
                       </Typography>
-                    </>
-                  )}
+                    </Box>
+                  </Collapse>
                   <Box className="card-actions">
                     <Button size="small" color="primary" onClick={() => handleExpandClick(job._id)}>
                       {expandedJobId === job._id ? 'Hide Details' : 'View Details'}

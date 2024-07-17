@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Form } from 'react-bootstrap';
-import { TextField, Select, MenuItem, InputLabel, FormControl, Box, Typography, Button } from '@mui/material';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { APIBASEURL } from '../../config';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './RegistrationForm.css'; // Import the CSS file
+// import './RegistrationForm.css'; // Import the CSS file
 
 const RegistrationForm = () => {
   const [role, setRole] = useState('employee');
@@ -51,8 +50,6 @@ const RegistrationForm = () => {
       const response = await axios.post(`${APIBASEURL}/${role}/register`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
-
-
         },
       });
 
@@ -70,179 +67,197 @@ const RegistrationForm = () => {
 
   return (
     <Container fluid className="registration-container">
-      <Box className="registration-box" >
-        <Typography variant="h4" component="h1" gutterBottom className="title">
-          Registration Form
-        </Typography>
-        <Form onSubmit={handleSubmit}>
-          <FormControl fullWidth sx={{ mb: 3 }}>
-            <InputLabel>Role</InputLabel>
-            <Select value={role} onChange={handleRoleChange} label="Role">
-              <MenuItem value="employee">Employee</MenuItem>
-              <MenuItem value="recruiter">Recruiter</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            fullWidth
-            label="Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            sx={{ mb: 3 }}
-            InputProps={{ className: 'icon user-icon' }}
-          />
-          <Row className="mb-3">
-          <Col>
-          <TextField
-            fullWidth
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            sx={{ mb: 3 }}
-            InputProps={{ className: 'icon envelope-icon' }}
-          />
-          </Col>
-          <Col>
-          <TextField
-            fullWidth
-            label="Phone"
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            sx={{ mb: 3 }}
-            InputProps={{ className: 'icon phone-icon' }}
-          />
-          </Col>
-          </Row>
-          <TextField
-            fullWidth
-            label="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            sx={{ mb: 3 }}
-            InputProps={{ className: 'icon lock-icon' }}
-          />
-          {role === 'recruiter' && (
-            <>
-              <TextField
-                fullWidth
-                label="Company Name"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleChange}
-                required
-                sx={{ mb: 3 }}
-                InputProps={{ className: 'icon building-icon' }}
-              />
-              <TextField
-                fullWidth
-                label="Bio"
-                name="bio"
-                value={formData.bio}
-                onChange={handleChange}
-                multiline
-                rows={4}
-                required
-                sx={{ mb: 3 }}
-                InputProps={{ className: 'icon book-icon' }}
-              />
-            </>
-          )}
-
-          {role === 'employee' && (
-            <>
-              <TextField
-                fullWidth
-                label="Institution Name"
-                name="institutionName"
-                value={formData.institutionName}
-                onChange={handleChange}
-                required
-                sx={{ mb: 3 }}
-                InputProps={{ className: 'icon book-icon' }}
-              />
-              <Row className="mb-3">
-                <Col>
-                  <TextField
-                    fullWidth
-                    label="Start Year"
-                    type="number"
-                    name="startYear"
-                    value={formData.startYear}
-                    onChange={handleChange}
-                    required
-                    InputProps={{ className: 'icon calendar-icon' }}
-                  />
-                </Col>
-                <Col>
-                  <TextField
-                    fullWidth
-                    label="End Year"
-                    type="number"
-                    name="endYear"
-                    value={formData.endYear}
-                    onChange={handleChange}
-                    required
-                    InputProps={{ className: 'icon calendar-icon' }}
-                  />
-                </Col>
-              </Row>
-              <TextField
-                fullWidth
-                label="Skills"
-                name="skills"
-                value={formData.skills}
-                onChange={handleChange}
-                required
-                sx={{ mb: 3 }}
-                InputProps={{ className: 'icon wrench-icon' }}
-              />
-              <div className="mb-3">
-                <label htmlFor="resume" className="form-label">
-                  <span className="icon upload-icon"></span> Upload Resume (PDF):
-                </label>
-                <input
-                  type="file"
-                  id="resume"
-                  name="resume"
-                  accept="application/pdf"
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="registration-content text-center">
+            <h2>Create Account</h2>
+            <p className="lead">Choose the type of account, Which may proceed!</p>
+          </div>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="form-container slideInUp">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Label>Role</Form.Label>
+                <Form.Select value={role} onChange={handleRoleChange}>
+                  <option value="employee">Employee</option>
+                  <option value="recruiter">Recruiter</option>
+                </Form.Select>
+              </Form.Group>
+              
+              <Form.Group className="mb-3">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   required
-                  className="form-control"
                 />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="profilePic" className="form-label">
-                  <span className="icon upload-icon"></span> Upload Profile Picture:
-                </label>
-                <input
-                  type="file"
-                  id="profilePic"
-                  name="profilePic"
-                  accept="image/*"
+              </Form.Group>
+              <Row>
+                    <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
-                  className="form-control"
                 />
-              </div>
-            </>
-          )}
+              </Form.Group>
+              </Col>
+                    <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Phone</Form.Label>
+                <Form.Control
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+              </Col>
+                  </Row>
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter your password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
 
-          <Button variant="contained" color="primary" type="submit" fullWidth>
-            Register
-          </Button>
-        </Form>
-      </Box>
+              {role === 'recruiter' && (
+                <>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Company Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter your company name"
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Bio</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      placeholder="Enter your bio"
+                      name="bio"
+                      value={formData.bio}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </>
+              )}
+
+              {role === 'employee' && (
+                <>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Institution Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter your institution name"
+                      name="institutionName"
+                      value={formData.institutionName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Row>
+                    <Col>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Start Year</Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="Enter your start year"
+                          name="startYear"
+                          value={formData.startYear}
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group className="mb-3">
+                        <Form.Label>End Year</Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="Enter your end year"
+                          name="endYear"
+                          value={formData.endYear}
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Skills</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter your skills"
+                      name="skills"
+                      value={formData.skills}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Upload Resume (PDF)</Form.Label>
+                        <Form.Control
+                          type="file"
+                          name="resume"
+                          accept="application/pdf"
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Upload Profile Picture</Form.Label>
+                        <Form.Control
+                          type="file"
+                          name="profilePic"
+                          accept="image/*"
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                </>
+              )}
+
+              <Button variant="primary" type="submit" className="w-100">
+                Register
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };

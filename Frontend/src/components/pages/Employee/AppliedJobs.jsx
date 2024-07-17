@@ -49,29 +49,29 @@ const AppliedJobs = () => {
   }
 
   return (
-    <Container>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Container className="applied-jobs-container">
+      <Typography variant="h4" align="center" gutterBottom className="applied-jobs-header">
         Applied Jobs
       </Typography>
       {appliedJobs.length > 0 ? (
         appliedJobs
           .filter(job => job && job._id) // Filter out jobs that are null or undefined, and ensure _id exists
           .map((job) => (
-            <Box key={job._id} sx={{ mb: 3, p: 2, border: "1px solid #ccc" }}>
-              <Typography variant="h5">{job.title}</Typography>
-              <Typography>{job.description}</Typography>
-              <Typography variant="body2">Company: {job.company}</Typography>
-              <Typography variant="body2">Location: {job.location}</Typography>
-              <Typography variant="body2">Job Type: {job.jobType}</Typography>
-              <Typography variant="body2">Salary: {job.salary}</Typography>
-              <Typography variant="body2">Status: {job.status}</Typography>
+            <Box key={job._id} className="applied-job-box">
+              <Typography variant="h5" className="job-title">{job.title}</Typography>
+              <Typography className="job-description">{job.description}</Typography>
+              <Typography variant="body2" className="job-details">Company: {job.company}</Typography>
+              <Typography variant="body2" className="job-details">Location: {job.location}</Typography>
+              <Typography variant="body2" className="job-details">Job Type: {job.jobType}</Typography>
+              <Typography variant="body2" className="job-details">Salary: {job.salary}</Typography>
+              <Typography variant="body2" className="job-status">Status: {job.status}</Typography>
               {job.status === 'accepted' && (
-                <Typography variant="body2">Message: {job.message}</Typography>
+                <Typography variant="body2" className="job-message">Message: {job.message}</Typography>
               )}
             </Box>
           ))
       ) : (
-        <Typography variant="h6" align="center">
+        <Typography variant="h6" align="center" className="no-jobs-message">
           No jobs applied yet.
         </Typography>
       )}

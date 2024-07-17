@@ -8,7 +8,6 @@ const ApplyJob = () => {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    resume: "",
     coverLetter: "",
   });
 
@@ -20,30 +19,33 @@ const ApplyJob = () => {
     e.preventDefault();
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+      console.log("User:", user); // Debugging: Log user object to console
       if (!user || !user._id) {
         alert("User is not logged in or employeeId is missing.");
         return;
       }
-      
-      await axios.post(`${APIBASEURL}/application/apply`, {
+
+      const response = await axios.post(`${APIBASEURL}/application/apply`, {
         jobId,
-        employeeId: user._id, // Assuming you store the employee ID in localStorage
+        employeeId: user._id,
         coverLetter: formData.coverLetter,
       });
-      
+      console.log("Application Response:", response.data); // Debugging: Log API response to console
+
       alert("Application submitted successfully!");
       navigate("/employeeHome");
     } catch (error) {
       console.error("Error applying for job:", error);
+      alert("Failed to submit the application. Please try again.");
     }
   };
 
   return (
-    <Container>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Container className="apply-job-container">
+      <Typography variant="h4" align="center" gutterBottom className="apply-job-header">
         Apply for Job
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      <Box component="form" onSubmit={handleSubmit} className="apply-job-form">
         <TextField
           name="coverLetter"
           label="Cover Letter"
@@ -52,10 +54,11 @@ const ApplyJob = () => {
           fullWidth
           required
           multiline
-          rows={4}
-          sx={{ mb: 2 }}
+          rows={15} // Adjusted number of rows for better form height
+          variant="outlined" // Added variant for outlined style
+          className="apply-job-textfield"
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary" className="apply-job-submit-button">
           Submit Application
         </Button>
       </Box>
