@@ -95,24 +95,24 @@ exports.getRecruiterProfile = async (req, res) => {
   }
 };
 
-// Update Recruiter Profile
 exports.updateRecruiterProfile = async (req, res) => {
   const { name, email, password, phone, companyName, bio } = req.body;
   try {
     const recruiterId = req.params.id;
+
+    // Check if the email is already used by another recruiter
+    const existingRecruiter = await Recruiter.findOne({ email, _id: { $ne: recruiterId } });
+    if (existingRecruiter) {
+      return res.status(400).json({ msg: 'Email is already in use' });
+    }
+
     let recruiter = await Recruiter.findById(recruiterId);
 
     if (!recruiter) {
       return res.status(404).json({ msg: 'Recruiter not found' });
     }
 
-    const fieldsToUpdate = {
-      name,
-      email,
-      phone,
-      companyName,
-      bio,
-    };
+    const fieldsToUpdate = { name, email, phone, companyName, bio };
 
     if (password) {
       const salt = await bcrypt.genSalt(10);
@@ -131,6 +131,8 @@ exports.updateRecruiterProfile = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
+
 // Logout Controller for Recruiter
 exports.recruiterLogout = async (req, res) => {
   try {
