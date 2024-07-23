@@ -3,7 +3,6 @@ import axios from "axios";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { APIBASEURL } from "../../config";
-import "./LoginForm.css"; // Import the CSS file
 
 const LoginForm = () => {
   const [role, setRole] = useState("employee");
