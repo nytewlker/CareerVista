@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:5000/api/recruiters'; // Replace with your actual backend API URL
+const baseUrl = 'http://localhost:5000/api/admin'; // Replace with your actual backend API URL
 
 export const getAllRecruiters = async () => {
   try {
@@ -26,7 +26,7 @@ export const addRecruiter = async (data) => {
 
 export const updateRecruiter = async (id, data) => {
   try {
-    const response = await axios.put(`${baseUrl}/${id}`, data);
+    const response = await axios.put(`${baseUrl}/recruiter/${id}`, data);
     return response.data;
   } catch (error) {
     console.error(`Error while updating recruiter ${id}:`, error);

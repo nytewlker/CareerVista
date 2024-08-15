@@ -3,7 +3,6 @@ import axios from 'axios';
 import { List, ListItem, ListItemText, Typography, Paper, Button, TextField, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { APIBASEURL, DICURL } from '../../../config/index.js';
-// import './JobApplicationsList.css'; // Import the CSS file
 
 const JobApplicationsList = ({ jobId }) => {
   const [applications, setApplications] = useState([]);
@@ -21,7 +20,7 @@ const JobApplicationsList = ({ jobId }) => {
         setApplications(response.data);
       } catch (error) {
         console.error('Error fetching job applications:', error);
-        setError('Error fetching job applications');
+        setError('NO job applications');
       } finally {
         setLoading(false);
       }

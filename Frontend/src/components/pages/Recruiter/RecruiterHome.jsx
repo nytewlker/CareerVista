@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-  Container,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-  Box,
-  Grid,
-  Collapse,
-} from '@mui/material';
+import { Container, Typography, Card, CardContent, Button, Box, Grid, Collapse, } from '@mui/material';
 import { APIBASEURL } from '../../../config';
-// import './RecruiterHome.css';
+
 
 const RecruiterHome = () => {
   const [jobs, setJobs] = useState([]);
@@ -35,6 +26,7 @@ const RecruiterHome = () => {
   };
 
   return (
+
     <Box className="recruiter-home-container">
       <Container>
         <Typography variant="h4" align="center" gutterBottom className="header">
@@ -82,6 +74,7 @@ const RecruiterHome = () => {
         </Grid>
       </Container>
     </Box>
+
   );
 };
 

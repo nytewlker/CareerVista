@@ -1,22 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-import { getAllJobs, addJob, updateJob, deleteJob } from './services/jobServices';
+import axios from 'axios';
+
+const baseUrl = 'http://localhost:5000/api/admin'; // Replace with your actual backend API URL
+
+const getAllJobs = async () => {
+  try {
+    const response = await axios.get(baseUrl);
+    return response.data;
+  } catch (error) {
+    console.error('Error while fetching jobs:', error);
+    throw error;
+  }
+};
+
+const addJob = async (data) => {
+  try {
+    const response = await axios.post(baseUrl, data);
+    return response.data;
+  } catch (error) {
+    console.error('Error while adding job:', error);
+    throw error;
+  }
+};
+
+const updateJob = async (id, data) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${id}`, data);
+    return response.data;
+  } catch (error) {
+    console.error(`Error while updating job ${id}:`, error);
+    throw error;
+  }
+};
+
+const deleteJob = async (id) => {
+  try {
+    const response = await axios.delete(`${baseUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error while deleting job ${id}:`, error);
+    throw error;
+  }
+};
 
 const JobManagement = () => {
   const [jobs, setJobs] = useState([]);
   const [show, setShow] = useState(false);
-  const [currentJob, setCurrentJob] = useState(null);
+  const [currentJob, setCurrentJob] = useState({ title: '', description: '', company: '', location: '' });
 
   useEffect(() => {
     loadJobs();
   }, []);
 
   const loadJobs = async () => {
-    const result = await getAllJobs();
-    setJobs(result.data);
+    try {
+      const data = await getAllJobs();
+      setJobs(data);
+    } catch (error) {
+      console.error('Error loading jobs:', error);
+    }
   };
 
-  const handleShow = (job = null) => {
+  const handleShow = (job = { title: '', description: '', company: '', location: '' }) => {
     setCurrentJob(job);
     setShow(true);
   };
@@ -24,18 +70,26 @@ const JobManagement = () => {
   const handleClose = () => setShow(false);
 
   const handleSave = async () => {
-    if (currentJob._id) {
-      await updateJob(currentJob._id, currentJob);
-    } else {
-      await addJob(currentJob);
+    try {
+      if (currentJob._id) {
+        await updateJob(currentJob._id, currentJob);
+      } else {
+        await addJob(currentJob);
+      }
+      loadJobs();
+      handleClose();
+    } catch (error) {
+      console.error('Error saving job:', error);
     }
-    loadJobs();
-    handleClose();
   };
 
   const handleDelete = async (id) => {
-    await deleteJob(id);
-    loadJobs();
+    try {
+      await deleteJob(id);
+      loadJobs();
+    } catch (error) {
+      console.error('Error deleting job:', error);
+    }
   };
 
   const handleChange = (e) => {
@@ -74,25 +128,45 @@ const JobManagement = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{currentJob?._id ? 'Edit Job' : 'Add Job'}</Modal.Title>
+          <Modal.Title>{currentJob._id ? 'Edit Job' : 'Add Job'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group>
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" name="title" value={currentJob?.title || ''} onChange={handleChange} />
+              <Form.Control
+                type="text"
+                name="title"
+                value={currentJob.title}
+                onChange={handleChange}
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label>Description</Form.Label>
-              <Form.Control type="text" name="description" value={currentJob?.description || ''} onChange={handleChange} />
+              <Form.Control
+                type="text"
+                name="description"
+                value={currentJob.description}
+                onChange={handleChange}
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label>Company</Form.Label>
-              <Form.Control type="text" name="company" value={currentJob?.company || ''} onChange={handleChange} />
+              <Form.Control
+                type="text"
+                name="company"
+                value={currentJob.company}
+                onChange={handleChange}
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label>Location</Form.Label>
-              <Form.Control type="text" name="location" value={currentJob?.location || ''} onChange={handleChange} />
+              <Form.Control
+                type="text"
+                name="location"
+                value={currentJob.location}
+                onChange={handleChange}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>

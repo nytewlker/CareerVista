@@ -2,12 +2,11 @@ import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import { Typography } from '@mui/material';
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-// import AboutUs from './AboutUs';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   return (
-    // <div className="fade-in">
+
     <div className="hero-container fadeIn">
       {/* Hero Carousel */}
       <Carousel id="heroCarousel" interval={3000}>
@@ -106,9 +105,8 @@ const Home = () => {
           </Typography>
         </div>
       </div>
-      </div>
-    //   {/* <AboutUs/>
-    // </div> */}
+    </div>
+
   );
 };
 

@@ -32,18 +32,10 @@ import ApplicationManagement from "./components/pages/Admin/ApplicationManagemen
 import JobManagement from "./components/pages/Admin/JobManagement";
 import Settings from "./components/pages/Admin/Settings";
 import Reports from "./components/pages/Admin/Reports";
+
 import AdminRegister from "./components/pages/Admin/Register";
 import AdminLogin from "./components/pages/Admin/Login";
 import AdminDashboard from "./components/pages/Admin/Dashboard";
-
-// import JobList from "./components/pages/Employee/jobList";
-// import R1 from "./components/modules/r1";
-
-
-
-
-
-
 
 
 
@@ -53,6 +45,7 @@ function App() {
     <div>
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Layout panel={'dashboard'}/>}>
           <Route index element={<Home/>}/>
           <Route path="/AboutUs" element={<AboutUs/>}/>
@@ -78,8 +71,8 @@ function App() {
           <Route path="/appliedjobs" element={<AppliedJobs />} />
           <Route path="/employeeprofile" element={<EmployeeProfile/>}/>
           <Route path="/logout" element={<Logout/>}/>
-
         </Route>
+
         <Route path="/" element={<Layout panel={'admin'}/>} >
           <Route path="/dashboard" element={<AdminDashboard/>}/>
           <Route path="/admin/recruiters" element={<RecruiterManagement/>} />

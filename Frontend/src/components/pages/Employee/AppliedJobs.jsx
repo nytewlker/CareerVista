@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Typography, Box, CircularProgress } from "@mui/material";
-
-const APIBASEURL = "http://localhost:5000/api"; // Adjust this to your API base URL
+import { APIBASEURL } from "../../../config";
 
 const AppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);

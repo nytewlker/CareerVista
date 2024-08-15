@@ -4,7 +4,6 @@ import { Container, Typography, Button, Box } from "@mui/material";
 import { APIBASEURL } from "../../../config/index.js";
 import JobApplicationsList from "./JobApplicationList.jsx";
 import { useNavigate } from "react-router-dom";
-// import "./MyJobs.css"; // Import CSS file for styling
 
 const MyJobs = () => {
   const [postedJobs, setPostedJobs] = useState([]);

@@ -934,6 +934,15 @@ button.w-100:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Recruitermanagement */
+.Recruitermanagement,.EmployeeManagement {
+  background: linear-gradient(135deg, #f5f5f5 50%, #e3e3e3 50%);
+  padding: 50px 0;
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+
+}
 /* Animations and Keyframes */
 @keyframes add-jobs-fadeIn {
   from {

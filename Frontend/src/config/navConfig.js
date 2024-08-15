@@ -1,4 +1,5 @@
 export const navConfig = {
+
   dashboard: [
     { path: "/", label: "Home" },
     {
@@ -14,6 +15,7 @@ export const navConfig = {
     { path: "/AboutUs", label: "About" },
     { path: "/ContactUs", label: "Contact Us" }
   ],
+
   recruiter: [
     { path: "/recruiterhome", label: "Home" },
     { path: "/addjobs", label: "Add Jobs" },
@@ -21,12 +23,14 @@ export const navConfig = {
     { path: "/recruiterprofile", label: "Recruiter Profile" },
     { path: "/", label: "Log-Out" }
   ],
+
   employee: [
     { path: "/employeehome", label: "Home" },
     { path: "/appliedjobs", label: "Applied Jobs" },
     { path: "/employeeprofile", label: "Employee Profile" },
     { path: "/", label: "Log-Out" }
   ],
+
   admin: [
     { path: "/dashboard", label: "Home" },
     { path: "/admin/recruiters", label: "Recruiter Management" },
@@ -36,4 +40,5 @@ export const navConfig = {
     { path: "/admin/reports", label: "Reports" },
     { path: "/admin/settings", label: "Settings" }
   ]
+
 };

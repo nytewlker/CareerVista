@@ -5,7 +5,6 @@ import { TextField, Typography, Avatar } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { APIBASEURL, DICURL } from '../../../config/index.js';
-// import './EmployeeProfile.css'; // Import the external CSS file for styling
 
 const EmployeeProfile = () => {
   const [formData, setFormData] = useState({
