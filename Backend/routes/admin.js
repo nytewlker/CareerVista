@@ -1,37 +1,58 @@
-const express = require('express');
-const router = express.Router();
+const express = require("express");
 const {
-  getAllRecruiters, addRecruiter, updateRecruiter, deleteRecruiter,
-  getAllEmployees, addEmployee, updateEmployee, deleteEmployee,
-  getAllJobs, addJob, updateJob, deleteJob,
-  getAllApplications, updateApplicationStatus,
-  getSettings, updateSettings
-} = require('../controllers/adminController');
+  registerAdmin,
+  loginAdmin,
+  logoutAdmin,
 
-// Recruiters
+  getAllRecruiters,
+  addRecruiter,
+  updateRecruiter,
+  deleteRecruiter,
+
+  getAllEmployees,
+  addEmployee,
+  updateEmployee,
+  deleteEmployee,
+
+
+  
+  getAllJobs,
+  addJob,
+  updateJob,
+  deleteJob,
+} = require("../controllers/adminController");
+const router = express.Router();
+
+const multer = require('multer');
+
+
+// Set up multer for file handling
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+router.post("/register", registerAdmin);
+router.post("/login", loginAdmin);
+// router.post('/logout', logoutAdmin);
+
+
+// Employee routes
+router.get('/employees', getAllEmployees);
+router.post('/employees', upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'profilePic', maxCount: 1 }]), addEmployee);
+router.put('/employees/:id', upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'profilePic', maxCount: 1 }]), updateEmployee);
+router.delete('/employees/:id', deleteEmployee);
+
+// Recruiter routes
 router.get('/recruiters', getAllRecruiters);
 router.post('/recruiters', addRecruiter);
 router.put('/recruiters/:id', updateRecruiter);
 router.delete('/recruiters/:id', deleteRecruiter);
 
-// Employees
-router.get('/employees', getAllEmployees);
-router.post('/employees', addEmployee);
-router.put('/employees/:id', updateEmployee);
-router.delete('/employees/:id', deleteEmployee);
+//jobs 
+router.get('/', getAllJobs);
+router.post('/', addJob);
+router.put('/:id', updateJob);
+router.delete('/:id', deleteJob);
 
-// Jobs
-router.get('/jobs', getAllJobs);
-router.post('/jobs', addJob);
-router.put('/jobs/:id', updateJob);
-router.delete('/jobs/:id', deleteJob);
 
-// Applications
-router.get('/applications', getAllApplications);
-router.put('/applications/:id', updateApplicationStatus);
-
-// Settings
-router.get('/settings', getSettings);
-router.put('/settings', updateSettings);
 
 module.exports = router;

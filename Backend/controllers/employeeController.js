@@ -126,7 +126,7 @@ exports.getEmployeeProfile = async (req, res) => {
   }
 };
 
-
+// update employee
 exports.updateEmployeeProfile = async (req, res) => {
   const { name, email, phone, institutionName, startYear, endYear, skills } = req.body;
 

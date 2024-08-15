@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-// import './index.css'; // Import the external CSS file
 
 const ContactUs = () => {
   return (
+
     <Container fluid className="contact-container">
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
@@ -60,6 +60,7 @@ const ContactUs = () => {
         </Col>
       </Row>
     </Container>
+
   );
 };
 

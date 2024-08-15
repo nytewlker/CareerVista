@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const AboutUs = () => {
   return (
+
     <div className="about-section fade-in">
       <Row className="justify-content-center">
         <Col md={8}>
@@ -73,6 +74,7 @@ const AboutUs = () => {
         </Col>
       </Row>
     </div>
+
   );
 };
 

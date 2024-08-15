@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Container, Row, Col, Card, Button, Collapse } from 'react-bootstrap';
 import { APIBASEURL } from '../../../config/index.js';
 import { Link } from 'react-router-dom';
-// import './EmployeeHome.css'; // Import the CSS file for additional styling
 
 const EmployeeHome = () => {
   const [jobs, setJobs] = useState([]);
