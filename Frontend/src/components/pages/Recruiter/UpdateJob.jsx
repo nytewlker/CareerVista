@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Container,
-  TextField,
-  Button,
-  Typography,
-  Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Paper,
-} from "@mui/material";
+// import {
+//   Container,
+//   TextField,
+//   Button,
+//   Typography,
+//   Grid,
+//   FormControl,
+//   InputLabel,
+//   Select,
+//   MenuItem,
+//   Paper,
+// } from "@mui/material";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { APIBASEURL } from "../../../config/index.js";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import "./UpdateJob.css"; // Import the external CSS file
 
 const UpdateJob = () => {
@@ -57,97 +60,112 @@ const UpdateJob = () => {
   };
 
   return (
-    <Container maxWidth="md" className="updateJobContainer">
-      {/* <Paper elevation={3} className="updateJobPaper"> */}
-        <Typography variant="h4" align="center" gutterBottom>
-          Update Job
-        </Typography>
-        <form onSubmit={handleSubmit} className="updateJobForm">
-          <TextField
-            name="title"
-            label="Job Title"
-            value={job.title}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-            className="text-field slide-in"
-          />
-          <TextField
-            name="description"
-            label="Job Description"
-            value={job.description}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            multiline
-            rows={4}
-            required
-            className="text-field slide-in"
-          />
-          <TextField
-            name="location"
-            label="Location"
-            value={job.location}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-            className="text-field slide-in"
-          />
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth variant="outlined" margin="normal">
-                <InputLabel>Job Type</InputLabel>
-                <Select
-                  name="jobType"
-                  value={job.jobType}
-                  onChange={handleChange}
-                  label="Job Type"
-                  required
-                  className="text-field slide-in"
-                >
-                  <MenuItem value="full-time">Full-time</MenuItem>
-                  <MenuItem value="part-time">Part-time</MenuItem>
-                  <MenuItem value="contract">Contract</MenuItem>
-                  <MenuItem value="internship">Internship</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="salary"
-                label="Salary"
-                value={job.salary}
-                onChange={handleChange}
-                fullWidth
-                margin="normal"
-                required
-                className="text-field slide-in"
-              />
-            </Grid>
-          </Grid>
-          <TextField
-            name="experience"
-            label="Experience"
-            value={job.experience}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-            className="text-field slide-in"
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            className="submitButton"
-          >
-            Update Job
-          </Button>
-        </form>
-      {/* </Paper> */}
+    <Container className="updateJobContainer">
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="add-job-containt text-center">
+            <h2>Update Job </h2>
+          </div>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="form-container slideInUp">
+            <Form onSubmit={handleSubmit}>
+              <Row className="mb-3">
+                <Col xs={12} sm={6}>
+                  <Form.Group controlId="jobTitle">
+                    <Form.Label>Job Title</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      value={job.title}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} sm={6}>
+                  <Form.Group controlId="jobLocation">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="location"
+                      value={job.location}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={12}>
+                  <Form.Group controlId="jobDescription">
+                    <Form.Label>Job Description</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      name="description"
+                      value={job.description}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={12} sm={6}>
+                  <Form.Group controlId="jobType">
+                    <Form.Label>Job Type</Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="jobType"
+                      value={job.jobType}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">Select Job Type</option>
+                      <option value="full-time">Full-time</option>
+                      <option value="part-time">Part-time</option>
+                      <option value="contract">Contract</option>
+                      <option value="internship">Internship</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col xs={12} sm={6}>
+                  <Form.Group controlId="jobSalary">
+                    <Form.Label>Salary</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="salary"
+                      value={job.salary}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={12}>
+                  <Form.Group controlId="jobExperience">
+                    <Form.Label>Required Experience</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="experience"
+                      value={job.experience}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Button variant="primary" type="submit" className="w-100 add-jobs-submit-button">
+                Post Job
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };

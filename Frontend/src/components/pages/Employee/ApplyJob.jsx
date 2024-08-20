@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Typography, TextField, Button, Box } from "@mui/material";
 import { APIBASEURL } from "../../../config";
+import { Row, Col, Form } from 'react-bootstrap';
 
 const ApplyJob = () => {
   const { jobId } = useParams();
@@ -42,26 +43,53 @@ const ApplyJob = () => {
 
   return (
     <Container className="apply-job-container">
-      <Typography variant="h4" align="center" gutterBottom className="apply-job-header">
-        Apply for Job
-      </Typography>
-      <Box component="form" onSubmit={handleSubmit} className="apply-job-form">
-        <TextField
-          name="coverLetter"
-          label="Cover Letter"
-          value={formData.coverLetter}
-          onChange={handleChange}
-          fullWidth
-          required
-          multiline
-          rows={15} // Adjusted number of rows for better form height
-          variant="outlined" // Added variant for outlined style
-          className="apply-job-textfield"
-        />
-        <Button type="submit" variant="contained" color="primary" className="apply-job-submit-button">
-          Submit Application
-        </Button>
-      </Box>
+      <Row className='justify-content-center'>
+        <Col md={8} lg={6}>
+          <Typography variant="h4" align="center" gutterBottom className="apply-job-header">
+            Apply for Job
+          </Typography>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="form-container slideInUp">
+            <Form onSubmit={handleSubmit}>
+
+              <Row>
+                <Col md={12}>
+                  <Form.Group className="mb-3">
+                    
+                    <Form.Control
+                      name="coverLetter"
+                      as="textarea" // Change to textarea to support multiple lines
+                      placeholder="Type your cover letter"
+                      value={formData.coverLetter}
+                      onChange={handleChange}
+                      rows={15} // Adjust the number of rows for the desired height
+                      className="apply-job-textfield"
+                      required
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              {/* // <TextField
+        //   name="coverLetter"
+        //   label="Cover Letter"
+          
+        //   fullWidth
+        //   required
+        //   multiline
+        //   rows={15} // Adjusted number of rows for better form height
+        //   variant="outlined" // Added variant for outlined style
+        //   className="apply-job-textfield"
+        // /> */}
+              <Button type="submit" variant="contained" color="primary" className="apply-job-submit-button">
+                Submit Application
+              </Button>
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };
