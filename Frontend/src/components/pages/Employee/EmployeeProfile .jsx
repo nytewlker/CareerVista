@@ -227,6 +227,7 @@ const EmployeeProfile = () => {
             className="update-profile-btn"
             type="submit"
             startIcon={<EditIcon />}
+            w-100
           >
             Update Profile
           </Button>

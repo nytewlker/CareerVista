@@ -1,29 +1,31 @@
 import React from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-const Logout = ({ role }) => {
+const Logout = () => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      await axios.post(`/api/${role}/logout`);
-      console.log('Logout successful');
-      // Clear user data from local storage
+      // Clear user data from localStorage
       localStorage.removeItem('user');
-      // Navigate to the home page after logout
+
+      // Redirect to the home page after logout
       navigate('/home');
     } catch (error) {
-      console.error('Logout error:', error.response?.data || error.message);
-      // Optionally, you can handle the error state or show an error message
+      console.error('Logout error:', error.message);
     }
   };
 
   return (
+    <div>
+    <br/>
+    <br/>
     <Button variant="danger" onClick={handleLogout}>
       Logout
     </Button>
+    </div>
+    
   );
 };
 

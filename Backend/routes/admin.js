@@ -20,6 +20,10 @@ const {
   addJob,
   updateJob,
   deleteJob,
+
+
+  getAllApplications,
+  deleteApplication,
 } = require("../controllers/adminController");
 const router = express.Router();
 
@@ -52,6 +56,13 @@ router.get('/', getAllJobs);
 router.post('/', addJob);
 router.put('/:id', updateJob);
 router.delete('/:id', deleteJob);
+
+//application
+// GET: Retrieve all applications
+router.get('/applications', getAllApplications);
+
+// PUT: Update application status
+router.put('/applications/:applicationId', deleteApplication);
 
 
 

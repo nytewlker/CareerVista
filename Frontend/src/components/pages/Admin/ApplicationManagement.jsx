@@ -1,45 +1,69 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Table, Button } from 'react-bootstrap';
-import { getAllApplications, updateApplication } from './services/applicationServies';
 
 const ApplicationManagement = () => {
   const [applications, setApplications] = useState([]);
 
+  // Fetch applications from the backend
   useEffect(() => {
-    loadApplications();
+    fetchApplications();
   }, []);
 
-  const loadApplications = async () => {
-    const result = await getAllApplications();
-    setApplications(result.data);
+  const fetchApplications = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/admin/applications');
+      setApplications(response.data); // Update the state with fetched applications
+    } catch (error) {
+      console.error('Error fetching applications:', error);
+    }
   };
 
-  const handleUpdateStatus = async (id, status) => {
-    await updateApplication(id, { status });
-    loadApplications();
+
+  // Delete an application by ID
+  const deleteApplication = async (applicationId) => {
+    if (window.confirm('Are you sure you want to delete this application?')) {
+      console.log(`Attempting to delete application with ID: ${applicationId}`);
+      try {
+        await axios.delete(`http://localhost:5000/api/admin/applications/${applicationId}`);
+        console.log(`Application with ID ${applicationId} deleted successfully.`);
+        // Remove the deleted application from the state
+        setApplications(applications.filter((application) => application._id !== applicationId));
+      } catch (error) {
+        console.error('Error deleting application', error);
+      }
+    } else {
+      console.log(`Deletion of application with ID ${applicationId} was canceled.`);
+    }
   };
 
   return (
     <div>
-      <h2>Manage Applications</h2>
-      <Table striped bordered hover className="mt-3">
+      <h2>Application Management</h2>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Job Title</th>
-            <th>Applicant</th>
+            <th>Applicant Name</th>
+            <th>Cover Letter</th>
             <th>Status</th>
+            <th>Message</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {applications.map((application) => (
             <tr key={application._id}>
-              <td>{application.jobTitle}</td>
-              <td>{application.applicant}</td>
+              {/* Access the related job and employee data using optional chaining */}
+              <td>{application.jobId?.title || 'N/A'}</td>
+              <td>{application.employeeId?.name || 'N/A'}</td>
+              <td>{application.coverLetter || 'No cover letter provided'}</td>
               <td>{application.status}</td>
+              <td>{application.message || 'No message provided'}</td>
               <td>
-                <Button variant="success" onClick={() => handleUpdateStatus(application._id, 'Accepted')}>Accept</Button>
-                <Button variant="danger" onClick={() => handleUpdateStatus(application._id, 'Rejected')}>Reject</Button>
+                <Button variant="warning" onClick={() => deleteApplication(application._id)}>
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}
