@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Box, Typography, IconButton, TextField, Button } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'; // For making HTTP requests
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/subscribe/subscribe', { email });
+      setMessage('Subscription successful!');
+      setEmail('');
+    } catch (error) {
+      setMessage('Subscription failed. Please try again.');
+    }
+  };
+
   return (
     <Box className="footer">
       <Container fluid>
@@ -38,17 +53,24 @@ const Footer = () => {
             <Typography variant="h6" component="div">
               Subscribe for Job Alerts
             </Typography>
-            <form noValidate autoComplete="off">
+            <form noValidate autoComplete="off" onSubmit={handleSubscribe}>
               <TextField
                 label="Email Address"
                 variant="outlined"
                 size="small"
                 fullWidth
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{ mb: 2 }}
               />
-              <Button variant="contained" color="primary" fullWidth>
+              <Button variant="contained" color="primary" fullWidth type="submit">
                 Subscribe
               </Button>
+              {message && (
+                <Typography variant="body2" sx={{ mt: 2 }}>
+                  {message}
+                </Typography>
+              )}
             </form>
             <Typography variant="h6" component="div" sx={{ mt: 2 }}>
               Follow Us
