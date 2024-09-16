@@ -11,7 +11,7 @@ const Logout = () => {
       localStorage.removeItem('user');
 
       // Redirect to the home page after logout
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       console.error('Logout error:', error.message);
     }
