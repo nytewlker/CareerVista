@@ -38,7 +38,8 @@ export const navConfig = {
     { path: "/admin/jobs", label: "Job Management" },
     { path: "/admin/applications", label: "Application Management" },
     { path: "/admin/reports", label: "Reports" },
-    { path: "/admin/settings", label: "Settings" }
+    { path: "/admin/settings", label: "Settings" },
+    { path: "/", label: "Log-Out" }
   ]
 
 };
