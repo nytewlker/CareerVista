@@ -20,7 +20,6 @@ const ApplicationManagement = () => {
   };
 
 
-  // Delete an application by ID
   const deleteApplication = async (applicationId) => {
     if (window.confirm('Are you sure you want to delete this application?')) {
       console.log(`Attempting to delete application with ID: ${applicationId}`);
@@ -36,11 +35,12 @@ const ApplicationManagement = () => {
       console.log(`Deletion of application with ID ${applicationId} was canceled.`);
     }
   };
+  
 
   return (
-    <div>
+    <div className='Applicationmanangement'>
       <h2>Application Management</h2>
-      <Table striped bordered hover>
+      <Table striped bordered hover className="mt-3">
         <thead>
           <tr>
             <th>Job Title</th>

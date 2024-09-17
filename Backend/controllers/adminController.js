@@ -1,6 +1,7 @@
 const Admin = require('../models/Admin')
 const bcrypt = require('bcrypt');
 
+
 const Recruiter = require('../models/Recruiter');
 const Employee = require('../models/Employee');
 const Job = require('../models/Job');
@@ -48,9 +49,40 @@ exports.loginAdmin = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+// Change admin password
+exports.changePassword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
 
+  // Basic validation
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ msg: 'Both current and new passwords are required' });
+  }
+  if (newPassword.length < 6) {
+    return res.status(400).json({ msg: 'New password must be at least 6 characters long' });
+  }
 
+  try {
+    // Fetch the admin from the database
+    const admin = await Admin.findOne(); 
+    if (!admin) {
+      return res.status(404).json({ msg: 'Admin not found' });
+    }
 
+    // Compare the current password with the one in the database
+    const isMatch = await bcrypt.compare(currentPassword, admin.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Current password is incorrect' });
+    }
+
+    // Hash and update the new password
+    admin.password = await bcrypt.hash(newPassword, 12);
+    await admin.save();
+
+    res.status(200).json({ msg: 'Password changed successfully' });
+  } catch (error) {
+    res.status(500).json({ msg: 'Server error', error });
+  }
+};
 
 // Recruiters
 exports.getAllRecruiters = async (req, res) => {

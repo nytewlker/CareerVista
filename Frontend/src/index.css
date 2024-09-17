@@ -895,34 +895,35 @@ button.w-100:focus {
   align-self: center;
 }
 
-/* admin dashboard */
-.dashboard-container {
-  background: linear-gradient(135deg, #f5f5f5 50%, #e3e3e3 50%);
-  padding: 50px 0;
-  position: relative;
-  min-height: 100vh;
-}
-
-.dashboard-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  margin-bottom: 20px;
-  transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
+/* admin */
+.dashboard-card {
+  border: none;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card .btn {
+  margin-top: 15px;
+}
+
+.dashboard-card h2 {
+  font-size: 1.5rem;
+  color: #007bff; /* Use Bootstrap primary color */
+}
+
+.card-body {
+  text-align: center;
+}
+
 
 /* Recruitermanagement */
-.Recruitermanagement,.EmployeeManagement {
+.dashboard,.Recruitermanagement,.EmployeeManagement,.Applicationmanangement,.jobmanagement,.reports,.settings {
   background: linear-gradient(135deg, #f5f5f5 50%, #e3e3e3 50%);
   padding: 50px 0;
   position: relative;
