@@ -3,7 +3,7 @@ import { Card, Row, Col } from 'react-bootstrap';
 
 const Reports = () => {
   return (
-    <div>
+    <div className='reports'>
       <h2>Reports</h2>
       <Row>
         <Col>

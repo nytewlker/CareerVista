@@ -2,6 +2,7 @@ const express = require("express");
 const {
   registerAdmin,
   loginAdmin,
+  changePassword,
   logoutAdmin,
 
   getAllRecruiters,
@@ -30,12 +31,14 @@ const router = express.Router();
 const multer = require('multer');
 
 
+
 // Set up multer for file handling
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 router.post("/register", registerAdmin);
 router.post("/login", loginAdmin);
+router.put('/change-password', changePassword);
 // router.post('/logout', logoutAdmin);
 
 
