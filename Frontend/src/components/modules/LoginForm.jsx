@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { APIBASEURL } from "../../config";
 
 const LoginForm = () => {
@@ -114,6 +114,15 @@ const LoginForm = () => {
               >
                 Login
               </Button>
+
+              {/* Forgot Password Link */}
+              <Row className="mt-3">
+                <Col className="text-center">
+                  <Link to="/forgot-password" className="forgot-password-link">
+                    Forgot Password?
+                  </Link>
+                </Col>
+              </Row>
             </Form>
           </div>
         </Col>

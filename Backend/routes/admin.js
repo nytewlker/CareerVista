@@ -26,6 +26,17 @@ const {
   getAllApplications,
   deleteApplication,
 } = require("../controllers/adminController");
+
+
+const {
+  getJobPostingReport,
+  getApplicationReport,
+  getRecruiterReport,
+  getEmployeeReport,
+} = require("../controllers/reportController");
+
+
+
 const router = express.Router();
 
 const multer = require('multer');
@@ -65,7 +76,14 @@ router.delete('/:id', deleteJob);
 router.get('/applications', getAllApplications);
 
 // PUT: Update application status
-router.put('/applications/:applicationId', deleteApplication);
+router.delete('/applications/:applicationId', deleteApplication);
+
+
+// Report routes
+router.get('/reports/job-posting', getJobPostingReport);
+router.get('/reports/application', getApplicationReport);
+router.get('/reports/recruiter', getRecruiterReport);
+router.get('/reports/employee', getEmployeeReport);
 
 
 
