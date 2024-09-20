@@ -1,4 +1,4 @@
-import { BrowserRouter,Route,Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Layout from "./components/Layout/Layout";
@@ -9,6 +9,9 @@ import ContactUs from "./components/pages/ContactUs";
 
 import LoginForm from "./components/modules/LoginForm";
 import RegistrationFrom from "./components/modules/RegistrationForm"
+import ForgotPasswordForm from './components/modules/ForgotPasswordForm';
+import ResetPasswordForm from './components/modules/ResetPasswordForm';
+
 
 
 import RecruiterHome from "./components/pages/Recruiter/RecruiterHome";
@@ -43,47 +46,49 @@ import AdminDashboard from "./components/pages/Admin/Dashboard";
 function App() {
   return (
     <div>
-    <BrowserRouter>
-      <Routes>
+      <BrowserRouter>
+        <Routes>
 
-        <Route path="/" element={<Layout panel={'dashboard'}/>}>
-          <Route index element={<Home/>}/>
-          <Route path="/AboutUs" element={<AboutUs/>}/>
-          <Route path="/ContactUs" element={<ContactUs/>}/>
-          <Route path="/LoginForm" element={<LoginForm/>}/>
-          <Route path="/RegistrationForm" element={<RegistrationFrom/>}/>
-          <Route path="/adminregister" element={<AdminRegister/>} />
-          <Route path="/adminlogin" element={<AdminLogin/>} />
-        </Route>
+          <Route path="/" element={<Layout panel={'dashboard'} />}>
+            <Route index element={<Home />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/ContactUs" element={<ContactUs />} />
+            <Route path="/LoginForm" element={<LoginForm />} />
+            <Route path="/RegistrationForm" element={<RegistrationFrom />} />
+            <Route path="/adminregister" element={<AdminRegister />} />
+            <Route path="/adminlogin" element={<AdminLogin />} />
+            <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+            <Route path="/reset-password/:role/:token" element={<ResetPasswordForm />} />
+          </Route>
 
-        <Route path="/" element={<Layout panel={'recruiter'}/>}>
-          <Route path="/recruiterhome" element={<RecruiterHome/>} />
-          <Route path="/addjobs" element={<AddJobs/>}/>
-          <Route path="/MyJobs" element={<MyJobs/>}/>
-          <Route path="/updatejob/:jobId" element={<UpdateJob />} />
-          <Route path="/RecruiterProfile" element={<RecruiterProfile />}/>
-          <Route path="/logout" element={<Logout/>}/>
-        </Route>
+          <Route path="/" element={<Layout panel={'recruiter'} />}>
+            <Route path="/recruiterhome" element={<RecruiterHome />} />
+            <Route path="/addjobs" element={<AddJobs />} />
+            <Route path="/MyJobs" element={<MyJobs />} />
+            <Route path="/updatejob/:jobId" element={<UpdateJob />} />
+            <Route path="/RecruiterProfile" element={<RecruiterProfile />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
 
-        <Route path="/" element={<Layout panel={'employee'}/>}>
-          <Route path="/employeehome" element={<EmployeeHome/>} />
-          <Route path="/apply/:jobId" element={<ApplyJob />} />
-          <Route path="/appliedjobs" element={<AppliedJobs />} />
-          <Route path="/employeeprofile" element={<EmployeeProfile/>}/>
-          <Route path="/logout" element={<Logout/>}/>
-        </Route>
+          <Route path="/" element={<Layout panel={'employee'} />}>
+            <Route path="/employeehome" element={<EmployeeHome />} />
+            <Route path="/apply/:jobId" element={<ApplyJob />} />
+            <Route path="/appliedjobs" element={<AppliedJobs />} />
+            <Route path="/employeeprofile" element={<EmployeeProfile />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
 
-        <Route path="/" element={<Layout panel={'admin'}/>} >
-          <Route path="/dashboard" element={<AdminDashboard/>}/>
-          <Route path="/admin/recruiters" element={<RecruiterManagement/>} />
-          <Route path="/admin/employees" element={<EmployeeManagement/>} />
-          <Route path="/admin/jobs" element={<JobManagement/>} />
-          <Route path="/admin/applications" element={<ApplicationManagement/>} />
-          <Route path="/admin/reports" element={<Reports/>} />
-          <Route path="/admin/settings" element={<Settings/>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route path="/" element={<Layout panel={'admin'} />} >
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/recruiters" element={<RecruiterManagement />} />
+            <Route path="/admin/employees" element={<EmployeeManagement />} />
+            <Route path="/admin/jobs" element={<JobManagement />} />
+            <Route path="/admin/applications" element={<ApplicationManagement />} />
+            <Route path="/admin/reports" element={<Reports />} />
+            <Route path="/admin/settings" element={<Settings />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

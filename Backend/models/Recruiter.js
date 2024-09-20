@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const recruiterSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -7,6 +7,8 @@ const recruiterSchema = new mongoose.Schema({
   phone: { type: String },
   companyName: { type: String },
   bio: { type: String },
+  resetPasswordToken: { type: String }, // Token for password reset
+  resetPasswordExpires: { type: Date }, // Expiration for reset token
 });
 
-module.exports = mongoose.model("Recruiter", recruiterSchema);
+module.exports = mongoose.model('Recruiter', recruiterSchema);

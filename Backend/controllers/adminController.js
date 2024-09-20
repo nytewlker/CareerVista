@@ -323,7 +323,7 @@ const applications = await Application.find()
 // DELETE request to delete an application by ID
 exports.deleteApplication = async (req, res) => {
   try {
-    const application = await Application.findByIdAndDelete(req.params.id);
+    const application = await Application.findByIdAndDelete(req.params.applicationId);
     if (!application) {
       return res.status(404).json({ message: 'Application not found' });
     }
@@ -332,6 +332,7 @@ exports.deleteApplication = async (req, res) => {
     res.status(500).json({ message: 'Error deleting application', error });
   }
 };
+
 
 // Settings
 exports.getSettings = async (req, res) => {
