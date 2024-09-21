@@ -28,12 +28,8 @@ const {
 } = require("../controllers/adminController");
 
 
-const {
-  getJobPostingReport,
-  getApplicationReport,
-  getRecruiterReport,
-  getEmployeeReport,
-} = require("../controllers/reportController");
+const {  downloadJobPostingReport, downloadApplicationReport, downloadRecruiterReport, downloadEmployeeReport } = require('../controllers/reportController');
+
 
 
 
@@ -49,9 +45,7 @@ const upload = multer({ storage });
 
 router.post("/register", registerAdmin);
 router.post("/login", loginAdmin);
-router.put('/change-password/:id', changePassword);
-// router.post('/logout', logoutAdmin);
-
+router.post('/change-password', changePassword);
 
 // Employee routes
 router.get('/employees', getAllEmployees);
@@ -80,10 +74,10 @@ router.delete('/applications/:applicationId', deleteApplication);
 
 
 // // Report routes
-// router.get('/reports/job-posting', getJobPostingReport);
-// router.get('/reports/application', getApplicationReport);
-// router.get('/reports/recruiter', getRecruiterReport);
-// router.get('/reports/employee', getEmployeeReport);
+router.get('/reports/download-job-posting', downloadJobPostingReport);
+router.get('/reports/download-application', downloadApplicationReport);
+router.get('/reports/download-recruiter', downloadRecruiterReport);
+router.get('/reports/download-employee', downloadEmployeeReport);
 
 
 

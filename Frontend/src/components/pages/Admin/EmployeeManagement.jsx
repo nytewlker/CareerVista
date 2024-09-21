@@ -76,7 +76,7 @@ const EmployeeManagement = () => {
 
   return (
     <div className='EmployeeManagement'>
-      <h2>Manage Employees</h2>
+      <div className='text-center mb-5'>Manage Employees</div>
       <Button variant="primary" onClick={() => handleShow()}>Add Employee</Button>
       <Table striped bordered hover className="mt-3">
         <thead>

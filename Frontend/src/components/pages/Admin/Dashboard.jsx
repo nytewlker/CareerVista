@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is import
 
 const AdminDashboard = () => {
   return (
-    <Container className="dashboard mt-4">
-      <h1 className="text-center mb-4">Welcome, Admin!</h1>
+    <Container className="dashboard ">
+      <h1 className="text-center mt-4">Welcome, Admin!</h1>
       <Row className="g-4">
         <Col xs={12} md={6}>
           <Card >
