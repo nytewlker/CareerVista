@@ -52,33 +52,38 @@ exports.loginAdmin = async (req, res) => {
 // Change admin password
 exports.changePassword = async (req, res) => {
   const { currentPassword, newPassword } = req.body;
+  const adminId = req.params.id;  // Get admin ID from params
 
-  // Basic validation
+  // Validate request
   if (!currentPassword || !newPassword) {
-    return res.status(400).json({ msg: 'Both current and new passwords are required' });
+    return res.status(400).json({ msg: 'Please provide both current and new passwords.' });
   }
   if (newPassword.length < 6) {
-    return res.status(400).json({ msg: 'New password must be at least 6 characters long' });
+    return res.status(400).json({ msg: 'New password must be at least 6 characters long.' });
   }
 
   try {
-    // Fetch the admin from the database
-    const admin = await Admin.findOne(); 
+    // Find the admin by ID
+    const admin = await Admin.findById(adminId);
     if (!admin) {
-      return res.status(404).json({ msg: 'Admin not found' });
+      return res.status(404).json({ msg: 'Admin not found.' });
     }
 
-    // Compare the current password with the one in the database
+    // Compare current password with the hashed password in the database
     const isMatch = await bcrypt.compare(currentPassword, admin.password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Current password is incorrect' });
+      return res.status(400).json({ msg: 'Current password is incorrect.' });
     }
 
-    // Hash and update the new password
-    admin.password = await bcrypt.hash(newPassword, 12);
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+
+    // Update the password
+    admin.password = hashedNewPassword;
     await admin.save();
 
-    res.status(200).json({ msg: 'Password changed successfully' });
+    res.status(200).json({ msg: 'Password changed successfully.' });
   } catch (error) {
     res.status(500).json({ msg: 'Server error', error });
   }
