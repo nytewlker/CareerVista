@@ -49,7 +49,7 @@ const upload = multer({ storage });
 
 router.post("/register", registerAdmin);
 router.post("/login", loginAdmin);
-router.put('/change-password', changePassword);
+router.put('/change-password/:id', changePassword);
 // router.post('/logout', logoutAdmin);
 
 
@@ -79,11 +79,11 @@ router.get('/applications', getAllApplications);
 router.delete('/applications/:applicationId', deleteApplication);
 
 
-// Report routes
-router.get('/reports/job-posting', getJobPostingReport);
-router.get('/reports/application', getApplicationReport);
-router.get('/reports/recruiter', getRecruiterReport);
-router.get('/reports/employee', getEmployeeReport);
+// // Report routes
+// router.get('/reports/job-posting', getJobPostingReport);
+// router.get('/reports/application', getApplicationReport);
+// router.get('/reports/recruiter', getRecruiterReport);
+// router.get('/reports/employee', getEmployeeReport);
 
 
 
