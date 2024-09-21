@@ -49,42 +49,35 @@ exports.loginAdmin = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-// Change admin password
 exports.changePassword = async (req, res) => {
-  const { currentPassword, newPassword } = req.body;
-  const adminId = req.params.id;  // Get admin ID from params
+  const { email, oldPassword, newPassword } = req.body;
 
   // Validate request
-  if (!currentPassword || !newPassword) {
-    return res.status(400).json({ msg: 'Please provide both current and new passwords.' });
-  }
-  if (newPassword.length < 6) {
-    return res.status(400).json({ msg: 'New password must be at least 6 characters long.' });
+  if (!email || !oldPassword || !newPassword) {
+    return res.status(400).json({ msg: 'Please provide all fields.' });
   }
 
   try {
-    // Find the admin by ID
-    const admin = await Admin.findById(adminId);
+    // Find the user by email
+    const admin = await Admin.findOne({ email });
     if (!admin) {
       return res.status(404).json({ msg: 'Admin not found.' });
     }
 
-    // Compare current password with the hashed password in the database
-    const isMatch = await bcrypt.compare(currentPassword, admin.password);
+    // Compare old password
+    const isMatch = await bcrypt.compare(oldPassword, admin.password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Current password is incorrect.' });
+      return res.status(400).json({ msg: 'Old password is incorrect.' });
     }
 
-    // Hash the new password
+    // Hash new password and save
     const salt = await bcrypt.genSalt(10);
-    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
-
-    // Update the password
-    admin.password = hashedNewPassword;
+    admin.password = await bcrypt.hash(newPassword, salt);
     await admin.save();
 
     res.status(200).json({ msg: 'Password changed successfully.' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ msg: 'Server error', error });
   }
 };

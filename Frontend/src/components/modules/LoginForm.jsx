@@ -28,7 +28,7 @@ const LoginForm = () => {
       );
       console.log("Login successful:", response.data);
 
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("userId", JSON.stringify(response.data.user));
 
       if (role === "recruiter") {
         navigate("/recruiterhome");
