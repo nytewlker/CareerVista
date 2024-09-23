@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import { APIBASEURL } from '../../config';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/contact/contact', formData);
+      await axios.post(`${APIBASEURL}/contact/contact`, formData);
       setSuccess('Message sent successfully!');
       setError(null);
     } catch (err) {
