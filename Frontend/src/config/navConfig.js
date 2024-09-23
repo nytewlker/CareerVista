@@ -21,7 +21,7 @@ export const navConfig = {
     { path: "/addjobs", label: "Add Jobs" },
     { path: "/myjobs", label: "My Jobs" },
     { path: "/recruiterprofile", label: "Recruiter Profile" },
-    { path: "/logout", label: "Log-Out" }
+    { path: "/", label: "Log-Out" }
   ],
 
   employee: [
