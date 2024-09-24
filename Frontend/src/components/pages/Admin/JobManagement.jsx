@@ -99,7 +99,7 @@ const JobManagement = () => {
   return (
     <div className='jobmanagement'>
       <div className='text-center mb-5'>Manage Jobs</div>
-      <Button variant="primary" onClick={() => handleShow()}>Add Job</Button>
+      {/* <Button variant="primary" onClick={() => handleShow()}>Add Job</Button> */}
       <Table striped bordered hover className="mt-3">
         <thead>
           <tr>
