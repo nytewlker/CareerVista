@@ -4,6 +4,7 @@ import { Box, Typography, IconButton, TextField, Button } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'; // For making HTTP requests
+import { APIBASEURL } from '../../config';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,8 @@ const Footer = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/subscribe/subscribe', { email });
+      // Remove response assignment
+      await axios.post(`${APIBASEURL}/subscribe/subscribe`, { email });
       setMessage('Subscription successful!');
       setEmail('');
     } catch (error) {
