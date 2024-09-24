@@ -28,17 +28,17 @@ const AboutUs = () => {
           />
           <Typography variant="h4">Anand Dubey</Typography>
           <Typography variant="h6">(ADDIE)</Typography>
-          <Typography variant="body2">CEO & Founder</Typography>
+          <Typography variant="body2">Project Leader</Typography>
         </Col>
         <Col md={4} className="text-center animate__animated animate__fadeInRight">
           <img
-            src={`${process.env.PUBLIC_URL}/assets/owner.jpg`}
+            src={`${process.env.PUBLIC_URL}/assets/owner1.jpeg`}
             alt="Team Member 2"
             className="img-fluid rounded-circle mb-4"
           />
-          <Typography variant="h4">Anand Dubey</Typography>
-          <Typography variant="h6">(ADDIE)</Typography>
-          <Typography variant="body2">Chief Designer</Typography>
+          <Typography variant="h4">Abhay Kotiya</Typography>
+          <Typography variant="h6">(abhi)</Typography>
+          <Typography variant="body2">Frontend Designer</Typography>
         </Col>
       </Row>
       <Row className="justify-content-center mt-5">
