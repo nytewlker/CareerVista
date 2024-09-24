@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Typography, Card, CardContent, Button, Box, Grid, Collapse, } from '@mui/material';
-import { APIBASEURL } from '../../../config';
-
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { FaMapMarkerAlt, FaBriefcase, FaMoneyBillAlt, FaUserTie } from 'react-icons/fa'; // Importing icons
+import { APIBASEURL } from '../../../config'; // Update this with your correct API base URL
 
 const RecruiterHome = () => {
   const [jobs, setJobs] = useState([]);
-  const [expandedJobId, setExpandedJobId] = useState(null);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -21,60 +20,36 @@ const RecruiterHome = () => {
     fetchJobs();
   }, []);
 
-  const handleExpandClick = (jobId) => {
-    setExpandedJobId(expandedJobId === jobId ? null : jobId);
-  };
-
   return (
-
-    <Box className="recruiter-home-container">
-      <Container>
-        <Typography variant="h4" align="center" gutterBottom className="header">
-          Job Listings
-        </Typography>
-        <Grid container spacing={5}>
-          {jobs.map((job) => (
-            <Grid item xs={12} sm={6} md={12} key={job._id}>
-              <Card className="job-card">
-                <CardContent>
-                  <Typography variant="h5" className="job-title">
-                    {job.title}
-                  </Typography>
-                  <Typography variant="body2" className="job-experience">
-                    Experience: {job.experience}
-                  </Typography>
-                  <Collapse in={expandedJobId === job._id}>
-                    <Box className="job-details">
-                      <Typography variant="body2" className="job-description">
-                        {job.description}
-                      </Typography>
-                      <Typography variant="body2" className="job-company">
-                        Company: {job.company}
-                      </Typography>
-                      <Typography variant="body2" className="job-location">
-                        Location: {job.location}
-                      </Typography>
-                      <Typography variant="body2" className="job-jobType">
-                        Job Type: {job.jobType}
-                      </Typography>
-                      <Typography variant="body2" className="job-salary">
-                        Salary: {job.salary}
-                      </Typography>
-                    </Box>
-                  </Collapse>
-                  <Box className="card-actions">
-                    <Button size="small" color="primary" onClick={() => handleExpandClick(job._id)}>
-                      {expandedJobId === job._id ? 'Hide Details' : 'View Details'}
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
-
+    <Container fluid className="recruiter-home-container">
+      <h2 className="text-center mb-4">Job Listings</h2>
+      <Row className="justify-content-center">
+        {jobs.map((job) => (
+          <Col xs={12} sm={10} md={6} lg={4} key={job._id} className="mb-4">
+            <Card className="job-card">
+              <Card.Body>
+                <Card.Title className="job-title">{job.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
+                <div className="job-details">
+                  <div className="detail-row">
+                    <FaBriefcase className="job-icon" /> {job.experience} Experience
+                  </div>
+                  <div className="detail-row">
+                    <FaMapMarkerAlt className="job-icon" /> {job.location}
+                  </div>
+                  <div className="detail-row">
+                    <FaUserTie className="job-icon" /> Job Type: {job.jobType}
+                  </div>
+                  <div className="detail-row">
+                    <FaMoneyBillAlt className="job-icon" /> {job.salary}
+                  </div>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 
