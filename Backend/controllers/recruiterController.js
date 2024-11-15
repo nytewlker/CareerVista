@@ -34,9 +34,9 @@ exports.registerRecruiter = async (req, res) => {
     // Save the recruiter to the database
     await recruiter.save();
 
-    // // Create a JWT token for the new recruiter
-    // const payload = { recruiter: { id: recruiter.id } };
-    // const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 });
+    // Create a JWT token for the new recruiter
+    const payload = { recruiter: { id: recruiter.id } };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 });
 
     console.log("Recruiter registered successfully:", email);
 
