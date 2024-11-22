@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { DICURL } from '../../../config';
-import { Avatar } from '@mui/material';
 
 const EmployeeManagement = () => {
   const [employees, setEmployees] = useState([]);
@@ -37,9 +36,7 @@ const EmployeeManagement = () => {
   const handleSave = async () => {
     try {
       if (file) {
-        // Logic to handle file upload (e.g., to an S3 bucket or server endpoint)
-        // Example: const fileUrl = await uploadFile(file);
-        // currentEmployee.resume = fileUrl;
+        // Logic to handle file upload
       }
 
       if (currentEmployee._id) {
@@ -70,13 +67,13 @@ const EmployeeManagement = () => {
   };
 
   const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setCurrentEmployee({ ...currentEmployee, [name]: files[0] });
+    const { files } = e.target;
+    setFile(files[0]);
   };
 
   return (
-    <div className='EmployeeManagement'>
-      <div className='text-center mb-5'>Manage Employees</div>
+    <div className="EmployeeManagement">
+      <div className="text-center mb-5">Manage Employees</div>
       <Button variant="primary" onClick={() => handleShow()}>Add Employee</Button>
       <Table striped bordered hover className="mt-3">
         <thead>
@@ -102,15 +99,20 @@ const EmployeeManagement = () => {
               <td>{employee.startYear}</td>
               <td>{employee.endYear}</td>
               <td>
-              <Avatar
-              src={`${DICURL}/${employee.profilePic}`}
-              alt="Profile Pic"
-              className="profile-picture"
-              sx={{ width: 50, height: 50 }}
-            />
+                <img
+                  src={`${DICURL}/${employee.profilePic}`}
+                  alt="Profile Pic"
+                  className="profile-picture"
+                  style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+                />
               </td>
               <td>
-                <a className="view-resume" href={`${DICURL}/${employee.resume}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  className="view-resume"
+                  href={`${DICURL}/${employee.resume}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   View Resume
                 </a>
               </td>

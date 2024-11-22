@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Box, Typography, IconButton, TextField, Button } from '@mui/material';
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios'; // For making HTTP requests
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'; // React Icons
+import axios from 'axios';
 import { APIBASEURL } from '../../config';
 
 const Footer = () => {
@@ -13,7 +12,6 @@ const Footer = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     try {
-      // Remove response assignment
       await axios.post(`${APIBASEURL}/subscribe/subscribe`, { email });
       setMessage('Subscription successful!');
       setEmail('');
@@ -23,78 +21,60 @@ const Footer = () => {
   };
 
   return (
-    <Box className="footer">
-      <Container fluid>
+    <footer className="footer bg-gray text-light py-4">
+      <Container>
         <Row>
-          <Col xs={12} md={4} className="text-center text-md-left mb-3 mb-md-0">
-            <Typography variant="h6" component="div">
-              CareerVista
-            </Typography>
-            <Typography variant="body2">
-              &copy; 2024 CareerVista. All rights reserved.
-            </Typography>
-            <Typography variant="body2">
-              Your trusted partner in finding your dream job. We connect job seekers with top employers across various industries.
-            </Typography>
+          {/* About Section */}
+          <Col xs={12} md={4} className="mb-3 mb-md-0">
+            <h5>CareerVista</h5>
+            <p>&copy; 2024 CareerVista. All rights reserved.</p>
+            <p>Your trusted partner in finding your dream job. We connect job seekers with top employers across various industries.</p>
           </Col>
-          <Col xs={12} md={4} className="text-center text-md-left mb-3 mb-md-0">
-            <Typography variant="h6" component="div">
-              Contact Us
-            </Typography>
-            <Typography variant="body2">
-              Email: support@careervista.com
-            </Typography>
-            <Typography variant="body2">
-              Phone: +1 234 567 890
-            </Typography>
-            <Typography variant="body2">
-              Address: 123 Career St, Job City, USA 
-            </Typography>
+
+          {/* Contact Section */}
+          <Col xs={12} md={4} className="mb-3 mb-md-0">
+            <h5>Contact Us</h5>
+            <p>Email: <a href="mailto:support@careervista.com" className="text-light">support@careervista.com</a></p>
+            <p>Phone: +1 234 567 890</p>
+            <p>Address: 123 Career St, Job City, USA</p>
           </Col>
-          <Col xs={12} md={4} className="text-center text-md-left">
-            <Typography variant="h6" component="div">
-              Subscribe for Job Alerts
-            </Typography>
-            <form noValidate autoComplete="off" onSubmit={handleSubscribe}>
-              <TextField
-                label="Email Address"
-                variant="outlined"
-                size="small"
-                fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                sx={{ mb: 2 }}
-              />
-              <Button variant="contained" color="primary" fullWidth type="submit">
-                Subscribe
-              </Button>
-              {message && (
-                <Typography variant="body2" sx={{ mt: 2 }}>
-                  {message}
-                </Typography>
-              )}
-            </form>
-            <Typography variant="h6" component="div" sx={{ mt: 2 }}>
-              Follow Us
-            </Typography>
-            <Box className="social-icons">
-              <IconButton aria-label="facebook" href="https://www.facebook.com" target="_blank">
-                <Facebook />
-              </IconButton>
-              <IconButton aria-label="twitter" href="https://www.twitter.com" target="_blank">
-                <Twitter />
-              </IconButton>
-              <IconButton aria-label="instagram" href="https://www.instagram.com" target="_blank">
-                <Instagram />
-              </IconButton>
-              <IconButton aria-label="linkedin" href="https://www.linkedin.com" target="_blank">
-                <LinkedIn />
-              </IconButton>
-            </Box>
+
+          {/* Subscribe Section */}
+          <Col xs={12} md={4}>
+            <h5>Subscribe for Job Alerts</h5>
+            <Form onSubmit={handleSubscribe}>
+              <Form.Group className="mb-2">
+                <Form.Control
+                  className='bg-transparent'
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit" className="w-100">Subscribe</Button>
+              {message && <small className="d-block mt-2 text-warning">{message}</small>}
+            </Form>
+
+            <h5 className="mt-4">Follow Us</h5>
+            <div className="d-flex justify-content-start">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-light me-3">
+                <FaFacebook size={24} />
+              </a>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="text-light me-3">
+                <FaTwitter size={24} />
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-light me-3">
+                <FaInstagram size={24} />
+              </a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-light">
+                <FaLinkedin size={24} />
+              </a>
+            </div>
           </Col>
         </Row>
       </Container>
-    </Box>
+    </footer>
   );
 };
 

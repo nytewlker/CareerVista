@@ -13,11 +13,7 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json()); // Parse JSON data from requests
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-}));            // Enable Cross-Origin Resource Sharing
+app.use(cors());            // Enable Cross-Origin Resource Sharing
 
 // Connect to MongoDB
 connectDB();
