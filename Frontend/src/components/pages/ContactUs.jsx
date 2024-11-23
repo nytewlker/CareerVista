@@ -1,6 +1,4 @@
-// ContactUs.jsx
 import React, { useState } from 'react';
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { APIBASEURL } from '../../config';
 
@@ -34,89 +32,77 @@ const ContactUs = () => {
   };
 
   return (
-    <Container fluid className="contact-container">
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <div className="contact-content text-center">
-            <h2>Contact Us</h2>
-            <p className="lead">
-              Have a question or want to get in touch? Send us a message below!
-            </p>
+    <div className=" p-12">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">Contact Us</h2>
+        <p className="text-lg text-gray-600 mb-8">Have a question or want to get in touch? Send us a message below!</p>
+      </div>
+
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter your name"
+                className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
           </div>
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <div className="form-container slideInUp">
-            <Form onSubmit={handleSubmit}>
-              <Row>
-                <Col md={6}>
-                  <Form.Group controlId="formBasicName" className="mb-3">
-                    <Form.Label>Your Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="name"
-                      placeholder="Enter your name"
-                      value={formData.name}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group controlId="formBasicPhone" className="mb-3">
-                    <Form.Label>Phone Number</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="phone"
-                      placeholder="Enter your phone number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
-                  <Form.Group controlId="formBasicEmail" className="mb-3">
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                    <Form.Text className="text-muted">
-                      We'll never share your email with anyone else.
-                    </Form.Text>
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
-                  <Form.Group controlId="formBasicMessage" className="mb-4">
-                    <Form.Label>Message</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={4}
-                      name="message"
-                      placeholder="Enter your message"
-                      value={formData.message}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Button variant="custom" type="submit" className="w-100">
-                Submit
-              </Button>
-              {success && <p className="text-success mt-3">{success}</p>}
-              {error && <p className="text-danger mt-3">{error}</p>}
-            </Form>
+
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            <p className="text-sm text-gray-500 mt-2">We'll never share your email with anyone else.</p>
           </div>
-        </Col>
-      </Row>
-    </Container>
+
+          <div className="mb-6">
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Enter your message"
+              rows="4"
+              className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+
+          <button type="submit" className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            Submit
+          </button>
+
+          {success && <p className="mt-4 text-green-600">{success}</p>}
+          {error && <p className="mt-4 text-red-600">{error}</p>}
+        </form>
+      </div>
+    </div>
   );
 };
 

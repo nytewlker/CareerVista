@@ -3,8 +3,6 @@ import axios from 'axios';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { APIBASEURL } from '../../config';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import './RegistrationForm.css'; // Import the CSS file
 
 const RegistrationForm = () => {
   const [role, setRole] = useState('employee');
@@ -66,29 +64,33 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Container fluid className="registration-container">
+    <Container fluid className="py-16 bg-gray-100">
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
-          <div className="registration-content text-center">
-            <h2>Create Account</h2>
-            <p className="lead">Choose the type of account, Which may proceed!</p>
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-semibold text-gray-800">Create Account</h2>
+            <p className="text-lg text-gray-500">Choose the type of account to proceed!</p>
           </div>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
-          <div className="form-container slideInUp">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>Role</Form.Label>
-                <Form.Select value={role} onChange={handleRoleChange}>
+              <Form.Group className="mb-4">
+                <Form.Label className="text-lg font-medium text-gray-700">Role</Form.Label>
+                <Form.Select
+                  value={role}
+                  onChange={handleRoleChange}
+                  className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
                   <option value="employee">Employee</option>
                   <option value="recruiter">Recruiter</option>
                 </Form.Select>
               </Form.Group>
-              
-              <Form.Group className="mb-3">
-                <Form.Label>Name</Form.Label>
+
+              <Form.Group className="mb-4">
+                <Form.Label className="text-lg font-medium text-gray-700">Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter your name"
@@ -96,38 +98,43 @@ const RegistrationForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
               </Form.Group>
+
               <Row>
-                    <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter your email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              </Col>
-                    <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              </Col>
-                  </Row>
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
+                <Col>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-lg font-medium text-gray-700">Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter your email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-lg font-medium text-gray-700">Phone</Form.Label>
+                    <Form.Control
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Form.Group className="mb-4">
+                <Form.Label className="text-lg font-medium text-gray-700">Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter your password"
@@ -135,13 +142,14 @@ const RegistrationForm = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
+                  className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
               </Form.Group>
 
               {role === 'recruiter' && (
                 <>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Company Name</Form.Label>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-lg font-medium text-gray-700">Company Name</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Enter your company name"
@@ -149,11 +157,12 @@ const RegistrationForm = () => {
                       value={formData.companyName}
                       onChange={handleChange}
                       required
+                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
                   </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Bio</Form.Label>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-lg font-medium text-gray-700">Bio</Form.Label>
                     <Form.Control
                       as="textarea"
                       rows={4}
@@ -162,6 +171,7 @@ const RegistrationForm = () => {
                       value={formData.bio}
                       onChange={handleChange}
                       required
+                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
                   </Form.Group>
                 </>
@@ -169,8 +179,8 @@ const RegistrationForm = () => {
 
               {role === 'employee' && (
                 <>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Institution Name</Form.Label>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-lg font-medium text-gray-700">Institution Name</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Enter your institution name"
@@ -178,13 +188,14 @@ const RegistrationForm = () => {
                       value={formData.institutionName}
                       onChange={handleChange}
                       required
+                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
                   </Form.Group>
 
                   <Row>
                     <Col>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Start Year</Form.Label>
+                      <Form.Group className="mb-4">
+                        <Form.Label className="text-lg font-medium text-gray-700">Start Year</Form.Label>
                         <Form.Control
                           type="number"
                           placeholder="Enter your start year"
@@ -192,12 +203,13 @@ const RegistrationForm = () => {
                           value={formData.startYear}
                           onChange={handleChange}
                           required
+                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                       </Form.Group>
                     </Col>
                     <Col>
-                      <Form.Group className="mb-3">
-                        <Form.Label>End Year</Form.Label>
+                      <Form.Group className="mb-4">
+                        <Form.Label className="text-lg font-medium text-gray-700">End Year</Form.Label>
                         <Form.Control
                           type="number"
                           placeholder="Enter your end year"
@@ -205,13 +217,14 @@ const RegistrationForm = () => {
                           value={formData.endYear}
                           onChange={handleChange}
                           required
+                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                       </Form.Group>
                     </Col>
                   </Row>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Skills</Form.Label>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-lg font-medium text-gray-700">Skills</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Enter your skills"
@@ -219,31 +232,34 @@ const RegistrationForm = () => {
                       value={formData.skills}
                       onChange={handleChange}
                       required
+                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
                   </Form.Group>
 
                   <Row>
                     <Col md={6}>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Upload Resume (PDF)</Form.Label>
+                      <Form.Group className="mb-4">
+                        <Form.Label className="text-lg font-medium text-gray-700">Upload Resume (PDF)</Form.Label>
                         <Form.Control
                           type="file"
                           name="resume"
                           accept="application/pdf"
                           onChange={handleChange}
                           required
+                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Upload Profile Picture</Form.Label>
+                      <Form.Group className="mb-4">
+                        <Form.Label className="text-lg font-medium text-gray-700">Upload Profile Picture</Form.Label>
                         <Form.Control
                           type="file"
                           name="profilePic"
-                          accept="image/*"
                           onChange={handleChange}
+                          accept="image/*"
                           required
+                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                       </Form.Group>
                     </Col>
@@ -251,7 +267,10 @@ const RegistrationForm = () => {
                 </>
               )}
 
-              <Button variant="primary" type="submit" className="w-100">
+              <Button
+                type="submit"
+                className="mt-4 w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
                 Register
               </Button>
             </Form>
