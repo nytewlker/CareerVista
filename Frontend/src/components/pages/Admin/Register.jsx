@@ -27,7 +27,7 @@ function AdminRegister() {
     } catch (error) {
       alert('Error during registration');
     }
-    navigate('/admindasboard')
+    navigate('/dashboard')
   };
 
   return (

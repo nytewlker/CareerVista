@@ -38,7 +38,7 @@ function AdminLogin() {
       <Row className='justify-content-center'>
         <Col md={8} lang={6}>
           <div className='registration-content text-center'>
-            <h2>Admin Register</h2>
+            <h2>Admin Login</h2>
           </div>
         </Col>
       </Row>

@@ -70,7 +70,7 @@ const RecruiterManagement = () => {
 
   return (
     <div className='Recruitermanagement'>
-      <h2>Manage Recruiters</h2>
+      <div className='text-center mb-5'>Manage Recruiters</div>
       <Button variant="primary" className="mb-3" onClick={() => handleShow()}>Add Recruiter</Button>
       <Table striped bordered hover>
         <thead>

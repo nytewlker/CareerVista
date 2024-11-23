@@ -26,6 +26,13 @@ const {
   getAllApplications,
   deleteApplication,
 } = require("../controllers/adminController");
+
+
+const {  downloadJobPostingReport, downloadApplicationReport, downloadRecruiterReport, downloadEmployeeReport } = require('../controllers/reportController');
+
+
+
+
 const router = express.Router();
 
 const multer = require('multer');
@@ -38,9 +45,7 @@ const upload = multer({ storage });
 
 router.post("/register", registerAdmin);
 router.post("/login", loginAdmin);
-router.put('/change-password', changePassword);
-// router.post('/logout', logoutAdmin);
-
+router.post('/change-password', changePassword);
 
 // Employee routes
 router.get('/employees', getAllEmployees);
@@ -65,7 +70,14 @@ router.delete('/:id', deleteJob);
 router.get('/applications', getAllApplications);
 
 // PUT: Update application status
-router.put('/applications/:applicationId', deleteApplication);
+router.delete('/applications/:applicationId', deleteApplication);
+
+
+// // Report routes
+router.get('/reports/download-job-posting', downloadJobPostingReport);
+router.get('/reports/download-application', downloadApplicationReport);
+router.get('/reports/download-recruiter', downloadRecruiterReport);
+router.get('/reports/download-employee', downloadEmployeeReport);
 
 
 

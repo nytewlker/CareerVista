@@ -49,37 +49,35 @@ exports.loginAdmin = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-// Change admin password
 exports.changePassword = async (req, res) => {
-  const { currentPassword, newPassword } = req.body;
+  const { email, oldPassword, newPassword } = req.body;
 
-  // Basic validation
-  if (!currentPassword || !newPassword) {
-    return res.status(400).json({ msg: 'Both current and new passwords are required' });
-  }
-  if (newPassword.length < 6) {
-    return res.status(400).json({ msg: 'New password must be at least 6 characters long' });
+  // Validate request
+  if (!email || !oldPassword || !newPassword) {
+    return res.status(400).json({ msg: 'Please provide all fields.' });
   }
 
   try {
-    // Fetch the admin from the database
-    const admin = await Admin.findOne(); 
+    // Find the user by email
+    const admin = await Admin.findOne({ email });
     if (!admin) {
-      return res.status(404).json({ msg: 'Admin not found' });
+      return res.status(404).json({ msg: 'Admin not found.' });
     }
 
-    // Compare the current password with the one in the database
-    const isMatch = await bcrypt.compare(currentPassword, admin.password);
+    // Compare old password
+    const isMatch = await bcrypt.compare(oldPassword, admin.password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Current password is incorrect' });
+      return res.status(400).json({ msg: 'Old password is incorrect.' });
     }
 
-    // Hash and update the new password
-    admin.password = await bcrypt.hash(newPassword, 12);
+    // Hash new password and save
+    const salt = await bcrypt.genSalt(10);
+    admin.password = await bcrypt.hash(newPassword, salt);
     await admin.save();
 
-    res.status(200).json({ msg: 'Password changed successfully' });
+    res.status(200).json({ msg: 'Password changed successfully.' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ msg: 'Server error', error });
   }
 };
@@ -323,7 +321,7 @@ const applications = await Application.find()
 // DELETE request to delete an application by ID
 exports.deleteApplication = async (req, res) => {
   try {
-    const application = await Application.findByIdAndDelete(req.params.id);
+    const application = await Application.findByIdAndDelete(req.params.applicationId);
     if (!application) {
       return res.status(404).json({ message: 'Application not found' });
     }
@@ -332,6 +330,7 @@ exports.deleteApplication = async (req, res) => {
     res.status(500).json({ message: 'Error deleting application', error });
   }
 };
+
 
 // Settings
 exports.getSettings = async (req, res) => {

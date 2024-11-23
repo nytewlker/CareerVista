@@ -1,12 +1,10 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
-import { Typography } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   return (
-
     <div className="hero-container fadeIn">
       {/* Hero Carousel */}
       <Carousel id="heroCarousel" interval={3000}>
@@ -17,14 +15,14 @@ const Home = () => {
             className="d-block w-100"
             alt="Slide 1"
           />
-          <Carousel.Caption className="custom-carousel-caption">
-            <h5>Searching for a job?</h5>
-            <Typography variant="body1">
-              Find the <span className="highlight">best startup</span> job that fits you
-            </Typography>
+          <Carousel.Caption className="custom-carousel-caption text-center">
+            <h5 className="fw-bold">Searching for a job?</h5>
+            <p className="mb-3">
+              Find the <span className="text-primary fw-semibold">best startup</span> job that fits you
+            </p>
             <Button
-              variant="custom"
-              className="orange-button btn-custom"
+              variant="warning"
+              className="btn-custom"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasDescription"
               aria-controls="offcanvasDescription"
@@ -40,14 +38,14 @@ const Home = () => {
             className="d-block w-100"
             alt="Slide 2"
           />
-          <Carousel.Caption className="custom-carousel-caption">
-            <h5>Join Our Community</h5>
-            <Typography variant="body1">
-              Explore opportunities in <span className="highlight">tech startups</span>
-            </Typography>
+          <Carousel.Caption className="custom-carousel-caption text-center">
+            <h5 className="fw-bold">Join Our Community</h5>
+            <p className="mb-3">
+              Explore opportunities in <span className="text-primary fw-semibold">tech startups</span>
+            </p>
             <Button
-              variant="custom"
-              className="orange-button btn-custom"
+              variant="warning"
+              className="btn-custom"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasDescription"
               aria-controls="offcanvasDescription"
@@ -63,14 +61,14 @@ const Home = () => {
             className="d-block w-100"
             alt="Slide 3"
           />
-          <Carousel.Caption className="custom-carousel-caption">
-            <h5>Career Growth</h5>
-            <Typography variant="body1">
-              Find jobs that <span className="highlight">accelerate your career</span>
-            </Typography>
+          <Carousel.Caption className="custom-carousel-caption text-center">
+            <h5 className="fw-bold">Career Growth</h5>
+            <p className="mb-3">
+              Find jobs that <span className="text-primary fw-semibold">accelerate your career</span>
+            </p>
             <Button
-              variant="custom"
-              className="orange-button btn-custom"
+              variant="warning"
+              className="btn-custom"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasDescription"
               aria-controls="offcanvasDescription"
@@ -100,13 +98,12 @@ const Home = () => {
           ></button>
         </div>
         <div className="offcanvas-body">
-          <Typography variant="body1">
+          <p>
             Discover a variety of job opportunities that match your skills and career goals. Explore startup jobs, tech positions, and more. Join our community and take the next step in your career!
-          </Typography>
+          </p>
         </div>
       </div>
     </div>
-
   );
 };
 
