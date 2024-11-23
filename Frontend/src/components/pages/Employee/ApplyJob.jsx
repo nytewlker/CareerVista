@@ -24,7 +24,7 @@ const ApplyJob = () => {
         return;
       }
 
-      const response = await axios.post(`${APIBASEURL}/application/apply`, {
+      await axios.post(`${APIBASEURL}/application/apply`, {
         jobId,
         employeeId: user._id,
         coverLetter: formData.coverLetter,
