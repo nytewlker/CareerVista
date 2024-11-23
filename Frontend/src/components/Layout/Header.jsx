@@ -28,7 +28,7 @@ const Header = ({ panel }) => {
     <Navbar expand="lg" className="custom-nav-container navbar-dark" fixed="top">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
-          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="CareerVista" className="logo" />
+          <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="CareerVista" className="logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarSupportedContent" />
         <Navbar.Collapse id="navbarSupportedContent">
