@@ -18,9 +18,7 @@ const Logout = () => {
   };
 
   return (
-    <div>
-    <br/>
-    <br/>
+    <div className='login-container'>
     <Button variant="danger" onClick={handleLogout}>
       Logout
     </Button>

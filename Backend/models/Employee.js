@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -9,10 +8,11 @@ const employeeSchema = new mongoose.Schema({
   institutionName: { type: String },
   startYear: { type: String },
   endYear: { type: String },
-  skills: [{ type: String }], // Consider using array if multiple skills
-  resume: { type: String }, // Store file path or URL
-  profilePic: { type: String }, // Store file path or URL
+  skills: [{ type: String }], // Array of skills
+  resume: { type: String }, // Store file path or URL of resume
+  profilePic: { type: String }, // Store file path or URL of profile picture
+  resetPasswordToken: { type: String }, // Token for password reset
+  resetPasswordExpires: { type: Date }, // Expiration for reset token
 });
 
-
-module.exports = mongoose.model("Employee", employeeSchema);
+module.exports = mongoose.model('Employee', employeeSchema);

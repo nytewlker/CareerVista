@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import { TextField, Typography, Avatar } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { APIBASEURL, DICURL } from '../../../config/index.js';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { APIBASEURL, DICURL } from "../../../config";
 
 const EmployeeProfile = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    institutionName: '',
-    startYear: '',
-    endYear: '',
-    skills: '',
+    name: "",
+    email: "",
+    phone: "",
+    institutionName: "",
+    startYear: "",
+    endYear: "",
+    skills: "",
     resume: null,
     profilePic: null,
   });
@@ -24,12 +21,12 @@ const EmployeeProfile = () => {
   }, []);
 
   const fetchEmployeeData = async () => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("user"));
     try {
       const response = await axios.get(`${APIBASEURL}/employee/profile/${user._id}`);
       setFormData(response.data);
     } catch (error) {
-      console.error('Error fetching employee data:', error);
+      console.error("Error fetching employee data:", error);
     }
   };
 
@@ -51,188 +48,173 @@ const EmployeeProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("user"));
     const form = new FormData();
-    Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach((key) => {
       form.append(key, formData[key]);
     });
+
     try {
-      const response = await axios.put(`${APIBASEURL}/employee/profile/${user._id}`, form, {
+      await axios.put(`${APIBASEURL}/employee/profile/${user._id}`, form, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log('Employee profile updated successfully:', response.data);
+      alert("Employee profile updated successfully!");
     } catch (error) {
-      console.error('Error updating employee profile:', error);
+      console.error("Error updating employee profile:", error);
+      alert("Failed to update profile. Please try again.");
     }
   };
 
   return (
-    <Container fluid className="employee-profile-container">
-      <div className="profile-box">
-        <Typography variant="h4" component="h1" gutterBottom className="title">
-          Employee Profile
-        </Typography>
-        <Row className="profile-header">
-          <Col md={3} className="profile-image-col">
-            <Avatar
-              src={`${DICURL}/${formData.profilePic}`}
-              alt="Profile Pic"
-              className="profile-picture"
-              sx={{ width: 150, height: 150 }}
-            />
-          </Col>
-          <Col md={9} className="profile-info-col">
-            <Typography variant="h5" className="profile-name">
-              {formData.name}
-            </Typography>
-            <Typography variant="body1" className="profile-email">
-              {formData.email}
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              className="update-profile-btn"
-              onClick={handleSubmit}
-              startIcon={<EditIcon />}
-            >
-              Update Profile
-            </Button>
-          </Col>
-        </Row>
-        <Form onSubmit={handleSubmit} className="profile-details-form">
-          <Row className="mb-3">
-            <Col md={6}>
-              <TextField
-                fullWidth
-                label="Name"
-                name="name"
-                onChange={handleChange}
-                value={formData.name}
-                sx={{ mb: 3 }}
-                InputProps={{ style: { fontWeight: 'bold' } }}
-              />
-            </Col>
-            <Col md={6}>
-              <TextField
-                fullWidth
-                label="Email"
-                name="email"
-                onChange={handleChange}
-                value={formData.email}
-                sx={{ mb: 3 }}
-                InputProps={{ style: { fontWeight: 'bold' } }}
-              />
-            </Col>
-          </Row>
-          <Row className="mb-3">
-            <Col md={6}>
-              <TextField
-                fullWidth
-                label="Phone"
-                type="tel"
-                name="phone"
-                onChange={handleChange}
-                value={formData.phone}
-                sx={{ mb: 3 }}
-                InputProps={{ style: { fontWeight: 'bold' } }}
-              />
-            </Col>
-            <Col md={6}>
-              <TextField
-                fullWidth
-                label="Institution Name"
-                name="institutionName"
-                onChange={handleChange}
-                value={formData.institutionName}
-                sx={{ mb: 3 }}
-                InputProps={{ style: { fontWeight: 'bold' } }}
-              />
-            </Col>
-          </Row>
-          <Row className="mb-3">
-            <Col md={6}>
-              <TextField
-                fullWidth
-                label="Start Year"
-                type="number"
-                name="startYear"
-                onChange={handleChange}
-                value={formData.startYear}
-                InputProps={{ style: { fontWeight: 'bold' } }}
-              />
-            </Col>
-            <Col md={6}>
-              <TextField
-                fullWidth
-                label="End Year"
-                type="number"
-                name="endYear"
-                onChange={handleChange}
-                value={formData.endYear}
-                InputProps={{ style: { fontWeight: 'bold' } }}
-              />
-            </Col>
-          </Row>
-          <TextField
-            fullWidth
-            label="Skills"
-            name="skills"
-            onChange={handleChange}
-            value={formData.skills}
-            sx={{ mb: 3 }}
-            InputProps={{ style: { fontWeight: 'bold' } }}
+    <Container className="employee-profile-container py-4">
+      <h2 className="text-center mb-4">Employee Profile</h2>
+      <Row className="mb-4 align-items-center">
+        <Col md={3} className="text-center">
+          <img
+            src={`${DICURL}/${formData.profilePic}`}
+            alt="Profile Pic"
+            className="rounded-circle img-fluid"
+            style={{ width: "150px", height: "150px", objectFit: "cover" }}
           />
-          <div className="mb-3 resume-section">
-            <Typography variant="body1" className="resume-title">
-              Resume:
-            </Typography>
-            <a
-              className="view-resume"
-              href={`${DICURL}/${formData.resume}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Resume
-            </a>
-          </div>
-          <Row className="mb-3">
-            <Col md={6}>
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Profile Picture</Form.Label>
-                <Form.Control
-                  type="file"
-                  name="profilePic"
-                  onChange={handleFileChange}
-                  accept="image/*"
-                />
-              </Form.Group>
-            </Col>
-            <Col md={6}>
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Resume</Form.Label>
-                <Form.Control
-                  type="file"
-                  name="resume"
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Button
-            variant="primary"
-            className="update-profile-btn"
-            type="submit"
-            startIcon={<EditIcon />}
-            w-100
-          >
+        </Col>
+        <Col md={9}>
+          <h4>{formData.name}</h4>
+          <p>{formData.email}</p>
+          <Button variant="primary" onClick={handleSubmit}>
             Update Profile
           </Button>
-        </Form>
-      </div>
+        </Col>
+      </Row>
+      <Form onSubmit={handleSubmit}>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="phone">
+              <Form.Label>Phone</Form.Label>
+              <Form.Control
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="institutionName">
+              <Form.Label>Institution Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="institutionName"
+                value={formData.institutionName}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="startYear">
+              <Form.Label>Start Year</Form.Label>
+              <Form.Control
+                type="number"
+                name="startYear"
+                value={formData.startYear}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="endYear">
+              <Form.Label>End Year</Form.Label>
+              <Form.Control
+                type="number"
+                name="endYear"
+                value={formData.endYear}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Form.Group controlId="skills" className="mb-3">
+          <Form.Label>Skills</Form.Label>
+          <Form.Control
+            type="text"
+            name="skills"
+            value={formData.skills}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Row className="mb-3">
+          <Col md={6}>
+            <Form.Group controlId="profilePic">
+              <Form.Label>Profile Picture</Form.Label>
+              <Form.Control
+                type="file"
+                name="profilePic"
+                onChange={handleFileChange}
+                accept="image/*"
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="resume">
+              <Form.Label>Resume</Form.Label>
+              <Form.Control
+                type="file"
+                name="resume"
+                onChange={handleFileChange}
+                accept=".pdf,.doc,.docx"
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <div className="mb-3">
+          <strong>Resume:</strong>{" "}
+          <a
+            href={`${DICURL}/${formData.resume}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Resume
+          </a>
+        </div>
+        <Button variant="primary" type="submit" className="w-100">
+          Save Changes
+        </Button>
+      </Form>
     </Container>
   );
 };

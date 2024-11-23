@@ -39,7 +39,7 @@ const ApplicationManagement = () => {
 
   return (
     <div className='Applicationmanangement'>
-      <h2>Application Management</h2>
+      <div className='text-center mb-5'>Application Management</div>
       <Table striped bordered hover className="mt-3">
         <thead>
           <tr>

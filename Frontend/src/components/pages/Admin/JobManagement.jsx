@@ -98,8 +98,8 @@ const JobManagement = () => {
 
   return (
     <div className='jobmanagement'>
-      <h2>Manage Jobs</h2>
-      <Button variant="primary" onClick={() => handleShow()}>Add Job</Button>
+      <div className='text-center mb-5'>Manage Jobs</div>
+      {/* <Button variant="primary" onClick={() => handleShow()}>Add Job</Button> */}
       <Table striped bordered hover className="mt-3">
         <thead>
           <tr>
