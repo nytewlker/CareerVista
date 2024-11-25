@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { APIBASEURL } from "../../config";
 
@@ -10,124 +9,113 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleRoleChange = (e) => setRole(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post(
-        `${APIBASEURL}/${role}/login`,
-        formData
-      );
+      const response = await axios.post(`${APIBASEURL}/${role}/login`, formData);
       console.log("Login successful:", response.data);
 
+      // Store user details in local storage
       localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      if (role === "recruiter") {
-        navigate("/recruiterhome");
-      } else if (role === "employee") {
-        navigate("/employeehome");
-      } else {
-        setError("Unknown role");
-      }
-    } catch (error) {
-      console.error("Login error:", error.response?.data || error.message);
+      navigate(role === "recruiter" ? "/recruiterhome" : "/employeehome");
+    } catch (err) {
+      console.error("Login error:", err.response?.data || err.message);
       setError("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <Container fluid className="login-container">
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <div className="login-content text-center">
-            <h2>Welcome Back!</h2>
-            <p className="lead">
-              Choose the type of account you want to log in to.
-            </p>
-          </div>
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <div className="form-container slideInUp">
-            <Form onSubmit={handleSubmit}>
-              {error && (
-                <Row>
-                  <Col>
-                    <div className="error-message">{error}</div>
-                  </Col>
-                </Row>
-              )}
-              <Row>
-                <Col md={12}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Role</Form.Label>
-                    <Form.Select value={role} onChange={handleRoleChange}>
-                      <option value="employee">Employee</option>
-                      <option value="recruiter">Recruiter</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="Enter your email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Enter your password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Button
-                variant="primary"
-                type="submit"
-                className="w-100 submit-button"
-              >
-                Login
-              </Button>
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="w-full max-w-md p-6 bg-black bg-opacity-50 backdrop-blur-sm rounded-lg shadow-xl">
+        <h2 className="text-center text-3xl font-semibold text-yellow-400 mb-4">
+          Welcome Back!
+        </h2>
+        <p className="text-center text-gray-300 mb-6">
+          Sign in to your account
+        </p>
 
-              {/* Forgot Password Link */}
-              <Row className="mt-3">
-                <Col className="text-center">
-                  <Link to="/forgot-password" className="forgot-password-link">
-                    Forgot Password?
-                  </Link>
-                </Col>
-              </Row>
-            </Form>
+        {/* Display Error */}
+        {error && (
+          <div className="mb-4 text-sm text-red-500 bg-red-100 bg-opacity-20 border border-red-500 rounded-md px-4 py-2">
+            {error}
           </div>
-        </Col>
-      </Row>
-    </Container>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Role Selector */}
+          <div>
+            <label className=" text-sm text-white font-medium">Role</label>
+            <select
+              value={role}
+              onChange={handleRoleChange}
+              className="w-full mt-1 px-4 py-2   rounded-md focus:ring-yellow-500 focus:border-yellow-500"
+            >
+              <option value="employee"  >Employee</option>
+              <option value="recruiter">Recruiter</option>
+            </select>
+          </div>
+
+          {/* Email Input */}
+          <div>
+            <label className="block text-sm font-medium bg-transparent text-white">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 px-4 py-2 rounded-md focus:ring-yellow-500 focus:border-yellow-500"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          {/* Password Input */}
+          <div>
+            <label className="block text-sm font-medium  text-white">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 px-4 py-2 rounded-md  focus:ring-yellow-500 focus:border-yellow-500"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 font-semibold rounded-md shadow-md transition-all duration-300"
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Forgot Password Link */}
+        <div className="mt-4 flex justify-between">
+  <Link
+    to="/forgot-password"
+    className="text-sm text-yellow-400 hover:text-yellow-500 transition-all duration-300"
+  >
+    Forgot Password?
+  </Link>
+  <Link
+    to="/RegistrationForm"
+    className="text-sm text-yellow-400 hover:text-yellow-500 transition-all duration-300"
+  >
+    Create Account
+  </Link>
+</div>
+
+      </div>
+    </div>
   );
 };
 

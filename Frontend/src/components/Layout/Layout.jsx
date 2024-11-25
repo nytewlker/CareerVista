@@ -6,9 +6,9 @@ import Footer from './Footer';
 const Layout = ({ panel }) => {
   return (
     <>
-      <Header panel={panel} />
-      <div>
-        <Outlet />
+      <Header panel={panel}  />
+      <div >
+        <Outlet  />
       </div>
       <Footer />
     </>

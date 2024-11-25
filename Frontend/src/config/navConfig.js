@@ -2,18 +2,11 @@ export const navConfig = {
 
   dashboard: [
     { path: "/", label: "Home" },
-    {
-      dropdown: true,
-      title: "Join Us",
-      items: [
-        { path: "/RegistrationForm", label: "Register Yourself" },
-        { path: "/LoginForm", label: "Login Here" },
-        { divider: true },
-        { path: "/adminlogin", label: "Admin Panel" }
-      ]
-    },
-    { path: "/AboutUs", label: "About" },
-    { path: "/ContactUs", label: "Contact Us" }
+   
+        { path: "/RegistrationForm", label: "Join Us" },
+      
+    { path: "/aboutus", label: "About" },
+    { path: "/contactus", label: "Contact Us" }
   ],
 
   recruiter: [
