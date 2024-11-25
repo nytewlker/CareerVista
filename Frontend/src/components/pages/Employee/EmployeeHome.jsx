@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaBriefcase, FaMoneyBillAlt } from 'react-icons/fa'; // Icons for job details
+import { FaMapMarkerAlt, FaBriefcase, FaMoneyBillAlt, FaUserTie } from 'react-icons/fa';
 import { APIBASEURL } from '../../../config/index.js';
-// import './EmployeeHome.css'; // Import your existing CSS file
 
 const EmployeeHome = () => {
   const [jobs, setJobs] = useState([]);
@@ -23,35 +21,52 @@ const EmployeeHome = () => {
   }, []);
 
   return (
-    <Container fluid className="employee-home-container">
-      <h2 className="text-center mb-4">Job Listings</h2>
-      <Row className="justify-content-center">
-        {jobs.map((job) => (
-          <Col xs={12} sm={8} md={6} lg={4} key={job._id} className="mb-4">
-            <Card className="job-card mx-auto" style={{ maxWidth: '100%' }}>
-              <Card.Body>
-                <Card.Title className="job-title">{job.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
-                <div className="job-details">
-                  <div className="detail-row">
-                    <FaBriefcase className="job-icon" /> {job.experience} Experience
+    <div className="min-h-screen text-white  py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center  mb-8">
+          Discover Your Next Opportunity
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {jobs.map((job) => (
+            <div
+              key={job._id}
+              className="bg-black bg-opacity-50 backdrop:blur-sm rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            >
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">
+                  {job.title}
+                </h3>
+                <p className="text-yellow-600 font-medium mb-4">{job.company}</p>
+                <div className="space-y-3">
+                  <div className="flex items-center ">
+                    <FaBriefcase className="w-5 h-5 mr-2 " />
+                    <span>{job.experience} Experience</span>
                   </div>
-                  <div className="detail-row">
-                    <FaMoneyBillAlt className="job-icon" /> {job.salary}
+                  <div className="flex items-center ">
+                    <FaMoneyBillAlt className="w-5 h-5 mr-2 " />
+                    <span>{job.salary}</span>
                   </div>
-                  <div className="detail-row">
-                    <FaMapMarkerAlt className="job-icon" /> {job.location}
+                  <div className="flex items-center ">
+                    <FaMapMarkerAlt className="w-5 h-5 mr-2 " />
+                    <span>{job.location}</span>
+                  </div>
+                  <div className="flex items-center ">
+                    <FaUserTie className="w-5 h-5 mr-2 " />
+                    <span>{job.jobType}</span>
                   </div>
                 </div>
-                <Link to={`/apply/${job._id}`} className="btn btn-primary apply-button">
-                  Apply
+                <Link
+                  to={`/apply/${job._id}`}
+                  className="mt-6 block w-full bg-yellow-600 font-bold no-underline text-white text-center py-2 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300"
+                >
+                  Apply Now
                 </Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

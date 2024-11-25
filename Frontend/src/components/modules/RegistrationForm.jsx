@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { APIBASEURL } from '../../config';
 
 const RegistrationForm = () => {
   const [role, setRole] = useState('employee');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,6 +30,23 @@ const RegistrationForm = () => {
       ...formData,
       [name]: files ? files[0] : value,
     });
+    setError(''); // Clear error when user makes changes
+  };
+
+  const validateForm = () => {
+    if (!formData.name || !formData.email || !formData.password) {
+      setError('Please fill in all required fields');
+      return false;
+    }
+    if (!formData.email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)) {
+      setError('Please enter a valid email address');
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return false;
+    }
+    return true;
   };
 
   const handleRoleChange = (e) => {
@@ -37,247 +55,207 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
 
-    const formDataCopy = { ...formData };
+    setLoading(true);
     const formDataToSend = new FormData();
-    for (const key in formDataCopy) {
-      formDataToSend.append(key, formDataCopy[key]);
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
     }
 
     try {
       const response = await axios.post(`${APIBASEURL}/${role}/register`, formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
       localStorage.setItem('user', JSON.stringify(response.data.user));
-
-      if (role === 'recruiter') {
-        navigate('/recruiterhome');
-      } else if (role === 'employee') {
-        navigate('/employeehome');
-      }
+      navigate(role === 'recruiter' ? '/recruiterhome' : '/employeehome');
     } catch (error) {
-      console.error('Registration error:', error);
+      setError(error.response?.data?.message || 'Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Container fluid className="py-16 bg-gray-100">
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-semibold text-gray-800">Create Account</h2>
-            <p className="text-lg text-gray-500">Choose the type of account to proceed!</p>
+    <div className="py-16 flex justify-center items-center">
+      <div className="w-full max-w-4xl shadow-lg rounded-3xl  overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left Section */}
+          <div className="hidden md:flex flex-col items-center justify-center bg-black p-6">
+            <h2 className="text-center text-yellow-500 font-bold text-3xl">Welcome to CareerVista!</h2>
+            <p className="text-center mt-4 text-gray-300">
+              Embark on your professional journey with CareerVista. Connect with top companies and unlock exciting opportunities.
+            </p>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/rr.gif`}
+              alt="CareerVista Welcome"
+              className="w-3/4 rounded-lg mt-6 animate-pulse"
+            />
           </div>
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-4">
-                <Form.Label className="text-lg font-medium text-gray-700">Role</Form.Label>
-                <Form.Select
+
+          {/* Right Section */}
+          <div className="p-6 bg-black bg-opacity-50 ">
+            <h3 className="text-center mb-4 text-yellow-500 font-bold text-2xl">Create Your Account</h3>
+            {error && <p className="bg-red-500 text-white text-center p-2 rounded-md mb-4">{error}</p>}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Role Selector */}
+              <div>
+                <label className="block text-white">Role</label>
+                <select
                   value={role}
                   onChange={handleRoleChange}
-                  className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full mt-2  rounded-md p-2 "
                 >
                   <option value="employee">Employee</option>
                   <option value="recruiter">Recruiter</option>
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group className="mb-4">
-                <Form.Label className="text-lg font-medium text-gray-700">Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-              </Form.Group>
-
-              <Row>
-                <Col>
-                  <Form.Group className="mb-4">
-                    <Form.Label className="text-lg font-medium text-gray-700">Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="Enter your email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-4">
-                    <Form.Label className="text-lg font-medium text-gray-700">Phone</Form.Label>
-                    <Form.Control
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Form.Group className="mb-4">
-                <Form.Label className="text-lg font-medium text-gray-700">Password</Form.Label>
-                <Form.Control
+                </select>
+              </div>
+              {/* Name and Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-white">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full  rounded-md p-2 "
+                  />
+                </div>
+                <div>
+                  <label className="block text-white">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full rounded-md p-2 "
+                  />
+                </div>
+              </div>
+              {/* Password */}
+              <div>
+                <label className="block text-white ">Password</label>
+                <input
                   type="password"
-                  placeholder="Enter your password"
                   name="password"
+                  placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
-                  required
-                  className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full rounded-md p-2 "
                 />
-              </Form.Group>
-
+              </div>
+              {/* Conditional Fields */}
               {role === 'recruiter' && (
-                <>
-                  <Form.Group className="mb-4">
-                    <Form.Label className="text-lg font-medium text-gray-700">Company Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your company name"
-                      name="companyName"
-                      value={formData.companyName}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </Form.Group>
-
-                  <Form.Group className="mb-4">
-                    <Form.Label className="text-lg font-medium text-gray-700">Bio</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={4}
-                      placeholder="Enter your bio"
-                      name="bio"
-                      value={formData.bio}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </Form.Group>
-                </>
+                <div>
+                  <label className="block text-white ">Company Name</label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    placeholder="Enter your company name"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    className="w-full  rounded-md p-2 "
+                  />
+                =
+                <label className="block text-white ">Bio</label>
+                <input
+                  type="text"
+                  name="bio"
+                  placeholder="Enter your company name"
+                  value={formData.bio}
+                  onChange={handleChange}
+                  className="w-full  rounded-md p-2 "
+                />
+              </div>
               )}
-
               {role === 'employee' && (
                 <>
-                  <Form.Group className="mb-4">
-                    <Form.Label className="text-lg font-medium text-gray-700">Institution Name</Form.Label>
-                    <Form.Control
+                  <div>
+                    <label className="block text-white">Institution Name</label>
+                    <input
                       type="text"
-                      placeholder="Enter your institution name"
                       name="institutionName"
+                      placeholder="Enter your institution name"
                       value={formData.institutionName}
                       onChange={handleChange}
-                      required
-                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full  rounded-md p-2 "
                     />
-                  </Form.Group>
-
-                  <Row>
-                    <Col>
-                      <Form.Group className="mb-4">
-                        <Form.Label className="text-lg font-medium text-gray-700">Start Year</Form.Label>
-                        <Form.Control
-                          type="number"
-                          placeholder="Enter your start year"
-                          name="startYear"
-                          value={formData.startYear}
-                          onChange={handleChange}
-                          required
-                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group className="mb-4">
-                        <Form.Label className="text-lg font-medium text-gray-700">End Year</Form.Label>
-                        <Form.Control
-                          type="number"
-                          placeholder="Enter your end year"
-                          name="endYear"
-                          value={formData.endYear}
-                          onChange={handleChange}
-                          required
-                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
-
-                  <Form.Group className="mb-4">
-                    <Form.Label className="text-lg font-medium text-gray-700">Skills</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your skills"
-                      name="skills"
-                      value={formData.skills}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </Form.Group>
-
-                  <Row>
-                    <Col md={6}>
-                      <Form.Group className="mb-4">
-                        <Form.Label className="text-lg font-medium text-gray-700">Upload Resume (PDF)</Form.Label>
-                        <Form.Control
-                          type="file"
-                          name="resume"
-                          accept="application/pdf"
-                          onChange={handleChange}
-                          required
-                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col md={6}>
-                      <Form.Group className="mb-4">
-                        <Form.Label className="text-lg font-medium text-gray-700">Upload Profile Picture</Form.Label>
-                        <Form.Control
-                          type="file"
-                          name="profilePic"
-                          onChange={handleChange}
-                          accept="image/*"
-                          required
-                          className="mt-2 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-white ">Start Year</label>
+                      <input
+                        type="number"
+                        name="startYear"
+                        placeholder="Start Year"
+                        value={formData.startYear}
+                        onChange={handleChange}
+                        className="w-full  rounded-md p-2 "
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white">End Year</label>
+                      <input
+                        type="number"
+                        name="endYear"
+                        placeholder="End Year"
+                        value={formData.endYear}
+                        onChange={handleChange}
+                        className="w-full rounded-md p-2"
+                      />
+                    </div>
+                  </div>
                 </>
               )}
-
-              <Button
+              {/* File Uploads */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-white ">Upload Resume</label>
+                  <input
+                    type="file"
+                    name="resume"
+                    onChange={handleChange}
+                    className="w-full text-white rounded  outline"
+                    accept="application/pdf"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white ">Profile Picture</label>
+                  <input
+                    type="file"
+                    name="profilePic"
+                    onChange={handleChange}
+                    className="w-full text-white outline rounded "
+                    accept="image/*"
+                  />
+                </div>
+              </div>
+              {/* Submit Button */}
+              <button
                 type="submit"
-                className="mt-4 w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full bg-yellow-500 text-white  font-bold py-2 rounded-md hover:bg-yellow-600 transition-all duration-300"
+                disabled={loading}
               >
-                Register
-              </Button>
-            </Form>
+                {loading ? 'Registering...' : 'Create Account'}
+              </button>
+              <p className="text-center text-gray-300 mt-3">
+                Already have an account?{' '}
+                <span
+                  onClick={() => navigate('/LoginForm')}
+                  className="text-yellow-500 hover:text-yellow-400 cursor-pointer"
+                >
+                  Login here
+                </span>
+              </p>
+            </form>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 

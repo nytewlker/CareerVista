@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Typography, Button, Box } from "@mui/material";
 import { APIBASEURL } from "../../../config/index.js";
 import JobApplicationsList from "./JobApplicationList.jsx";
 import { useNavigate } from "react-router-dom";
@@ -71,80 +70,95 @@ const MyJobs = () => {
   };
 
   return (
-    <Container className="my-jobs-container">
-      <Typography variant="h4" align="center" gutterBottom>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <h1 className="text-4xl font-bold text-center text-yellow-500 mb-10">
         Recruiter Dashboard
-      </Typography>
-      {postedJobs.length > 0 ? (
-        postedJobs.map((job) => (
-          <Box key={job._id} className="job-item">
-            <Typography variant="h5">{job.title}</Typography>
-            <Typography>{job.description}</Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleUpdateJob(job._id)}
-              className="action-button"
+      </h1>
+      
+      <div className="space-y-6">
+        {postedJobs.length > 0 ? (
+          postedJobs.map((job) => (
+            <div
+              key={job._id}
+              className="bg-black bg-opacity-50 backdrop:blur-sm rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl"
             >
-              Update Job
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => handleDeleteJob(job._id)}
-              className="action-button"
-            >
-              Delete Job
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => toggleJobApplications(job._id)}
-              className="action-button"
-            >
-              {expandedJobId === job._id ? "Hide Details" : "View More"}
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleViewApplications(job._id)}
-              className="action-button"
-            >
-              View Applications
-            </Button>
-            {expandedJobId === job._id && (
-              <Box className="job-details">
-                <Typography variant="body2" className="job-experience">
-                  Experience: {job.experience}
-                </Typography>
-                <Typography variant="body2" className="job-company">
-                  Company: {job.company}
-                </Typography>
-                <Typography variant="body2" className="job-location">
-                  Location: {job.location}
-                </Typography>
-                <Typography variant="body2" className="job-jobType">
-                  Job Type: {job.jobType}
-                </Typography>
-                <Typography variant="body2" className="job-salary">
-                  Salary: {job.salary}
-                </Typography>
-              </Box>
-            )}
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h2 className="text-2xl font-semibold text-white">
+                    {job.title}
+                  </h2>
+                  <p className="text-white mt-2">{job.description}</p>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleUpdateJob(job._id)}
+                    className="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-700 transition-colors"
+                  >
+                    Update Job
+                  </button>
+                  <button
+                    onClick={() => handleDeleteJob(job._id)}
+                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                  >
+                    Delete Job
+                  </button>
+                </div>
+              </div>
 
-            {expandedAppId === job._id && (
-              <Box className="job-applications">
-                <JobApplicationsList jobId={job._id} />
-              </Box>
-            )}
-          </Box>
-        ))
-      ) : (
-        <Typography variant="h6" align="center">
-          No jobs posted yet.
-        </Typography>
-      )}
-    </Container>
+              <div className="flex gap-4 mb-4">
+                <button
+                  onClick={() => toggleJobApplications(job._id)}
+                  className="px-4 py-2  text-white border rounded-md "
+                >
+                  {expandedJobId === job._id ? "Hide Details" : "View More"}
+                </button>
+                <button
+                  onClick={() => handleViewApplications(job._id)}
+                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                >
+                  View Applications
+                </button>
+              </div>
+
+              {expandedJobId === job._id && (
+                <div className="grid grid-cols-2 text-white bg-white bg-opacity-10 gap-4 mt-4  p-4 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Experience:</span>
+                    <span>{job.experience}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Company:</span>
+                    <span >{job.company}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Location:</span>
+                    <span >{job.location}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Job Type:</span>
+                    <span>{job.jobType}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Salary:</span>
+                    <span>{job.salary}</span>
+                  </div>
+                </div>
+              )}
+
+              {expandedAppId === job._id && (
+                <div className="mt-6 border-t pt-4">
+                  <JobApplicationsList jobId={job._id} />
+                </div>
+              )}
+            </div>
+          ))
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-xl text-white">No jobs posted yet.</p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

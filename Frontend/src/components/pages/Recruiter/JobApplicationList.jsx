@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { List, ListItem, ListItemText, Typography, Paper, Button, TextField, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { APIBASEURL, DICURL } from '../../../config/index.js';
 
@@ -20,7 +19,7 @@ const JobApplicationsList = ({ jobId }) => {
         setApplications(response.data);
       } catch (error) {
         console.error('Error fetching job applications:', error);
-        setError('NO job applications');
+        setError('No job applications');
       } finally {
         setLoading(false);
       }
@@ -42,10 +41,9 @@ const JobApplicationsList = ({ jobId }) => {
     }
 
     try {
-      const response = await axios.post(`${APIBASEURL}/application/accept/${applicationId}`, {
+        await axios.post(`${APIBASEURL}/application/accept/${applicationId}`, {
         message,
       });
-      console.log(response.data);
       setApplications(applications.map(app => app._id === applicationId ? { ...app, status: 'accepted' } : app));
       setMessage('');
       setSelectedApplication(null);
@@ -56,85 +54,104 @@ const JobApplicationsList = ({ jobId }) => {
 
   const handleReject = async (applicationId, employeeId) => {
     try {
-      const response = await axios.post(`${APIBASEURL}/application/reject/${employeeId}/${applicationId}`);
-      console.log(response.data);
+      await axios.post(`${APIBASEURL}/application/reject/${employeeId}/${applicationId}`);
       setApplications(applications.map(app => app._id === applicationId ? { ...app, status: 'rejected' } : app));
     } catch (error) {
       console.error('Error rejecting application:', error);
     }
   };
 
-  const handleChangeMessage = (event) => {
-    setMessage(event.target.value);
-  };
-
   if (loading) {
-    return <Typography variant="h6">Loading...</Typography>;
+    return <div className="flex justify-center items-center h-24">
+      <h2 className="text-white text-xl">Loading...</h2>
+    </div>;
   }
 
   if (error) {
-    return <Typography variant="h6">{error}</Typography>;
+    return <div className="flex justify-center items-center h-24">
+      <h2 className="text-red-500 text-xl">{error}</h2>
+    </div>;
   }
 
   return (
-    <Paper elevation={3} className="jobApplicationsList">
-      <Typography variant="h6" className="applicationsTitle" gutterBottom>
-        Applications
-      </Typography>
-      <List>
+    <div className="bg-white bg-opacity-10 rounded-lg shadow-lg p-6 max-w-7xl mx-auto">
+      <h1 className="text-2xl font-semibold text-white mb-6 border-b pb-3">Applications</h1>
+      <div className="space-y-6">
         {applications.length > 0 ? (
           applications.map((applicant) => (
-            <ListItem key={applicant._id} className="listItem">
-              <ListItemText
-                primary={`Cover letter: ${applicant.coverLetter}`}
-                secondary={
-                  <Grid container spacing={2} className="secondaryDetails">
-                    <Grid item xs={12} sm={6}>
-                      <Typography component="div">
-                        <Link to={`${DICURL}/${applicant.employeeId.resume}`} className="link" target='_blank'>Resume</Link>
-                      </Typography>
-                      <Typography component="div" className="secondaryDetail">Name: {applicant.employeeId.name}</Typography>
-                      <Typography component="div" className="secondaryDetail">Email: {applicant.employeeId.email}</Typography>
-                      <Typography component="div" className="secondaryDetail">Phone: {applicant.employeeId.phone}</Typography>
-                      <Typography component="div" className="secondaryDetail">Institution: {applicant.employeeId.institutionName}</Typography>
-                    </Grid>
-                    {selectedApplication === applicant._id && (
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          label="Message to applicant"
-                          variant="outlined"
-                          fullWidth
-                          value={message}
-                          onChange={handleChangeMessage}
-                          className="messageTextField"
-                        />
-                      </Grid>
-                    )}
-                  </Grid>
-                }
-              />
-              {applicant.status === 'pending' && (
-                <div className="buttonGroup">
-                  <Button variant="contained" color="primary" onClick={() => handleAccept(applicant._id)}>
-                    Accept
-                  </Button>
-                  <Button variant="contained" color="secondary" onClick={() => handleReject(applicant._id, applicant.employeeId._id)}>
-                    Reject
-                  </Button>
+            <div key={applicant._id} className="flex flex-col md:flex-row bg-black bg-opacity-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+              <div className="flex-grow">
+                <div className="mb-4">
+                  <h3 className="font-medium text-white">Cover Letter:</h3>
+                  <p className="text-white mt-1">{applicant.coverLetter}</p>
                 </div>
-              )}
-              {selectedApplication !== applicant._id && applicant.status === 'pending' && (
-                <Button variant="contained" onClick={() => handleOpenMessage(applicant._id)}>
-                  Add Message
-                </Button>
-              )}
-            </ListItem>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  <div className="space-y-2">
+                    <div className="text-white">
+                      <p className="mb-1"><span className="font-medium">Name:</span> {applicant.employeeId.name}</p>
+                      <p className="mb-1"><span className="font-medium">Email:</span> {applicant.employeeId.email}</p>
+                      <p className="mb-1"><span className="font-medium">Phone:</span> {applicant.employeeId.phone}</p>
+                      <p><span className="font-medium">Institution:</span> {applicant.employeeId.institutionName}</p>
+                    </div>
+                    <Link 
+                      to={`${DICURL}/${applicant.employeeId.resume}`} 
+                      className="inline-block text-yellow-600 hover:text-yellow-800 font-extrabold text-3xl mb-2 no-underline hover:underline"
+                      target='_blank'
+                    >
+                      View Resume
+                    </Link>
+                  </div>
+                  
+                  {selectedApplication === applicant._id && (
+                    <div>
+                      <textarea
+                        placeholder="Message to applicant"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="w-full p-2 border rounded text-black"
+                        rows={4}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              <div className="mt-4 md:mt-0 md:ml-4 flex flex-col gap-2">
+                {applicant.status === 'pending' && (
+                  <div className="space-y-2">
+                    <button 
+                      className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded"
+                      onClick={() => handleAccept(applicant._id)}
+                    >
+                      Accept
+                    </button>
+                    <button 
+                      className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
+                      onClick={() => handleReject(applicant._id, applicant.employeeId._id)}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                )}
+                {selectedApplication !== applicant._id && applicant.status === 'pending' && (
+                  <button 
+                    className="w-full px-4 py-2 border  text-white hover:bg-blue-50 hover:text-black rounded"
+                    onClick={() => handleOpenMessage(applicant._id)}
+                  >
+                    Add Message
+                  </button>
+                )}
+              </div>
+            </div>
           ))
         ) : (
-          <Typography variant="body1">No applications found.</Typography>
+          <div className="text-center py-8 text-white">
+            No applications found.
+          </div>
         )}
-      </List>
-    </Paper>
+      </div>
+    </div>
   );
 };
 
