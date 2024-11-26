@@ -13,7 +13,7 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json()); // Parse JSON data from requests
-app.use(cors());            // Enable Cross-Origin Resource Sharing
+app.use(cors({ origin: "https://careervista.vercel.app" }))         // Enable Cross-Origin Resource Sharing
 
 // Connect to MongoDB
 connectDB();

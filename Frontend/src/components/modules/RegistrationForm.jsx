@@ -209,9 +209,7 @@ const RegistrationForm = () => {
                       />
                     </div>
                   </div>
-                </>
-              )}
-              {/* File Uploads */}
+                  {/* File Uploads */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-white ">Upload Resume</label>
@@ -234,6 +232,8 @@ const RegistrationForm = () => {
                   />
                 </div>
               </div>
+                </>
+              )}
               {/* Submit Button */}
               <button
                 type="submit"
