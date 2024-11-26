@@ -1,2 +1,2 @@
-export const APIBASEURL = "http://localhost:5000/api"
-export const  DICURL ='http://localhost:5000';
+export const APIBASEURL = "careervistabackend.vercel.app/api"
+export const  DICURL ='careervistabackend.vercel.app';
