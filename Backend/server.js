@@ -5,20 +5,20 @@ const path = require('path');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
-// Load environment variables from .env file
+// Load environment variables
 dotenv.config({ path: path.resolve(__dirname, './config/config.env') });
 
 // Initialize the app
 const app = express();
 
 // Middleware
-app.use(bodyParser.json()); // Parse JSON data from requests
-app.use(cors({ origin: "https://careervista.vercel.app" }))         // Enable Cross-Origin Resource Sharing
+app.use(bodyParser.json());
+app.use(cors({ origin: 'https://careervista.vercel.app' }));
 
 // Connect to MongoDB
 connectDB();
 
-// Static files (for file uploads and public assets)
+// Static files
 app.use(express.static(path.join(__dirname, "/public")));
 app.use("/upload", express.static("upload"));
 
@@ -32,8 +32,5 @@ app.use('/api/application', require('./routes/application'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/subscribe', require('./routes/suscribe'));
 
-// Server Port
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Export the app for serverless functions
+module.exports = app;
