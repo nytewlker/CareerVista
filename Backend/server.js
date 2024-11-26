@@ -13,7 +13,11 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors({ origin: 'https://careervista.vercel.app' }));
+app.use(cors({
+  origin: 'https://careervista.vercel.app', // Allow requests from this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Specify allowed methods
+  credentials: true // If needed, allow credentials (e.g., cookies, authorization headers)
+}));
 
 // Connect to MongoDB
 connectDB();
