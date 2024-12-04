@@ -65,6 +65,7 @@ const RegistrationForm = () => {
 
     try {
       const response = await axios.post(`${APIBASEURL}/${role}/register`, formDataToSend, {
+         method: 'POST',
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

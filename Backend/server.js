@@ -36,6 +36,8 @@ app.use('/api/application', require('./routes/application'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/subscribe', require('./routes/suscribe'));
 
+
 app.listen(5000, () => {
   console.log(`Server is running on port 5000`);
 });
+
