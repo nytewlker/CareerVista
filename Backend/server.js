@@ -36,5 +36,8 @@ app.use('/api/application', require('./routes/application'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/subscribe', require('./routes/suscribe'));
 
-// Export the app for serverless functions
-module.exports = app;
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
+});
+
