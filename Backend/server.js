@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const connectDB = require('./db/db');
 
 // Load environment variables
 dotenv.config({ path: path.resolve(__dirname, './config/config.env') });
@@ -36,6 +36,6 @@ app.use('/api/application', require('./routes/application'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/subscribe', require('./routes/suscribe'));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(5000, () => {
+  console.log(`Server is running on port 5000`);
 });
