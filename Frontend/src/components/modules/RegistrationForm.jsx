@@ -210,6 +210,17 @@ const RegistrationForm = () => {
                       />
                     </div>
                   </div>
+                  <div>
+                    <label className="block text-white">Skills</label>
+                    <input
+                    type="text"
+                    name="skills"
+                    placeholder="Enter your skills"
+                    value={formData.skills}
+                    onChange={handleChange}
+                    className="w-full rounded-md p-2"
+                      />
+                  </div>
                   {/* File Uploads */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
