@@ -1,3 +1,3 @@
 
-export const APIBASEURL = "https://careervistabackend.vercel.app/api"
-export const  DICURL ='https://careervistabackend.vercel.app';
+export const APIBASEURL = "https://careervista-6rck.onrender.com/api"
+export const  DICURL ='https://careervista-6rck.onrender.com';
