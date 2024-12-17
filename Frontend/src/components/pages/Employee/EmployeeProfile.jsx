@@ -79,7 +79,7 @@ const EmployeeProfile = () => {
 
   const renderInput = (label, name, type = "text", value, onChange, required = true) => (
     <div>
-      <label className="block text-white font-medium mb-2">{label}</label>
+      <label className="block  font-medium mb-2">{label}</label>
       <input
         type={type}
         name={name}
@@ -107,8 +107,8 @@ const EmployeeProfile = () => {
           />
         </div>
         <div className="flex-1">
-          <h4 className="text-2xl font-semibold text-white">{formData.name || "N/A"}</h4>
-          <p className="text-white mb-4">{formData.email || "N/A"}</p>
+          <h4 className="text-2xl font-semibold ">{formData.name || "N/A"}</h4>
+          <p className=" mb-4">{formData.email || "N/A"}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6 p-6 rounded-lg shadow-md">
@@ -131,7 +131,7 @@ const EmployeeProfile = () => {
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-white font-medium mb-2">Profile Picture</label>
+            <label className="block  font-medium mb-2">Profile Picture</label>
             <input
               type="file"
               name="profilePic"
@@ -141,7 +141,7 @@ const EmployeeProfile = () => {
             />
           </div>
           <div>
-            <label className="block text-white font-medium mb-2">Resume</label>
+            <label className="block  font-medium mb-2">Resume</label>
             <input
               type="file"
               name="resume"
@@ -154,7 +154,7 @@ const EmployeeProfile = () => {
 
         {formData.resume && (
           <div className="p-4  rounded-lg">
-            <span className=" text-xl font-extrabold text-white">Resume: </span>
+            <span className=" text-xl font-extrabold ">Resume: </span>
             <a
               href={`${DICURL}/${formData.resume}`}
               target="_blank"
@@ -170,7 +170,7 @@ const EmployeeProfile = () => {
           type="submit"
           disabled={saving}
           className={`w-full py-3 rounded-lg font-medium transition duration-300 ${
-            saving ? "bg-gray-400 text-white cursor-not-allowed" : "bg-yellow-500 text-white hover:bg-yellow-600"
+            saving ? "bg-gray-400  cursor-not-allowed" : "bg-yellow-500  hover:bg-yellow-600"
           }`}
         >
           {saving ? "Saving..." : "Save Changes"}

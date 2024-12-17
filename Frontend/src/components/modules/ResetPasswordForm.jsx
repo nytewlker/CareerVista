@@ -51,7 +51,7 @@ const ResetPasswordForm = () => {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-white mb-1">
+            <label className="block text-sm font-medium  mb-1">
               New Password
             </label>
             <input
@@ -64,7 +64,7 @@ const ResetPasswordForm = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-white mb-1">
+            <label className="block text-sm font-medium  mb-1">
               Confirm Password
             </label>
             <input
@@ -78,7 +78,7 @@ const ResetPasswordForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 font-semibold rounded-md shadow"
+            className="w-full px-4 py-2  bg-yellow-500 hover:bg-yellow-600 font-semibold rounded-md shadow"
           >
             Reset Password
           </button>

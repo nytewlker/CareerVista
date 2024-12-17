@@ -84,21 +84,21 @@ const MyJobs = () => {
             >
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h2 className="text-2xl font-semibold text-white">
+                  <h2 className="text-2xl font-semibold ">
                     {job.title}
                   </h2>
-                  <p className="text-white mt-2">{job.description}</p>
+                  <p className=" mt-2">{job.description}</p>
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleUpdateJob(job._id)}
-                    className="px-4 py-2 bg-yellow-400 text-white rounded-md hover:bg-yellow-700 transition-colors"
+                    className="px-4 py-2 bg-yellow-400  rounded-md hover:bg-yellow-700 transition-colors"
                   >
                     Update Job
                   </button>
                   <button
                     onClick={() => handleDeleteJob(job._id)}
-                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                    className="px-4 py-2 bg-red-600  rounded-md hover:bg-red-700 transition-colors"
                   >
                     Delete Job
                   </button>
@@ -108,20 +108,20 @@ const MyJobs = () => {
               <div className="flex gap-4 mb-4">
                 <button
                   onClick={() => toggleJobApplications(job._id)}
-                  className="px-4 py-2  text-white border rounded-md "
+                  className="px-4 py-2   border rounded-md "
                 >
                   {expandedJobId === job._id ? "Hide Details" : "View More"}
                 </button>
                 <button
                   onClick={() => handleViewApplications(job._id)}
-                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                  className="px-4 py-2 bg-green-600  rounded-md hover:bg-green-700 transition-colors"
                 >
                   View Applications
                 </button>
               </div>
 
               {expandedJobId === job._id && (
-                <div className="grid grid-cols-2 text-white bg-white bg-opacity-10 gap-4 mt-4  p-4 rounded-lg">
+                <div className="grid grid-cols-2  bg-white bg-opacity-10 gap-4 mt-4  p-4 rounded-lg">
                   <div className="flex items-center gap-2">
                     <span className="font-medium">Experience:</span>
                     <span>{job.experience}</span>
@@ -154,7 +154,7 @@ const MyJobs = () => {
           ))
         ) : (
           <div className="text-center py-16">
-            <p className="text-xl text-white">No jobs posted yet.</p>
+            <p className="text-xl ">No jobs posted yet.</p>
           </div>
         )}
       </div>

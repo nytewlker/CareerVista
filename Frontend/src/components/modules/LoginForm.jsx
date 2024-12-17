@@ -50,7 +50,7 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Role Selector */}
           <div>
-            <label className=" text-sm text-white font-medium">Role</label>
+            <label className=" text-sm  font-medium">Role</label>
             <select
               value={role}
               onChange={handleRoleChange}
@@ -63,7 +63,7 @@ const LoginForm = () => {
 
           {/* Email Input */}
           <div>
-            <label className="block text-sm font-medium bg-transparent text-white">Email Address</label>
+            <label className="block text-sm font-medium bg-transparent ">Email Address</label>
             <input
               type="email"
               name="email"
@@ -77,7 +77,7 @@ const LoginForm = () => {
 
           {/* Password Input */}
           <div>
-            <label className="block text-sm font-medium  text-white">Password</label>
+            <label className="block text-sm font-medium  ">Password</label>
             <input
               type="password"
               name="password"
@@ -92,7 +92,7 @@ const LoginForm = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-yellow-500 hover:bg-yellow-600 font-semibold rounded-md shadow-md transition-all duration-300"
+            className="w-full px-4 py-2  bg-yellow-500 hover:bg-yellow-600 font-semibold rounded-md shadow-md transition-all duration-300"
           >
             Login
           </button>

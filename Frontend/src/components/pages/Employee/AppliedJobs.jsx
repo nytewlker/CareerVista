@@ -40,14 +40,14 @@ const AppliedJobs = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center text-white min-h-screen">
+      <div className="flex justify-center items-center  min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl py-16 mx-auto px-4  text-white sm:px-6 lg:px-8 ">
+    <div className="max-w-7xl py-16 mx-auto px-4   sm:px-6 lg:px-8 ">
       <h2 className="text-3xl font-bold text-center  mb-8">Applied Jobs</h2>
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
@@ -73,17 +73,17 @@ const AppliedJobs = () => {
                     </span>
                   </div>
                   
-                  <p className="text-white-600 mb-4 line-clamp-3">{job.description}</p>
+                  <p className="-600 mb-4 line-clamp-3">{job.description}</p>
                   
                   <div className="space-y-2">
-                    <div className="flex items-center text-white-700">
+                    <div className="flex items-center -700">
                       <svg className="h-5 w-5 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                       </svg>
                       <span>{job.company}</span>
                     </div>
                     
-                    <div className="flex items-center text-white-700">
+                    <div className="flex items-center -700">
                       <svg className="h-5 w-5 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                         <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -91,14 +91,14 @@ const AppliedJobs = () => {
                       <span>{job.location}</span>
                     </div>
                     
-                    <div className="flex items-center text-white-700">
+                    <div className="flex items-center -700">
                       <svg className="h-5 w-5 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
                       <span>{job.jobType}</span>
                     </div>
                     
-                    <div className="flex items-center text-white-700">
+                    <div className="flex items-center -700">
                       <svg className="h-5 w-5 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
@@ -117,11 +117,11 @@ const AppliedJobs = () => {
         </div>
       ) : (
         <div className="text-center py-12">
-          <svg className="mx-auto h-12 w-12 text-white-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="mx-auto h-12 w-12 -400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <h3 className="mt-2 text-sm font-medium text-white-900">No jobs applied yet</h3>
-          <p className="mt-1 text-sm text-white-500">Start exploring and applying for jobs to see them here.</p>
+          <h3 className="mt-2 text-sm font-medium -900">No jobs applied yet</h3>
+          <p className="mt-1 text-sm -500">Start exploring and applying for jobs to see them here.</p>
         </div>
       )}
     </div>

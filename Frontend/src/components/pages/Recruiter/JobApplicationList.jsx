@@ -63,7 +63,7 @@ const JobApplicationsList = ({ jobId }) => {
 
   if (loading) {
     return <div className="flex justify-center items-center h-24">
-      <h2 className="text-white text-xl">Loading...</h2>
+      <h2 className=" text-xl">Loading...</h2>
     </div>;
   }
 
@@ -75,20 +75,20 @@ const JobApplicationsList = ({ jobId }) => {
 
   return (
     <div className="bg-white bg-opacity-10 rounded-lg shadow-lg p-6 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-semibold text-white mb-6 border-b pb-3">Applications</h1>
+      <h1 className="text-2xl font-semibold  mb-6 border-b pb-3">Applications</h1>
       <div className="space-y-6">
         {applications.length > 0 ? (
           applications.map((applicant) => (
             <div key={applicant._id} className="flex flex-col md:flex-row bg-black bg-opacity-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
               <div className="flex-grow">
                 <div className="mb-4">
-                  <h3 className="font-medium text-white">Cover Letter:</h3>
-                  <p className="text-white mt-1">{applicant.coverLetter}</p>
+                  <h3 className="font-medium ">Cover Letter:</h3>
+                  <p className=" mt-1">{applicant.coverLetter}</p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   <div className="space-y-2">
-                    <div className="text-white">
+                    <div className="">
                       <p className="mb-1"><span className="font-medium">Name:</span> {applicant.employeeId.name}</p>
                       <p className="mb-1"><span className="font-medium">Email:</span> {applicant.employeeId.email}</p>
                       <p className="mb-1"><span className="font-medium">Phone:</span> {applicant.employeeId.phone}</p>
@@ -121,13 +121,13 @@ const JobApplicationsList = ({ jobId }) => {
                 {applicant.status === 'pending' && (
                   <div className="space-y-2">
                     <button 
-                      className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded"
+                      className="w-full px-4 py-2 bg-green-600 hover:bg-green-700  rounded"
                       onClick={() => handleAccept(applicant._id)}
                     >
                       Accept
                     </button>
                     <button 
-                      className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
+                      className="w-full px-4 py-2 bg-red-600 hover:bg-red-700  rounded"
                       onClick={() => handleReject(applicant._id, applicant.employeeId._id)}
                     >
                       Reject
@@ -136,7 +136,7 @@ const JobApplicationsList = ({ jobId }) => {
                 )}
                 {selectedApplication !== applicant._id && applicant.status === 'pending' && (
                   <button 
-                    className="w-full px-4 py-2 border  text-white hover:bg-blue-50 hover:text-black rounded"
+                    className="w-full px-4 py-2 border   hover:bg-blue-50 hover:text-black rounded"
                     onClick={() => handleOpenMessage(applicant._id)}
                   >
                     Add Message
@@ -146,7 +146,7 @@ const JobApplicationsList = ({ jobId }) => {
             </div>
           ))
         ) : (
-          <div className="text-center py-8 text-white">
+          <div className="text-center py-8 ">
             No applications found.
           </div>
         )}
