@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Typography, IconButton, TextField } from '@mui/material';
+import { Typography, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
 const Footer = () => {
@@ -22,101 +22,72 @@ const Footer = () => {
   };
 
   return (
-    <footer className=" relative   w-full  flex items-center justify-between bg-opacity-50  backdrop-blur-sm py-8 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* CareerVista Section */}
-          <div>
-            <Typography className="text-xl font-bold">CareerVista</Typography>
-            <Typography className="text-sm mt-2">
-              © 2024 CareerVista. All rights reserved.
-            </Typography>
-            <Typography className="text-sm mt-1">
-              Your trusted partner in finding your dream job. Connecting job seekers with top employers worldwide.
-            </Typography>
-          </div>
+    <footer className="w-full mt-auto">
+      <div className=" mx-4 my-8 rounded-xl">
+        <div className="container mx-auto px-6 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Company Info */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold ">CareerVista</h3>
+              <p className="text-gray-300 text-sm">
+                Your trusted partner in finding your dream job. Connecting job seekers with top employers worldwide.
+              </p>
+            </div>
 
-          {/* Contact Us Section */}
-          <div>
-            <Typography className="text-lg font-bold">Contact Us</Typography>
-            <ul className="text-sm mt-2 space-y-1">
-              <li className="flex items-center space-x-2">
-                <span>📧</span> <span>support@careervista.com</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span>📱</span> <span>+1 234 567 890</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <span>📍</span> <span>123 Career St, Job City, USA</span>
-              </li>
-            </ul>
-          </div>
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold ">Contact Us</h3>
+              <div className="space-y-2 text-gray-300">
+                <p className="flex items-center gap-2">
+                  <span>📧</span> support@careervista.com
+                </p>
+                <p className="flex items-center gap-2">
+                  <span>📱</span> +1 234 567 890
+                </p>
+                <p className="flex items-center gap-2">
+                  <span>📍</span> 123 Career St, Job City
+                </p>
+              </div>
+            </div>
 
-          {/* Subscribe and Social Media Section */}
-          <div>
-            <Typography className="text-lg font-bold">Subscribe for Job Alerts</Typography>
-            <form onSubmit={handleSubscribe} className="mt-3">
-              <TextField
-                label="Email Address"
-                size="small"
-                fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="rounded"
-              />
-               <button
+            {/* Newsletter */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold ">Subscribe</h3>
+              <form onSubmit={handleSubscribe} className="space-y-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                />
+                <button
                   type="submit"
-                  className="w-full mt-1  bg-yellow-500 hover:bg-yellow-600 rounded shadow-md text-lg font-semibold transition-colors"
+                  className="w-full px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-lg transition-colors"
                 >
-                  Suscribe 
+                  Subscribe
                 </button>
-              {message && (
-                <Typography
-                  className={`text-sm mt-2 ${isError ? 'text-red-500' : 'text-green-500'}`}
-                >
-                  {message}
-                </Typography>
-              )}
-            </form>
+              </form>
 
-            <Typography className="text-lg font-bold mt-6">Follow Us</Typography>
-            <div className="flex space-x-3 mt-3">
-              <IconButton
-                size="small"
-                href="https://www.facebook.com"
-                target="_blank"
-                className="text-gray-400 hover:text-blue-500"
-                aria-label="Facebook"
-              >
-                <Facebook />
-              </IconButton>
-              <IconButton
-                size="small"
-                href="https://www.twitter.com"
-                target="_blank"
-                className="text-gray-400 hover:text-blue-400"
-                aria-label="Twitter"
-              >
-                <Twitter />
-              </IconButton>
-              <IconButton
-                size="small"
-                href="https://www.instagram.com"
-                target="_blank"
-                className="text-gray-400 hover:text-pink-500"
-                aria-label="Instagram"
-              >
-                <Instagram />
-              </IconButton>
-              <IconButton
-                size="small"
-                href="https://www.linkedin.com"
-                target="_blank"
-                className="text-gray-400 hover:text-blue-700"
-                aria-label="LinkedIn"
-              >
-                <LinkedIn />
-              </IconButton>
+              {/* Social Links */}
+              <div className="pt-4">
+                <h3 className="text-xl font-bold  mb-4">Follow Us</h3>
+                <div className="flex space-x-4">
+                  {[
+                    { Icon: Facebook, color: "hover:text-blue-500" },
+                    { Icon: Twitter, color: "hover:text-blue-400" },
+                    { Icon: Instagram, color: "hover:text-pink-500" },
+                    { Icon: LinkedIn, color: "hover:text-blue-700" }
+                  ].map(({ Icon, color }, index) => (
+                    <IconButton
+                      key={index}
+                      className={` ${color} transition-colors`}
+                    >
+                      <Icon />
+                    </IconButton>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

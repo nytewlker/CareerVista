@@ -64,7 +64,7 @@ const UpdateJob = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-              <label className="block text-sm font-medium text-white">Job Title</label>
+              <label className="block text-sm font-medium ">Job Title</label>
 
                 <input
                   type="text"
@@ -76,7 +76,7 @@ const UpdateJob = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium  mb-2">
                   Location
                 </label>
                 <input
@@ -91,7 +91,7 @@ const UpdateJob = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-sm font-medium  mb-2">
                 Job Description
               </label>
               <textarea
@@ -106,7 +106,7 @@ const UpdateJob = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium  mb-2">
                   Job Type
                 </label>
                 <select
@@ -124,7 +124,7 @@ const UpdateJob = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium  mb-2">
                   Salary
                 </label>
                 <input
@@ -139,7 +139,7 @@ const UpdateJob = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-sm font-medium  mb-2">
                 Required Experience
               </label>
               <input
@@ -154,7 +154,7 @@ const UpdateJob = () => {
 
             <button
               type="submit"
-              className="w-full bg-yellow-600 text-white py-3 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300 font-medium"
+              className="w-full bg-yellow-600  py-3 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300 font-medium"
             >
               Update Job
             </button>

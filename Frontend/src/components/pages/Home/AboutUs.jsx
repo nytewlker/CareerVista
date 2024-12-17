@@ -20,51 +20,41 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <section className="py-16 flex flex-col md:flex-row items-center justify-center min-h-screen text-white">
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="animate__animated animate__fadeInDown text-center mb-16">
-          <h2 className="text-6xl font-bold text-yellow-400 mb-6">About Us</h2>
+    <section className="min-h-screen py-16 flex items-center">
+      <div className=" max-w-7xl mx-4 p-8">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-yellow-400 mb-6">About Us</h2>
           <p className="text-xl text-gray-300">
-            At <span className="text-yellow-500 font-semibold">CareerVista</span>, we're passionate about transforming careers and creating opportunities.
+            At <span className="text-yellow-400">CareerVista</span>, we're transforming career journeys
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="animate__animated animate__fadeInLeft space-y-6">
-            <h3 className="text-4xl font-semibold mb-6">Revolutionizing Career Opportunities</h3>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              We leverage cutting-edge technology and industry expertise to connect talented individuals with their dream careers. Our platform provides:
+        <div className="grid md:grid-cols-2 gap-16">
+          <div className="space-y-8">
+            <h3 className="text-3xl font-bold ">Our Mission</h3>
+            <p className="text-gray-300 text-lg">
+              We leverage cutting-edge technology to connect talent with opportunity.
             </p>
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-center">
-                <span className="text-yellow-400 mr-2">✓</span> Personalized job matching
-              </li>
-              <li className="flex items-center">
-                <span className="text-yellow-400 mr-2">✓</span> Skill development resources
-              </li>
-              <li className="flex items-center">
-                <span className="text-yellow-400 mr-2">✓</span> Career guidance
-              </li>
+            <ul className="space-y-4">
+              {["Personalized Matching", "Skill Development", "Career Guidance"].map((item, index) => (
+                <li key={index} className="flex items-center space-x-3 text-gray-300">
+                  <span className="text-yellow-400 text-xl">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
-            <button className="mt-6 bg-yellow-400 hover:bg-yellow-500  font-bold py-3 px-8 rounded-full transition-all duration-300">
-              Get Started
-            </button>
           </div>
 
-          <div className="animate__animated animate__fadeInRight grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-6">
             {teamMembers.map((member) => (
-              <div 
-                key={member.id} 
-                className="bg-black bg-opacity-50 rounded-xl p-6 shadow-xl hover:transform hover:scale-105 transition-all duration-300"
-              >
+              <div key={member.id} className=" p-6 text-center transform hover:scale-105 transition-all">
                 <img 
                   src={member.image} 
-                  alt={`${member.name}'s profile`} 
-                  className="w-32 h-32 mx-auto rounded-full shadow-lg border-4 border-yellow-400"
+                  alt={member.name}
+                  className="w-32 h-32 mx-auto rounded-full border-4 border-yellow-400"
                 />
-                <h4 className="text-2xl font-semibold mt-4">{member.name}</h4>
-                <p className="text-gray-300">{member.nickname}</p>
-                <p className="text-yellow-400 font-medium">{member.role}</p>
+                <h4 className="text-xl font-bold  mt-4">{member.name}</h4>
+                <p className="text-yellow-400">{member.role}</p>
               </div>
             ))}
           </div>

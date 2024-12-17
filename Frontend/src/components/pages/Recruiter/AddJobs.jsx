@@ -48,7 +48,7 @@ const AddJobs = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-white">Job Title</label>
+                <label className="block text-sm font-medium ">Job Title</label>
                 <input
                   type="text"
                   name="title"
@@ -60,7 +60,7 @@ const AddJobs = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-white">Location</label>
+                <label className="block text-sm font-medium ">Location</label>
                 <input
                   type="text"
                   name="location"
@@ -73,7 +73,7 @@ const AddJobs = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white">Job Description</label>
+              <label className="block text-sm font-medium ">Job Description</label>
               <textarea
                 name="description"
                 rows="4"
@@ -86,7 +86,7 @@ const AddJobs = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm text-white font-medium ">Job Type</label>
+                <label className="block text-sm  font-medium ">Job Type</label>
                 <select
                   name="jobType"
                   value={formData.jobType}
@@ -103,7 +103,7 @@ const AddJobs = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white">Salary</label>
+                <label className="block text-sm font-medium ">Salary</label>
                 <input
                   type="text"
                   name="salary"
@@ -116,7 +116,7 @@ const AddJobs = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white">Required Experience</label>
+              <label className="block text-sm font-medium ">Required Experience</label>
               <input
                 type="text"
                 name="experience"
@@ -129,7 +129,7 @@ const AddJobs = () => {
 
             <button
               type="submit"
-              className="w-full bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
+              className="w-full bg-yellow-600  py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
             >
               Post Job
             </button>

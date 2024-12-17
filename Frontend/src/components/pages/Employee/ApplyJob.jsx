@@ -38,7 +38,7 @@ const ApplyJob = () => {
   };
 
   return (
-    <div className="min-h-screen  py-16 px-4 sm:px-6 text-white lg:px-8">
+    <div className="min-h-screen  py-16 px-4 sm:px-6  lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold  sm:text-4xl">
@@ -82,7 +82,7 @@ const ApplyJob = () => {
               </button>
               <button
                 type="submit"
-                className="bg-yellow-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="bg-yellow-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium  hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Submit Application
               </button>

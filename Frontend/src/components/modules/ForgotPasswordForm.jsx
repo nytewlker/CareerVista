@@ -57,7 +57,7 @@ const ForgotPassword = () => {
 
           {/* Role Selector */}
           <div>
-            <label className="block text-white mb-2">Select Role</label>
+            <label className="block  mb-2">Select Role</label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
 
           {/* Email Input */}
           <div>
-            <label className="block text-white">Email Address</label>
+            <label className="block ">Email Address</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -84,7 +84,7 @@ const ForgotPassword = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 bg-yellow-400 text-white font-semibold rounded-md hover:bg-yellow-500 transition-colors duration-300"
+            className="w-full py-2 bg-yellow-400  font-semibold rounded-md hover:bg-yellow-500 transition-colors duration-300"
           >
             Send Reset Link
           </button>
