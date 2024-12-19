@@ -67,7 +67,7 @@ const RecruiterProfile = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container text-white mx-auto px-4 py-16">
         <h1 className="text-3xl text-center font-bold mb-6 text-yellow-500">
           Recruiter Profile
         </h1>
@@ -79,7 +79,7 @@ const RecruiterProfile = () => {
             <div>
               <input
                 type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="Name"
                 name="name"
                 value={formData.name}
@@ -90,7 +90,7 @@ const RecruiterProfile = () => {
             <div>
               <input
                 type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 text-black  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="Email"
                 name="email"
                 value={formData.email}
@@ -101,7 +101,7 @@ const RecruiterProfile = () => {
             <div>
               <input
                 type="tel"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 text-black  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="Phone"
                 name="phone"
                 value={formData.phone}
@@ -112,7 +112,7 @@ const RecruiterProfile = () => {
             <div>
               <input
                 type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2  text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="Company Name"
                 name="companyName"
                 value={formData.companyName}
@@ -123,7 +123,7 @@ const RecruiterProfile = () => {
           </div>
           <div>
             <textarea
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              className="w-full px-4 py-2 text-black  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
               placeholder="Bio"
               rows="4"
               name="bio"
@@ -134,7 +134,7 @@ const RecruiterProfile = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-yellow-600  py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
+            className="w-full bg-yellow-600 text-black   py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
           >
             Update Profile
           </button>
