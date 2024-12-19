@@ -18,30 +18,34 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="min-h-screen py-16 flex flex-col items-center">
-      <div className=" max-w-7xl mx-4 p-8">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-yellow-400 mb-6">Get in Touch</h2>
-          <p className="text-xl text-gray-300">Ready to take the next step? We're here to help!</p>
+    <section className="py-16 px-6 text-white">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold mb-4">Contact Us</h2>
+          <p className="text-lg text-yellow-200">Have questions? We're here to help.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
-          <div className=" p-6 space-y-6">
-            <h3 className="text-2xl font-bold ">Contact Info</h3>
+        {/* Content */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Contact Info */}
+          <div className="space-y-6 text-yellow-100">
+            <h3 className="text-2xl font-bold">Contact Info</h3>
             {[
               ["📍", "123 Career Street"],
               ["📞", "+1 234 567 8900"],
               ["✉️", "info@careervista.com"]
             ].map(([icon, text], index) => (
-              <p key={index} className="flex items-center space-x-3 text-gray-300">
+              <p key={index} className="flex items-center space-x-3">
                 <span>{icon}</span>
                 <span>{text}</span>
               </p>
             ))}
           </div>
 
+          {/* Form */}
           <div className="md:col-span-2">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white/40 text-black p-8 rounded-lg shadow-lg space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 {["name", "phone"].map((field) => (
                   <input
@@ -49,9 +53,9 @@ const ContactUs = () => {
                     type="text"
                     name={field}
                     value={formData[field]}
-                    onChange={(e) => setFormData({...formData, [field]: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
                     placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   />
                 ))}
               </div>
@@ -59,26 +63,26 @@ const ContactUs = () => {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="Email Address"
-                className="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
               <textarea
                 name="message"
                 value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Your Message"
                 rows="5"
-                className="w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
               <button
                 type="submit"
-                className="w-full py-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition-colors duration-300"
+                className="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg shadow-md transition duration-300"
               >
                 Send Message
               </button>
               {feedback && (
-                <p className={`text-center ${feedback.type === "success" ? "text-green-400" : "text-red-400"}`}>
+                <p className={`text-center mt-4 ${feedback.type === "success" ? "text-green-500" : "text-red-500"}`}>
                   {feedback.message}
                 </p>
               )}

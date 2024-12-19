@@ -55,7 +55,7 @@ const AddJobs = () => {
                   value={formData.title}
                   onChange={handleChange}
                   required
-                  className="mt-1 p-2 block w-full rounded-md  shadow-sm focus:yellow-blue-500 focus:ring-yellow-500"
+                  className="mt-1 p-2 block w-full rounded-md  shadow-sm focus:yellow-yellow-500 focus:ring-yellow-500"
                 />
               </div>
               

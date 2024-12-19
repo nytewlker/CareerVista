@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full mt-auto">
+    <footer className="w-full bg-black/40 rounded-full mt-auto">
       <div className=" mx-4 my-8 rounded-xl">
         <div className="container mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -74,10 +74,10 @@ const Footer = () => {
                 <h3 className="text-xl font-bold  mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
                   {[
-                    { Icon: Facebook, color: "hover:text-blue-500" },
-                    { Icon: Twitter, color: "hover:text-blue-400" },
+                    { Icon: Facebook, color: "hover:text-yellow-500" },
+                    { Icon: Twitter, color: "hover:text-yellow-400" },
                     { Icon: Instagram, color: "hover:text-pink-500" },
-                    { Icon: LinkedIn, color: "hover:text-blue-700" }
+                    { Icon: LinkedIn, color: "hover:text-yellow-700" }
                   ].map(({ Icon, color }, index) => (
                     <IconButton
                       key={index}

@@ -39,7 +39,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen py-16 flex items-center justify-center ">
-      <div className="max-w-md w-full bg-black bg-opacity-50 shadow-lg rounded-lg p-6">
+      <div className="max-w-md w-full bg-black/40 shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-semibold text-yellow-400 mb-4 text-center">
           Forgot Password
         </h2>

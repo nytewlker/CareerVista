@@ -136,7 +136,7 @@ const JobApplicationsList = ({ jobId }) => {
                 )}
                 {selectedApplication !== applicant._id && applicant.status === 'pending' && (
                   <button 
-                    className="w-full px-4 py-2 border   hover:bg-blue-50 hover:text-black rounded"
+                    className="w-full px-4 py-2 border   hover:bg-yellow-50 hover:text-black rounded"
                     onClick={() => handleOpenMessage(applicant._id)}
                   >
                     Add Message

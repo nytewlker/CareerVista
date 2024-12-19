@@ -37,59 +37,56 @@ import Logout from "./components/modules/Logout";
 
 function App() {
   return (
-   
-    <div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
- 
-        <BrowserRouter>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Layout panel="dashboard" />}>
-              <Route index element={<Home />} />
-              <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/contactus" element={<ContactUs />} />
-              <Route path="/LoginForm" element={<LoginForm />} />
-              <Route path="/RegistrationForm" element={<RegistrationForm />} />
-              <Route path="/forgot-password" element={<ForgotPasswordForm />} />
-              <Route path="/reset-password/:role/:token" element={<ResetPasswordForm />} />
-            </Route>
 
-            {/* Recruiter Routes */}
-            <Route path="/" element={<Layout panel="recruiter" />}>
-              <Route path="/recruiterhome" element={<RecruiterHome />} />
-              <Route path="/addjobs" element={<AddJobs />} />
-              <Route path="/myjobs" element={<MyJobs />} />
-              <Route path="/updatejob/:jobId" element={<UpdateJob />} />
-              <Route path="/recruiterprofile" element={<RecruiterProfile />} />
-              <Route path="/logout" element={<Logout />} />
-            </Route>
+    <div >
+      
+      <BrowserRouter>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Layout panel="dashboard" />}>
+            <Route index element={<Home />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/LoginForm" element={<LoginForm />} />
+            <Route path="/RegistrationForm" element={<RegistrationForm />} />
+            <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+            <Route path="/reset-password/:role/:token" element={<ResetPasswordForm />} />
+          </Route>
 
-            {/* Employee Routes */}
-            <Route path="/" element={<Layout panel="employee" />}>
-              <Route path="/employeehome" element={<EmployeeHome />} />
-              <Route path="/apply/:jobId" element={<ApplyJob />} />
-              <Route path="/appliedjobs" element={<AppliedJobs />} />
-              <Route path="/employeeprofile" element={<EmployeeProfile />} />
-              <Route path="/logout" element={<Logout />} />
-            </Route>
+          {/* Recruiter Routes */}
+          <Route path="/" element={<Layout panel="recruiter" />}>
+            <Route path="/recruiterhome" element={<RecruiterHome />} />
+            <Route path="/addjobs" element={<AddJobs />} />
+            <Route path="/myjobs" element={<MyJobs />} />
+            <Route path="/updatejob/:jobId" element={<UpdateJob />} />
+            <Route path="/recruiterprofile" element={<RecruiterProfile />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
 
-            {/* Admin Routes */}
-            <Route path="/" element={<Layout panel="admin" />}>
-              <Route path="/dashboard" element={<AdminDashboard />} />
-              <Route path="/admin/recruiters" element={<RecruiterManagement />} />
-              <Route path="/admin/employees" element={<EmployeeManagement />} />
-              <Route path="/admin/jobs" element={<JobManagement />} />
-              <Route path="/admin/applications" element={<ApplicationManagement />} />
-              <Route path="/admin/reports" element={<Reports />} />
-              <Route path="/admin/settings" element={<Settings />} />
-              <Route path="/adminlogin" element={<AdminLogin />} />
-              <Route path="/adminregister" element={<AdminRegister />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-        </div>
+          {/* Employee Routes */}
+          <Route path="/" element={<Layout panel="employee" />}>
+            <Route path="/employeehome" element={<EmployeeHome />} />
+            <Route path="/apply/:jobId" element={<ApplyJob />} />
+            <Route path="/appliedjobs" element={<AppliedJobs />} />
+            <Route path="/employeeprofile" element={<EmployeeProfile />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
+
+          {/* Admin Routes */}
+          <Route path="/" element={<Layout panel="admin" />}>
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/recruiters" element={<RecruiterManagement />} />
+            <Route path="/admin/employees" element={<EmployeeManagement />} />
+            <Route path="/admin/jobs" element={<JobManagement />} />
+            <Route path="/admin/applications" element={<ApplicationManagement />} />
+            <Route path="/admin/reports" element={<Reports />} />
+            <Route path="/admin/settings" element={<Settings />} />
+            <Route path="/adminlogin" element={<AdminLogin />} />
+            <Route path="/adminregister" element={<AdminRegister />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 export default App;
