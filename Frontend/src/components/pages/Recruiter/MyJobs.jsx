@@ -70,7 +70,7 @@ const MyJobs = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-7xl mx-auto text-white px-4 sm:px-6 lg:px-8 py-16">
       <h1 className="text-4xl font-bold text-center text-yellow-500 mb-10">
         Recruiter Dashboard
       </h1>
@@ -92,13 +92,13 @@ const MyJobs = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleUpdateJob(job._id)}
-                    className="px-4 py-2 bg-yellow-400  rounded-md hover:bg-yellow-700 transition-colors"
+                    className="px-4 py-2 bg-yellow-400  text-black rounded-md hover:bg-yellow-700 transition-colors"
                   >
                     Update Job
                   </button>
                   <button
                     onClick={() => handleDeleteJob(job._id)}
-                    className="px-4 py-2 bg-red-600  rounded-md hover:bg-red-700 transition-colors"
+                    className="px-4 py-2 bg-red-600  text-black rounded-md hover:bg-red-700 transition-colors"
                   >
                     Delete Job
                   </button>
@@ -108,13 +108,13 @@ const MyJobs = () => {
               <div className="flex gap-4 mb-4">
                 <button
                   onClick={() => toggleJobApplications(job._id)}
-                  className="px-4 py-2   border rounded-md "
+                  className="px-4 py-2 text-black   border rounded-md "
                 >
                   {expandedJobId === job._id ? "Hide Details" : "View More"}
                 </button>
                 <button
                   onClick={() => handleViewApplications(job._id)}
-                  className="px-4 py-2 bg-green-600  rounded-md hover:bg-green-700 transition-colors"
+                  className="px-4 py-2 bg-green-600 text-black  rounded-md hover:bg-green-700 transition-colors"
                 >
                   View Applications
                 </button>
