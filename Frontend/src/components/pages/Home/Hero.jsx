@@ -1,25 +1,127 @@
 import React from "react";
-import Login from "../../modules/LoginForm";
+import Carousel from "react-bootstrap/Carousel";
+import Button from "react-bootstrap/Button";
+import { Typography, Box, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Hero = () => {
   return (
-    <div className="py-16 flex flex-col-reverse md:flex-row items-center justify-between text-white min-h-screen px-8">
-      {/* Left Content */}
-      <div className="md:w-2/3 flex flex-col items-center md:items-start text-center md:text-left">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-          Welcome to <span className="text-yellow-400">CareerVista</span>
-        </h1>
-        <p className="text-lg md:text-xl text-yellow-200 mb-8">
-          Empowering your career journey with tailored opportunities and seamless job applications.
-        </p>
-        <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition duration-300">
-          Discover Opportunities
-        </button>
-      </div>
+    <div className="">
+      {/* Hero Carousel */}
+      <Carousel id="heroCarousel" interval={3000} indicators={false}>
+        {/* Slide 1 */}
+        <Carousel.Item>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/resized_img1.jpg`}
+            className="d-block w-100  object-cover"
+            alt="Slide 1"
+            style={{ }}
+          />
+          <Carousel.Caption className="bg-black bg-opacity-50 rounded-lg p-4">
+            <Typography variant="h5" className="text-white">
+              Searching for a job?
+            </Typography>
+            <Typography variant="body1" className="text-gray-300 mt-2">
+              Find the <span className="text-yellow-400">best startup</span> job
+              that fits you.
+            </Typography>
+            <Button
+              variant="warning"
+              className="mt-3 px-4 py-2 font-bold shadow-md"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasDescription"
+              aria-controls="offcanvasDescription"
+            >
+              Learn More
+            </Button>
+          </Carousel.Caption>
+        </Carousel.Item>
 
-      {/* Right Login Form */}
-      <div className="md:w-1/3">
-        <Login />
+        {/* Slide 2 */}
+        <Carousel.Item>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/resized_img2.jpg`}
+            className="d-block w-100 object-cover"
+            alt="Slide 2"
+            style={{ maxHeight: "600px" }}
+          />
+          <Carousel.Caption className="bg-black bg-opacity-50 rounded-lg p-4">
+            <Typography variant="h5" className="text-white">
+              Join Our Community
+            </Typography>
+            <Typography variant="body1" className="text-gray-300 mt-2">
+              Explore opportunities in{" "}
+              <span className="text-yellow-400">tech startups</span>.
+            </Typography>
+            <Button
+              variant="warning"
+              className="mt-3 px-4 py-2 font-bold shadow-md"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasDescription"
+              aria-controls="offcanvasDescription"
+            >
+              Learn More
+            </Button>
+          </Carousel.Caption>
+        </Carousel.Item>
+
+        {/* Slide 3 */}
+        <Carousel.Item>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/resized_img3.jpg`}
+            className="d-block w-100 object-cover"
+            alt="Slide 3"
+            style={{ maxHeight: "600px" }}
+          />
+          <Carousel.Caption className="bg-black bg-opacity-50 rounded-lg p-4">
+            <Typography variant="h5" className="text-white">
+              Career Growth
+            </Typography>
+            <Typography variant="body1" className="text-gray-300 mt-2">
+              Find jobs that{" "}
+              <span className="text-yellow-400">accelerate your career</span>.
+            </Typography>
+            <Button
+              variant="warning"
+              className="mt-3 px-4 py-2 font-bold shadow-md"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasDescription"
+              aria-controls="offcanvasDescription"
+            >
+              Learn More
+            </Button>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
+      {/* Offcanvas Description */}
+      <div
+        className="offcanvas offcanvas-start"
+        tabIndex="-1"
+        id="offcanvasDescription"
+        aria-labelledby="offcanvasDescriptionLabel"
+      >
+        <div className="offcanvas-header">
+          <Typography variant="h5" id="offcanvasDescriptionLabel">
+            Job Opportunities
+          </Typography>
+          <IconButton
+            type="button"
+            className="text-gray-600"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          >
+            <CloseIcon />
+          </IconButton>
+        </div>
+        <div className="offcanvas-body">
+          <Typography variant="body1" className="text-gray-800">
+            Discover a variety of job opportunities that match your skills and
+            career goals. Explore startup jobs, tech positions, and more. Join
+            our community and take the next step in your career!
+          </Typography>
+        </div>
       </div>
     </div>
   );

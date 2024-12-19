@@ -6,83 +6,9 @@
 
 /* Base Styles */
 
-/* Custom global styles */
-body {
-  margin: 0;
-  min-height: 100vh; /* Allow content to grow beyond viewport height */
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(280deg, #9da18bad , #59ccd491 ),
-  linear-gradient(80deg, #9da18bad , #59ccd491 );
-  font-family: Arial, sans-serif;
-}
-
-/* Abstract shapes container */
-.abstract-bg {
-  position: fixed; /* Make the background fixed */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-}
-
-/* Abstract floating shapes */
-.abstract-bg div {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Floating animations */
-.abstract-bg div:nth-child(1) {
-  top: 20%;
-  left: 10%;
-  width: 120px;
-  height: 120px;
-  animation-duration: 8s;
-}
-
-.abstract-bg div:nth-child(2) {
-  top: 50%;
-  left: 70%;
-  width: 80px;
-  height: 80px;
-  animation-duration: 10s;
-}
-
-.abstract-bg div:nth-child(3) {
-  top: 80%;
-  left: 30%;
-  width: 60px;
-  height: 60px;
-  animation-duration: 12s;
-}
-
-.abstract-bg div:nth-child(4) {
-  top: 40%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
-  animation-duration: 14s;
-}
-
-
-
-/* Keyframes for floating animation */
-@keyframes float {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-20px) translateX(10px);
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-  }
+body{
+    color: white;
+    background-image: linear-gradient(125deg,
+        rgb(63, 63, 63) , rgb(49, 49, 49) ,rgb(39, 39, 39),rgb(0, 0, 0)
+    );
 }

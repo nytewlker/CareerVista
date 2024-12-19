@@ -39,12 +39,7 @@ function App() {
   return (
 
     <div >
-      <div class="abstract-bg">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      
       <BrowserRouter>
         <Routes>
           {/* Public Routes */}

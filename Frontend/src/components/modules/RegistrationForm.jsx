@@ -83,7 +83,7 @@ const RegistrationForm = () => {
       <div className="w-full max-w-4xl shadow-lg rounded-3xl  overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left Section */}
-          <div className="hidden md:flex flex-col items-center justify-center bg-white p-6">
+          <div className="hidden md:flex flex-col items-center justify-center bg-black p-6">
             <h2 className="text-center text-yellow-500 font-bold text-3xl">Welcome to CareerVista!</h2>
             <p className="text-center mt-4 text-gray-300">
               Embark on your professional journey with CareerVista. Connect with top companies and unlock exciting opportunities.
@@ -96,7 +96,7 @@ const RegistrationForm = () => {
           </div>
 
           {/* Right Section */}
-          <div className="p-6 bg-white/40 ">
+          <div className="p-6 bg-black/40 ">
             <h3 className="text-center mb-4 text-yellow-500 font-bold text-2xl">Create Your Account</h3>
             {error && <p className="bg-red-500  text-center p-2 rounded-full mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">

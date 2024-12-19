@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full mt-auto">
+    <footer className="w-full bg-black/40 rounded-full mt-auto">
       <div className=" mx-4 my-8 rounded-xl">
         <div className="container mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

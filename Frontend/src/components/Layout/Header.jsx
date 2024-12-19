@@ -16,14 +16,14 @@ const Header = ({ panel }) => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? "backdrop-blur-md bg-white/10" : "bg-transparent"
+    <header className={`fixed top-0 left-0  rounded-full w-full z-50 transition-all duration-300 ${
+      isScrolled ? "p-2 shadow-2xl bg-black/40" : "p-4"
     }`}>
-      <div className=" mx-4 my-2 rounded-xl">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="  rounded-xl">
+        <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <img src="/logo.png" alt="CareerVista" className="h-12 mr-2 hover:scale-105 transition-transform" />
+            <img src="/logo.png" alt="CareerVista" className="h-8 mr-2 hover:scale-105 transition-transform" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -32,10 +32,10 @@ const Header = ({ panel }) => {
               <Link
                 key={index}
                 to={link.path}
-                className=" hover:text-yellow-400 font-medium transition-colors duration-300 relative group"
+                className=" hover:text-yellow-400  no-underline text-white uppercase font-mono font-bold transition-colors duration-300 relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300" />
+                <span className="absolute margin no-underline left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </nav>
@@ -54,12 +54,12 @@ const Header = ({ panel }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className=" md:hidden mt-2 mx-4 rounded-xl">
+          <div className=" md:hidden  mt-2 mx-4 rounded-xl">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 to={link.path}
-                className="block px-4 py-3  hover:text-yellow-400 transition-colors"
+                className="block px-4 py-3  no-underline text-white uppercase font-mono font-bold hover:text-yellow-400 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
