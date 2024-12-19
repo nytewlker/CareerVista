@@ -45,7 +45,7 @@ const ContactUs = () => {
 
           {/* Form */}
           <div className="md:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-white/40 text-black p-8 rounded-lg shadow-lg space-y-6">
+            <form onSubmit={handleSubmit} className="bg-black/50 text-black p-8 rounded-lg shadow-lg space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 {["name", "phone"].map((field) => (
                   <input

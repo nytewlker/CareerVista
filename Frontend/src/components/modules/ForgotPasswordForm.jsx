@@ -38,7 +38,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen py-16 flex items-center justify-center ">
+    <div className="min-h-screen text-white py-16 flex items-center justify-center ">
       <div className="max-w-md w-full bg-black/40 shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-semibold text-yellow-400 mb-4 text-center">
           Forgot Password
@@ -61,7 +61,7 @@ const ForgotPassword = () => {
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full p-2 rounded "
+              className="w-full text-black p-2 rounded "
             >
               <option value="employee">Employee</option>
               <option value="recruiter">Recruiter</option>
@@ -77,14 +77,14 @@ const ForgotPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full p-2 rounded "
+              className="w-full text-black p-2 rounded "
             />
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 bg-yellow-400  font-semibold rounded-md hover:bg-yellow-500 transition-colors duration-300"
+            className="w-full py-2 bg-yellow-400 text-black  font-semibold rounded-md hover:bg-yellow-500 transition-colors duration-300"
           >
             Send Reset Link
           </button>

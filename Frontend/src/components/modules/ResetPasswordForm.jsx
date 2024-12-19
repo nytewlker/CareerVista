@@ -34,7 +34,7 @@ const ResetPasswordForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col text-white items-center justify-center min-h-screen">
       <div className="w-full max-w-md p-6 bg-black bg-opacity-50 rounded-lg shadow-lg">
         <h2 className="text-center text-2xl font-bold text-yellow-500 mb-4">
           Reset Password
@@ -60,7 +60,7 @@ const ResetPasswordForm = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-3 py-2  rounded "
+              className="w-full text-black px-3 py-2  rounded "
             />
           </div>
           <div>
@@ -73,7 +73,7 @@ const ResetPasswordForm = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              className="w-full px-3 py-2 rounded "
+              className="w-full text-black px-3 py-2 rounded "
             />
           </div>
           <button

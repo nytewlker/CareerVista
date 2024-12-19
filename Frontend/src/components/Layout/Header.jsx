@@ -16,8 +16,8 @@ const Header = ({ panel }) => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0  rounded-full w-full z-50 transition-all duration-300 ${
-      isScrolled ? "p-2 shadow-2xl bg-black/40" : "p-4"
+    <header className={`fixed top-0 left-0  rounded-lg w-full z-50 transition-all duration-300 ${
+      isScrolled ? "p-2 shadow-2xl bg-black/50" : "p-4"
     }`}>
       <div className="  rounded-xl">
         <div className="container mx-auto flex items-center justify-between">
@@ -35,7 +35,7 @@ const Header = ({ panel }) => {
                 className=" hover:text-yellow-400  no-underline text-white uppercase font-mono font-bold transition-colors duration-300 relative group"
               >
                 {link.label}
-                <span className="absolute margin no-underline left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300" />
+                <span className="absolute margin  left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </nav>
@@ -54,12 +54,12 @@ const Header = ({ panel }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className=" md:hidden  mt-2 mx-4 rounded-xl">
+          <div className=" md:hidden bg-black/50 rounded-lg mt-2 mx-4 ">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 to={link.path}
-                className="block px-4 py-3  no-underline text-white uppercase font-mono font-bold hover:text-yellow-400 transition-colors"
+                className="block px-4 py-3 backdrop-blur-lg rounded-lg underline-offset-8 text-white uppercase font-mono font-bold hover:text-yellow-400 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}

@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-black/40 rounded-full mt-auto">
+    <footer className="w-full text-white  bg-black/40 rounded-lg mt-auto">
       <div className=" mx-4 my-8 rounded-xl">
         <div className="container mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -51,7 +51,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter */}
-            <div className="space-y-4">
+            <div className="space-y-4 text-white">
               <h3 className="text-xl font-bold ">Subscribe</h3>
               <form onSubmit={handleSubscribe} className="space-y-2">
                 <input
@@ -59,7 +59,7 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  className="w-full px-4 py-2 text-black rounded-lg bg-white/10 backdrop-blur-sm border border-white/20  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
                 <button
                   type="submit"
@@ -74,10 +74,10 @@ const Footer = () => {
                 <h3 className="text-xl font-bold  mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
                   {[
-                    { Icon: Facebook, color: "hover:text-yellow-500" },
-                    { Icon: Twitter, color: "hover:text-yellow-400" },
-                    { Icon: Instagram, color: "hover:text-pink-500" },
-                    { Icon: LinkedIn, color: "hover:text-yellow-700" }
+                    { Icon: Facebook, color: "hover:text-blue-500 text-white" },
+                    { Icon: Twitter, color: "hover:text-blue-400 text-white" },
+                    { Icon: Instagram, color: "hover:text-pink-500 text-white" },
+                    { Icon: LinkedIn, color: "hover:text-blue-700 text-white" }
                   ].map(({ Icon, color }, index) => (
                     <IconButton
                       key={index}

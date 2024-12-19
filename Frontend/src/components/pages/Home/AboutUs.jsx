@@ -50,7 +50,7 @@ const AboutUs = () => {
           {/* Team */}
           <div className="grid grid-cols-2 gap-6">
             {teamMembers.map((member) => (
-              <div key={member.id} className="bg-white/40 text-black p-6 text-center rounded-lg shadow-md">
+              <div key={member.id} className="bg-black/50 p-6 text-center rounded-lg shadow-md">
                 <img 
                   src={member.image} 
                   alt={member.name}

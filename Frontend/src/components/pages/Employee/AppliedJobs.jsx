@@ -41,7 +41,7 @@ const AppliedJobs = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center  min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500"></div>
+        <div className="animate-spin rounded-lg h-12 w-12 border-t-2 border-b-2 border-yellow-500"></div>
       </div>
     );
   }
@@ -64,7 +64,7 @@ const AppliedJobs = () => {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold ">{job.title}</h3>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    <span className={`px-3 py-1 rounded-lg text-sm font-medium ${
                       job.status === 'accepted' ? 'bg-green-100 text-green-800' :
                       job.status === 'rejected' ? 'bg-red-100 text-red-800' :
                       'bg-yellow-100 text-yellow-800'
