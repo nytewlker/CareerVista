@@ -38,7 +38,7 @@ const AddJobs = () => {
   };
 
   return (
-    <div className="min-h-screen py-16">
+    <div className="min-h-screen text-white py-16">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-yellow-500">Post a Job</h2>
@@ -55,7 +55,7 @@ const AddJobs = () => {
                   value={formData.title}
                   onChange={handleChange}
                   required
-                  className="mt-1 p-2 block w-full rounded-md  shadow-sm focus:yellow-yellow-500 focus:ring-yellow-500"
+                  className="mt-1 p-2 block text-black w-full rounded-md  shadow-sm focus:yellow-yellow-500 focus:ring-yellow-500"
                 />
               </div>
               
@@ -67,7 +67,7 @@ const AddJobs = () => {
                   value={formData.location}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md  p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
+                  className="mt-1 block w-full text-black rounded-md  p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
                 />
               </div>
             </div>
@@ -80,19 +80,19 @@ const AddJobs = () => {
                 value={formData.description}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
+                className="mt-1 block w-full text-black rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm  font-medium ">Job Type</label>
+                <label className="block text-sm   font-medium ">Job Type</label>
                 <select
                   name="jobType"
                   value={formData.jobType}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
+                  className="mt-1 block w-full text-black rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
                 >
                   <option value="">Select Job Type</option>
                   <option value="full-time">Full-time</option>
@@ -103,14 +103,14 @@ const AddJobs = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium ">Salary</label>
+                <label className="block text-sm  font-medium ">Salary</label>
                 <input
                   type="text"
                   name="salary"
                   value={formData.salary}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
+                  className="mt-1 block w-full text-black rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
                 />
               </div>
             </div>
@@ -123,13 +123,13 @@ const AddJobs = () => {
                 value={formData.experience}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
+                className="mt-1 block w-full text-black rounded-md p-2 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-yellow-600  py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
+              className="w-full bg-yellow-600  text-black py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200"
             >
               Post Job
             </button>
