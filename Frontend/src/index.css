@@ -6,9 +6,54 @@
 
 /* Base Styles */
 
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* Animated Gradient Background */
+body {
     color: white;
-    background-image: linear-gradient(125deg,
-        rgb(63, 63, 63) , rgb(49, 49, 49) ,rgb(39, 39, 39),rgb(0, 0, 0)
-    );
-}
+    background: linear-gradient(125deg, #3f3f3f, #313131, #272727, #000);
+    background-size: 300% 300%;
+    animation: gradient-animation 10s ease infinite;
+  }
+  
+  /* Animation Keyframes */
+  @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Headings and Text Styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  p {
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  /* Utility Classes */
+  .center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .shadow-text {
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+ 

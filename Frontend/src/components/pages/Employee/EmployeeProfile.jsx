@@ -103,7 +103,7 @@ const EmployeeProfile = () => {
           <img
             src={formData.profilePic ? `${DICURL}/${formData.profilePic}` : "/default-profile.png"}
             alt="Profile"
-            className="w-full h-full rounded-full object-cover border-4 border-yellow-500"
+            className="w-full h-full rounded-lg object-cover border-4 border-yellow-500"
           />
         </div>
         <div className="flex-1">

@@ -79,7 +79,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="py-16 flex justify-center items-center">
+    <div className="py-16 flex text-white justify-center items-center">
       <div className="w-full max-w-4xl shadow-lg rounded-3xl  overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left Section */}
@@ -98,15 +98,15 @@ const RegistrationForm = () => {
           {/* Right Section */}
           <div className="p-6 bg-black/40 ">
             <h3 className="text-center mb-4 text-yellow-500 font-bold text-2xl">Create Your Account</h3>
-            {error && <p className="bg-red-500  text-center p-2 rounded-full mb-4">{error}</p>}
+            {error && <p className="bg-red-500  text-center p-2 rounded-lg mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Role Selector */}
               <div>
-                <label className="block ">Role</label>
+                <label className="block  ">Role</label>
                 <select
                   value={role}
                   onChange={handleRoleChange}
-                  className="w-full mt-2  rounded-full p-2 "
+                  className="w-full mt-2  text-black rounded-lg p-2 "
                 >
                   <option value="employee">Employee</option>
                   <option value="recruiter">Recruiter</option>
@@ -122,7 +122,7 @@ const RegistrationForm = () => {
                     placeholder="Enter your name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full  rounded-full p-2 "
+                    className="w-full text-black rounded-lg p-2 "
                   />
                 </div>
                 <div>
@@ -133,7 +133,7 @@ const RegistrationForm = () => {
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-full p-2 "
+                    className="w-full text-black rounded-lg p-2 "
                   />
                 </div>
               </div>
@@ -146,7 +146,7 @@ const RegistrationForm = () => {
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full rounded-full p-2 "
+                  className="w-full text-black rounded-lg p-2 "
                 />
               </div>
               {/* Conditional Fields */}
@@ -159,9 +159,9 @@ const RegistrationForm = () => {
                     placeholder="Enter your company name"
                     value={formData.companyName}
                     onChange={handleChange}
-                    className="w-full  rounded-full p-2 "
+                    className="w-full text-black rounded-lg p-2 "
                   />
-                =
+
                 <label className="block  ">Bio</label>
                 <input
                   type="text"
@@ -169,7 +169,7 @@ const RegistrationForm = () => {
                   placeholder="Enter your company name"
                   value={formData.bio}
                   onChange={handleChange}
-                  className="w-full  rounded-full p-2 "
+                  className="w-full text-black rounded-lg p-2 "
                 />
               </div>
               )}
@@ -183,7 +183,7 @@ const RegistrationForm = () => {
                       placeholder="Enter your institution name"
                       value={formData.institutionName}
                       onChange={handleChange}
-                      className="w-full  rounded-full p-2 "
+                      className="w-full text-black rounded-lg p-2 "
                     />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -195,7 +195,7 @@ const RegistrationForm = () => {
                         placeholder="Start Year"
                         value={formData.startYear}
                         onChange={handleChange}
-                        className="w-full  rounded-full p-2 "
+                        className="w-full text-black rounded-lg p-2 "
                       />
                     </div>
                     <div>
@@ -206,7 +206,7 @@ const RegistrationForm = () => {
                         placeholder="End Year"
                         value={formData.endYear}
                         onChange={handleChange}
-                        className="w-full rounded-full p-2"
+                        className="w-full text-black rounded-lg p-2"
                       />
                     </div>
                   </div>
@@ -218,7 +218,7 @@ const RegistrationForm = () => {
                     placeholder="Enter your skills"
                     value={formData.skills}
                     onChange={handleChange}
-                    className="w-full rounded-full p-2"
+                    className="w-full  text-black rounded-lg p-2"
                       />
                   </div>
                   {/* File Uploads */}
@@ -229,7 +229,7 @@ const RegistrationForm = () => {
                     type="file"
                     name="resume"
                     onChange={handleChange}
-                    className="w-full  rounded-full  outline"
+                    className="w-full  rounded-lg  outline"
                     accept="application/pdf"
                   />
                 </div>
@@ -239,7 +239,7 @@ const RegistrationForm = () => {
                     type="file"
                     name="profilePic"
                     onChange={handleChange}
-                    className="w-full  outline rounded-full "
+                    className="w-full  outline rounded-lg "
                     accept="image/*"
                   />
                 </div>
@@ -249,7 +249,7 @@ const RegistrationForm = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-yellow-500   font-bold py-2 rounded-full hover:bg-yellow-600 transition-all duration-300"
+                className="w-full bg-yellow-500   text-black font-bold py-2 rounded-lg hover:bg-yellow-600 transition-all duration-300"
                 disabled={loading}
               >
                 {loading ? 'Registering...' : 'Create Account'}

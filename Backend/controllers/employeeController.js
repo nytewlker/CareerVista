@@ -4,26 +4,15 @@ const fs = require("fs");
 const path = require("path");
 const Employee = require("../models/Employee");
 
-
 // Register a new employee
 exports.registerEmployee = async (req, res) => {
   try {
-    const {
-      name,
-      email,
-      password,
-      phone,
-      institutionName,
-      startYear,
-      endYear,
-      skills,
-    } = req.body;
+    const { name, email, password, phone, institutionName, startYear, endYear, skills } = req.body;
 
     // Check if employee already exists
     let employee = await Employee.findOne({ email });
     if (employee) {
-      console.log("Employee already exists:", email);
-      return res.status(400).json({ msg: "Employee already exists" });
+      return res.status(400).json({ msg: 'Employee already exists' });
     }
 
     // Create a new employee
@@ -42,39 +31,28 @@ exports.registerEmployee = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     employee.password = await bcrypt.hash(password, salt);
 
-    // Save files if they exist in the request
+    // Handle uploaded files
     if (req.files) {
       if (req.files.resume) {
-        const resumePath = `upload/resumes/${Date.now()}_${
-          req.files.resume[0].originalname
-        }`;
-        fs.writeFileSync(
-          path.join(__dirname, "..", resumePath),
-          req.files.resume[0].buffer
-        );
+        const resumePath = `upload/resumes/${Date.now()}_${req.files.resume[0].originalname}`;
+        fs.writeFileSync(path.join(__dirname, '..', resumePath), req.files.resume[0].buffer);
         employee.resume = resumePath;
       }
 
       if (req.files.profilePic) {
-        const profilePicPath = `upload/profilePics/${Date.now()}_${
-          req.files.profilePic[0].originalname
-        }`;
-        fs.writeFileSync(
-          path.join(__dirname, "..", profilePicPath),
-          req.files.profilePic[0].buffer
-        );
+        const profilePicPath = `upload/profilePics/${Date.now()}_${req.files.profilePic[0].originalname}`;
+        fs.writeFileSync(path.join(__dirname, '..', profilePicPath), req.files.profilePic[0].buffer);
         employee.profilePic = profilePicPath;
       }
     }
 
     // Save the employee to the database
     await employee.save();
-    console.log("Employee registered successfully:", email);
 
-    return res.json({ status: 200, user: employee });
+    return res.status(200).json({ user: employee });
   } catch (err) {
-    console.error("Registration error:", err.message);
-    return res.status(500).send("Server error");
+    console.error('Registration error:', err.message);
+    return res.status(500).send('Server error');
   }
 };
 
