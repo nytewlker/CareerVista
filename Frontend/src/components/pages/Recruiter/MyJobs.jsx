@@ -108,7 +108,7 @@ const MyJobs = () => {
               <div className="flex gap-4 mb-4">
                 <button
                   onClick={() => toggleJobApplications(job._id)}
-                  className="px-4 py-2 text-black   border rounded-md "
+                  className="px-4 py-2    border rounded-md "
                 >
                   {expandedJobId === job._id ? "Hide Details" : "View More"}
                 </button>

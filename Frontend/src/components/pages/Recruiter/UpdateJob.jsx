@@ -48,14 +48,14 @@ const UpdateJob = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8 flex justify-center items-center">
+      <div className="container mx-auto  px-4 py-8 flex justify-center items-center">
         <div className="text-xl">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-16">
+    <div className="min-h-screen text-white py-16">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-yellow-500">Update Job</h2>
@@ -72,7 +72,7 @@ const UpdateJob = () => {
                   value={job.title}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                  className="w-full px-4 py-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                 />
               </div>
               <div>
@@ -85,7 +85,7 @@ const UpdateJob = () => {
                   value={job.location}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                  className="w-full px-4 py-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                 />
               </div>
             </div>
@@ -100,7 +100,7 @@ const UpdateJob = () => {
                 value={job.description}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
               />
             </div>
 
@@ -114,7 +114,7 @@ const UpdateJob = () => {
                   value={job.jobType}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                  className="w-full px-4 py-2 text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                 >
                   <option value="">Select Job Type</option>
                   <option value="full-time">Full-time</option>
@@ -133,7 +133,7 @@ const UpdateJob = () => {
                   value={job.salary}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                  className="w-full px-4 py-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
                 />
               </div>
             </div>
@@ -148,13 +148,13 @@ const UpdateJob = () => {
                 value={job.experience}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-yellow-600  py-3 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300 font-medium"
+              className="w-full bg-yellow-600 text-black  py-3 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300 font-medium"
             >
               Update Job
             </button>
