@@ -96,14 +96,14 @@ const EmployeeProfile = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container text-white mx-auto px-4 py-16">
       <h2 className="text-3xl font-bold text-center mb-8 text-yellow-500">Employee Profile</h2>
       <div className="flex flex-col md:flex-row items-center gap-8 mb-8 bg-black bg-opacity-50 backdrop:blur-sm p-6 rounded-lg shadow-md">
         <div className="w-40 h-40 items-center relative">
           <img
             src={formData.profilePic ? `${DICURL}/${formData.profilePic}` : "/default-profile.png"}
             alt="Profile"
-            className="w-full h-full rounded-lg object-cover border-4 border-yellow-500"
+            className="w-full h-full rounded-full object-cover border-4 border-yellow-500"
           />
         </div>
         <div className="flex-1">

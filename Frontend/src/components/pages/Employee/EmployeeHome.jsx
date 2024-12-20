@@ -21,7 +21,7 @@ const EmployeeHome = () => {
   }, []);
 
   return (
-    <div className="min-h-screen   py-16">
+    <div className="min-h-screen text-white   py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center  mb-8">
           Discover Your Next Opportunity
@@ -57,7 +57,7 @@ const EmployeeHome = () => {
                 </div>
                 <Link
                   to={`/apply/${job._id}`}
-                  className="mt-6 block w-full bg-yellow-600 font-bold no-underline  text-center py-2 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300"
+                  className="mt-6 block text-black w-full bg-yellow-600 font-bold no-underline  text-center py-2 px-4 rounded-md hover:bg-yellow-700 transition-colors duration-300"
                 >
                   Apply Now
                 </Link>

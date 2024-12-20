@@ -38,7 +38,7 @@ const ApplyJob = () => {
   };
 
   return (
-    <div className="min-h-screen  py-16 px-4 sm:px-6  lg:px-8">
+    <div className="min-h-screen text-white  py-16 px-4 sm:px-6  lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold  sm:text-4xl">
@@ -63,7 +63,7 @@ const ApplyJob = () => {
                   id="coverLetter"
                   name="coverLetter"
                   rows="10"
-                  className="appearance-none block w-full px-3 py-2 border bg-transparent border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border bg-transparent border-gray-300 rounded-md shadow-sm placeholder-gray-400 text-black focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
                   placeholder="Tell us why you're the perfect fit for this position..."
                   value={formData.coverLetter}
                   onChange={handleChange}
