@@ -1,8 +1,15 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const fs = require("fs");
-const path = require("path");
-const Employee = require("../models/Employee");
+const bcrypt = require('bcryptjs');
+const fs = require('fs');
+const path = require('path');
+const Employee = require('../models/Employee');
+
+// Utility function to save files
+const saveFile = (folder, file) => {
+  const filePath = `upload/${folder}/${Date.now()}_${file.originalname}`;
+  const fullPath = path.join(__dirname, '..', filePath);
+  fs.writeFileSync(fullPath, file.buffer);
+  return filePath;
+};
 
 // Register a new employee
 exports.registerEmployee = async (req, res) => {
@@ -34,15 +41,10 @@ exports.registerEmployee = async (req, res) => {
     // Handle uploaded files
     if (req.files) {
       if (req.files.resume) {
-        const resumePath = `upload/resumes/${Date.now()}_${req.files.resume[0].originalname}`;
-        fs.writeFileSync(path.join(__dirname, '..', resumePath), req.files.resume[0].buffer);
-        employee.resume = resumePath;
+        employee.resume = saveFile('resumes', req.files.resume[0]);
       }
-
       if (req.files.profilePic) {
-        const profilePicPath = `upload/profilePics/${Date.now()}_${req.files.profilePic[0].originalname}`;
-        fs.writeFileSync(path.join(__dirname, '..', profilePicPath), req.files.profilePic[0].buffer);
-        employee.profilePic = profilePicPath;
+        employee.profilePic = saveFile('profilePics', req.files.profilePic[0]);
       }
     }
 
@@ -55,6 +57,7 @@ exports.registerEmployee = async (req, res) => {
     return res.status(500).send('Server error');
   }
 };
+
 
 
 // Log in an employee

@@ -12,17 +12,14 @@ router.post(
   upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'profilePic', maxCount: 1 }]),
   employeeController.registerEmployee
 );
-// Employee Login
+
 router.post('/login', employeeController.loginEmployee);
-
-// POST /api/employee/logout
 router.post('/logout', employeeController.employeeLogout);
-
-// Get Employee Profile
 router.get('/profile/:id', employeeController.getEmployeeProfile);
-
-// Update Employee Profile
-// Update Employee Profile
-router.put('/profile/:id',  upload.fields([{ name: 'resume' }, { name: 'profilePic' }]), employeeController.updateEmployeeProfile);
+router.put(
+  '/profile/:id',
+  upload.fields([{ name: 'resume' }, { name: 'profilePic' }]),
+  employeeController.updateEmployeeProfile
+);
 
 module.exports = router;

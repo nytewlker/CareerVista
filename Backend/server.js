@@ -3,7 +3,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const connectDB = require('./config/db');
+
+// Ensure upload directories exist
+const ensureDirectoriesExist = () => {
+  const directories = ['upload/resumes', 'upload/profilePics'];
+  directories.forEach((dir) => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  });
+};
+ensureDirectoriesExist();
 
 // Connect to MongoDB
 connectDB();
@@ -19,8 +31,8 @@ app.use(cors({
 }));
 
 // Static file handling
-app.use(express.static(path.join(__dirname, '/public')));
-app.use('/upload', express.static('upload'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/upload', express.static(path.join(__dirname, 'upload')));
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
