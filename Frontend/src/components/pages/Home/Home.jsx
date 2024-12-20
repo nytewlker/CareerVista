@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Typography, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LoginForm from "../../modules/LoginForm";
 
 const Home = () => {
   return (
@@ -104,7 +105,7 @@ const Home = () => {
       >
         <div className="offcanvas-header">
           <Typography variant="h5" id="offcanvasDescriptionLabel">
-            Job Opportunities
+           Login
           </Typography>
           <IconButton
             type="button"
@@ -116,11 +117,7 @@ const Home = () => {
           </IconButton>
         </div>
         <div className="offcanvas-body">
-          <Typography variant="body1" className="text-gray-800">
-            Discover a variety of job opportunities that match your skills and
-            career goals. Explore startup jobs, tech positions, and more. Join
-            our community and take the next step in your career!
-          </Typography>
+          <LoginForm/>
         </div>
       </div>
     </div>
