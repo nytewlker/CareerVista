@@ -47,7 +47,7 @@ const AppliedJobs = () => {
   }
 
   return (
-    <div className="max-w-7xl py-16 mx-auto px-4   sm:px-6 lg:px-8 ">
+    <div className="max-w-7xl text-white py-16 mx-auto px-4   sm:px-6 lg:px-8 ">
       <h2 className="text-3xl font-bold text-center  mb-8">Applied Jobs</h2>
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
