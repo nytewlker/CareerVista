@@ -38,7 +38,7 @@ import Logout from "./components/modules/Logout";
 function App() {
   return (
 
-    <div >
+    <div>
       
       <BrowserRouter>
         <Routes>

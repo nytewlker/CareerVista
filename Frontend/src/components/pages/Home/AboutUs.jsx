@@ -19,7 +19,7 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <section className="py-16 px-6  text-white">
+    <section className="py-16 px-6 min-h-screen  text-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

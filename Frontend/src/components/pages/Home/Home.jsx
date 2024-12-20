@@ -7,19 +7,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   return (
-    <div className="">
+    <div className=" min-h-screen">
       {/* Hero Carousel */}
       <Carousel id="heroCarousel" interval={3000} indicators={false}>
         {/* Slide 1 */}
         <Carousel.Item>
           <img
             src={`${process.env.PUBLIC_URL}/assets/resized_img1.jpg`}
-            className="d-block w-100  object-cover"
+            className="d-block min-h-screen  object-cover"
             alt="Slide 1"
             style={{ }}
           />
           <Carousel.Caption className="bg-black bg-opacity-50 rounded-lg p-4">
-            <Typography variant="h5" className="text-white">
+            <Typography variant="h5" className="">
               Searching for a job?
             </Typography>
             <Typography variant="body1" className="text-gray-300 mt-2">
@@ -42,12 +42,12 @@ const Home = () => {
         <Carousel.Item>
           <img
             src={`${process.env.PUBLIC_URL}/assets/resized_img2.jpg`}
-            className="d-block w-100 object-cover"
+            className="d-block min-h-screen object-cover"
             alt="Slide 2"
             style={{ maxHeight: "600px" }}
           />
           <Carousel.Caption className="bg-black bg-opacity-50 rounded-lg p-4">
-            <Typography variant="h5" className="text-white">
+            <Typography variant="h5" className="">
               Join Our Community
             </Typography>
             <Typography variant="body1" className="text-gray-300 mt-2">
@@ -70,12 +70,12 @@ const Home = () => {
         <Carousel.Item>
           <img
             src={`${process.env.PUBLIC_URL}/assets/resized_img3.jpg`}
-            className="d-block w-100 object-cover"
+            className="d-block min-h-screen object-cover"
             alt="Slide 3"
             style={{ maxHeight: "600px" }}
           />
           <Carousel.Caption className="bg-black/50 rounded-lg p-4">
-            <Typography variant="h5" className="text-white">
+            <Typography variant="h5" className="">
               Career Growth
             </Typography>
             <Typography variant="body1" className="text-gray-300 mt-2">

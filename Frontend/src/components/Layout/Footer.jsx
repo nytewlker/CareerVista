@@ -22,8 +22,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full text-white  bg-black/40 rounded-lg mt-auto">
-      <div className=" mx-4 my-8 rounded-xl">
+    <footer className="w-full text-white  bg-black/40 rounded-lg">
+      <div className=" mx-4 rounded-xl">
         <div className="container mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Company Info */}

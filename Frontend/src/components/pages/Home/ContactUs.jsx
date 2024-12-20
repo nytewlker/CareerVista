@@ -18,11 +18,11 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="py-16 px-6 text-white">
+    <section className="py-16 min-h-screen px-6 ">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold mb-4">Contact Us</h2>
+          <h2 className="text-4xl font-extrabold text-white mb-4">Contact Us</h2>
           <p className="text-lg text-yellow-200">Have questions? We're here to help.</p>
         </div>
 
@@ -77,7 +77,7 @@ const ContactUs = () => {
               />
               <button
                 type="submit"
-                className="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg shadow-md transition duration-300"
+                className="w-full py-3 bg-yellow-500 hover:bg-yellow-600  font-bold rounded-lg shadow-md transition duration-300"
               >
                 Send Message
               </button>
