@@ -86,7 +86,7 @@ const EmployeeProfile = () => {
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        className="w-full px-4 py-2 border tex-black rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
       />
     </div>
   );
@@ -117,7 +117,7 @@ const EmployeeProfile = () => {
           {renderInput("Email", "email", "email", formData.email, handleChange)}
         </div>
 
-        <div className="grid md:grid-cols-2 text-black gap-6">
+        <div className="grid md:grid-cols-2  gap-6">
           {renderInput("Phone", "phone", "tel", formData.phone, handleChange)}
           {renderInput("Institution Name", "institutionName", "text", formData.institutionName, handleChange)}
         </div>
