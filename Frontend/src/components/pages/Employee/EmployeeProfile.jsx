@@ -117,7 +117,7 @@ const EmployeeProfile = () => {
           {renderInput("Email", "email", "email", formData.email, handleChange)}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 text-black gap-6">
           {renderInput("Phone", "phone", "tel", formData.phone, handleChange)}
           {renderInput("Institution Name", "institutionName", "text", formData.institutionName, handleChange)}
         </div>
